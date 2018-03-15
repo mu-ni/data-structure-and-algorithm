@@ -1,4 +1,4 @@
-package datastructure.recursion;
+package datastructure.sort;
 
 import java.util.Arrays;
 
