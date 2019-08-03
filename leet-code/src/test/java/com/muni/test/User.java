@@ -1,4 +1,4 @@
-package com.gemalto.test;
+package com.muni.test;
 
 public class User {
 

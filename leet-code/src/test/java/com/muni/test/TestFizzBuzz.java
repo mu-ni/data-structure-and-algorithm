@@ -1,4 +1,4 @@
-package com.gemalto.test;
+package com.muni.test;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

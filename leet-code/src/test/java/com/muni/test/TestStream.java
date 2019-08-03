@@ -1,4 +1,4 @@
-package com.gemalto.test;
+package com.muni.test;
 
 import java.util.ArrayList;
 import java.util.Comparator;

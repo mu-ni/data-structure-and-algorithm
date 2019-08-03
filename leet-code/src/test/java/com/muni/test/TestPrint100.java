@@ -1,4 +1,4 @@
-package com.gemalto.test;
+package com.muni.test;
 
 public class TestPrint100 {
 	public static void main(String[] args) {
