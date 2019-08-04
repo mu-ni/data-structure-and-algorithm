@@ -23,21 +23,20 @@ public class Subsets {
         return rst;
     }
 
-//    // TODO
-//    // recursion
-//    static List<List<Integer>> rst = new ArrayList<>();
-//    public static List<List<Integer>> subsets(int[] nums) {
-//        if(nums.length == 0) return rst;
-//        bfs(nums, 0, new ArrayList<>());
+    // recursion
+//    public List<List<Integer>> subsets(int[] nums) {
+//        // Arrays.sort(nums);
+//        List<List<Integer>> rst = new ArrayList<>();
+//        backtrack(rst, nums, new ArrayList<>(), 0);
 //        return rst;
 //    }
 //
-//    public static void bfs(int[] nums, int index, List<Integer> each) {
-//        rst.add(new ArrayList<>(each));
-//        for(int i=index; i<nums.length; i++) {
-//            each.add(nums[i]);
-//            bfs(nums, i+1, each);
-//            each.remove(each.size()-1);
+//    public void dfs(List<List<Integer>> rst, int[] nums, List<Integer> path, int start) {
+//        rst.add(new ArrayList<>(path));
+//        for(int i=start; i< nums.length; i++) {
+//            path.add(nums[i]);
+//            backtrack(rst, nums, path, i+1);
+//            path.remove(path.size()-1);
 //        }
 //    }
 }
