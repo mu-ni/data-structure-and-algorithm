@@ -2,14 +2,9 @@ package algorithm.sortsearch;
 
 import java.util.Arrays;
 
-/**
- * Created by muni on 2019/8/5
- */
 public class BubbleSort {
     public static void main(String[] args) {
-        int[] nums = new int[]{1,4,2,6,9,3,7,8,5};
-        bubble(nums);
-        System.out.println(Arrays.toString(nums));
+        System.out.println(Arrays.toString(bubble(new int[]{1,4,2,6,9,3,7,8,5})));
     }
 
     // time complexity O(n^2)
