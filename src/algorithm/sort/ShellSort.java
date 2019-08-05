@@ -1,4 +1,4 @@
-package algorithm.sortsearch;
+package algorithm.sort;
 
 import java.util.Arrays;
 
@@ -7,6 +7,8 @@ public class ShellSort {
         System.out.println(Arrays.toString(shell(new int[]{1,4,2,6,9,3,7,8,5})));
     }
 
+    // time complexity O(n^2)
+    // space complexity O(1)
     public static int[] shell(int[] nums) {
         for(int gap = nums.length/2; gap>0; gap /= 2) {
             for (int i = gap; i < nums.length; i += 1) {

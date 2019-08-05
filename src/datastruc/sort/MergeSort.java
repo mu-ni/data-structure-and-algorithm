@@ -28,15 +28,15 @@ public class MergeSort {
 	}
 	
 	private static void merge(int[] array, int low, int mid, int high){
-		
+
 		int n = high - low +1;
 		int[] workspace = new int[n];
-		
+
 		int leftPointer = low;
 		int rightPointer = mid +1;
-		
+
 		int k = 0;
-		
+
 		while(leftPointer <= mid && rightPointer <= high){
 			if(array[leftPointer] < array[rightPointer]){
 				workspace[k++] = array[leftPointer++];
@@ -44,11 +44,11 @@ public class MergeSort {
 				workspace[k++] = array[rightPointer++];
 			}
 		}
-		
+
 		while(leftPointer <= mid){
 			workspace[k++] = array[leftPointer++];
 		}
-		
+
 		while(rightPointer <= high){
 			workspace[k++] = array[rightPointer++];
 		}
