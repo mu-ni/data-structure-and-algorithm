@@ -1,4 +1,4 @@
-package algorithm.sortsearch;
+package algorithm.search;
 
 public class SearchRotatedArray {
     public static void main(String[] args) {
