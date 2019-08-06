@@ -6,7 +6,8 @@ public class MatrixSearch {
     }
 
     public static boolean matrixSearch(int[][] matrix, int target) {
-        if(matrix.length == 0) return false;
+        if(matrix.length == 0 || matrix[0].length == 0) return false;
+
         int row = 0;
         int col = matrix[0].length-1;
         while(row <= matrix.length-1 && col >=0) {
