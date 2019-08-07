@@ -8,7 +8,7 @@ public class PeakValley {
     }
 
     // time complexity O(nlogn)
-    // space complexity O(1)
+    // Arrays.sort() -> TimSort from jdk 1.7, time complexity O(n)<~<O(nlogn), space complexity O(n/2)
     public static int[] peakValley(int[] arr) {
         Arrays.sort(arr);
         for(int i=0; i<arr.length-1; i += 2) {
