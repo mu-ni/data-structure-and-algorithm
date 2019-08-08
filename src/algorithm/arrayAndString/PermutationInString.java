@@ -44,4 +44,29 @@ public class PermutationInString {
         }
         return true;
     }
+
+    public static boolean checkInclusion3(String s1, String s2) {
+        if(s1.length() > s2.length()) return false;
+
+        int[] arr = new int[128];
+        for(int i=0; i< s1.length(); i++) {
+            arr[s1.charAt(i)]++;
+            arr[s2.charAt(i)]--;
+        }
+        if(isEmpty(arr)) return true;
+
+        for(int i=s1.length(); i<s2.length(); i++) {
+            arr[s2.charAt(i)] --; // reduce difference
+            arr[s2.charAt(i-s1.length())] ++;
+            if(isEmpty(arr)) return true;
+        }
+        return false;
+    }
+
+    public static boolean isEmpty(int[] arr) {
+        for(int i : arr) {
+            if(i != 0) return false;
+        }
+        return true;
+    }
 }
