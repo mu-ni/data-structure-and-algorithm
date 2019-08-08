@@ -1,5 +1,7 @@
 package algorithm.arrayAndString;
 
+import java.util.Arrays;
+
 public class CheckPermutation {
     public static void main(String[] args) {
         System.out.println(permutation("abc", "cba"));
@@ -18,5 +20,16 @@ public class CheckPermutation {
             arr[b]--;
         }
         return true;
+    }
+
+    public boolean permutation2(String A, String B) {
+        if (A.length() != B.length()) return false;
+
+        char[] a = A.toCharArray();
+        Arrays.sort(a);
+        char[] b = B.toCharArray();
+        Arrays.sort(b);
+
+        return Arrays.equals(a, b);
     }
 }
