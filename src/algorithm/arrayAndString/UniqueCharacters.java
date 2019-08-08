@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class UniqueCharacters {
     public static void main(String[] args) {
         System.out.println(isUnique("abc"));
-        System.out.println(isUnique("abcaa"));
+        System.out.println(isUnique("abc__"));
     }
 
     public static boolean isUnique(String s) {
@@ -14,10 +14,10 @@ public class UniqueCharacters {
 
         boolean[] arr = new boolean[128];
         for(char c : s.toCharArray()) {
-            if(arr[c - 'a']) {
+            if(arr[c]) {
                 return false;
             }
-            arr[c - 'a'] = true;
+            arr[c] = true;
         }
         return true;
     }
