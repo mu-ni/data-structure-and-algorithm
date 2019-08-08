@@ -16,8 +16,8 @@ public class ZeroMatrix {
         List<List<Integer>> lists = new ArrayList<>();
         for(int i=0; i<r; i++) {
             for(int j=0; j<c; j++) {
-                List<Integer> list = new ArrayList<>();
                 if(matrix[i][j] == 0) {
+                    List<Integer> list = new ArrayList<>();
                     list.add(i);
                     list.add(j);
                     lists.add(list);
