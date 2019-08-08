@@ -1,4 +1,4 @@
-package algorithm.search.basic;
+package algorithm.searchAndSort.basic;
 
 public class BinarySearch {
     public static void main(String[] args) {

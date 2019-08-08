@@ -1,4 +1,4 @@
-package algorithm.recursion;
+package algorithm.recursionAndDP;
 
 public class UniquePath {
     public static void main(String[] args) {

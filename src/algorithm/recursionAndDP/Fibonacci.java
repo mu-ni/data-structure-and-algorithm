@@ -1,4 +1,4 @@
-package algorithm.recursion;
+package algorithm.recursionAndDP;
 
 public class Fibonacci {
     public static void main(String[] args) {

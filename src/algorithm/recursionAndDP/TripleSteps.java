@@ -1,4 +1,4 @@
-package algorithm.recursion;
+package algorithm.recursionAndDP;
 
 public class TripleSteps {
     public static void main(String[] args) {

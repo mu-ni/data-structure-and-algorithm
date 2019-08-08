@@ -1,4 +1,4 @@
-package algorithm.recursion;
+package algorithm.recursionAndDP;
 
 public class Hanoi {
     public static void main(String[] args) {
