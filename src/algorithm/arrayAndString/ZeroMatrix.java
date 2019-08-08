@@ -40,4 +40,39 @@ public class ZeroMatrix {
             matrix[a][i] = 0;
         }
     }
+
+    public void setZeroes2(int[][] matrix) {
+        int r = matrix.length;
+        int c = matrix[0].length;
+        boolean[] rows = new boolean[r];
+        boolean[] cols = new boolean[c];
+
+        for(int i=0; i<r; i++) {
+            for(int j=0; j<c; j++) {
+                if(matrix[i][j] == 0) {
+                    rows[i] = true;
+                    cols[j] = true;
+                }
+            }
+        }
+
+        for(int i=0; i<rows.length; i++) {
+            if(rows[i]) setRowZero(matrix, i);
+        }
+
+        for(int i=0; i<cols.length; i++) {
+            if(cols[i]) setColZero(matrix, i);
+        }
+    }
+
+    public void setRowZero(int[][] matrix, int row) {
+        for(int i=0; i<matrix[0].length; i++) {
+            matrix[row][i] = 0;
+        }
+    }
+    public void setColZero(int[][] matrix, int col) {
+        for(int i=0; i<matrix.length; i++) {
+            matrix[i][col] = 0;
+        }
+    }
 }
