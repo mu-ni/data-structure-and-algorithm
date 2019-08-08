@@ -1,11 +1,11 @@
 package algorithm.LinkedList.Dao;
 
 public class ListNode {
-    public int data;
+    public int val;
     public ListNode next;
 
     public ListNode(int val) {
-        this.data = val;
+        this.val = val;
     }
 
     public static ListNode getList(int[] arr) {
@@ -31,7 +31,7 @@ public class ListNode {
         StringBuilder sb = new StringBuilder();
         ListNode cur = this;
         while(cur != null) {
-            sb.append(cur.data);
+            sb.append(cur.val);
             sb.append(" -> ");
             cur = cur.next;
         }

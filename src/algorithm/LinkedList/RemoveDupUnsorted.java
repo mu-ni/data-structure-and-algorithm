@@ -13,15 +13,15 @@ public class RemoveDupUnsorted {
 
     public static ListNode removeDuplicates(ListNode head) {
         Set<Integer> map = new HashSet<>();
-        map.add(head.data);
+        map.add(head.val);
 
         ListNode cur = head;
         while(cur.next != null) {
-            if(map.contains(cur.next.data)) {
+            if(map.contains(cur.next.val)) {
                 cur.next = cur.next.next;
                 continue;
             }
-            map.add(cur.next.data);
+            map.add(cur.next.val);
             cur = cur.next;
         }
         return head;
@@ -32,7 +32,7 @@ public class RemoveDupUnsorted {
         while(cur != null) {
             ListNode pt = cur;
             while (pt.next != null) {
-                if (cur.data == pt.next.data) {
+                if (cur.val == pt.next.val) {
                     pt.next = pt.next.next;
                     continue;
                 }
