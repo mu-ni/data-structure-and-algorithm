@@ -11,14 +11,13 @@ public class RemoveDupUnsorted {
     public static ListNode removeDuplicates(ListNode head) {
         ListNode cur = head;
         while(cur != null) {
-            ListNode prev = cur;
-            ListNode cur2 = cur.next;
-            while (cur2 != null) {
-                if(cur.data == cur2.data) {
-                    prev.next = cur2.next;
+            ListNode pt = cur;
+            while (pt.next != null) {
+                if (cur.data == pt.next.data) {
+                    pt.next = pt.next.next;
+                    continue;
                 }
-                prev = cur2;
-                cur2 = cur2.next;
+                pt = pt.next;
             }
             cur = cur.next;
         }
