@@ -41,7 +41,7 @@ public class ZeroMatrix {
         }
     }
 
-    public void setZeroes2(int[][] matrix) {
+    public static void setZeroes2(int[][] matrix) {
         int r = matrix.length;
         int c = matrix[0].length;
         boolean[] rows = new boolean[r];
@@ -65,12 +65,12 @@ public class ZeroMatrix {
         }
     }
 
-    public void setRowZero(int[][] matrix, int row) {
+    public static void setRowZero(int[][] matrix, int row) {
         for(int i=0; i<matrix[0].length; i++) {
             matrix[row][i] = 0;
         }
     }
-    public void setColZero(int[][] matrix, int col) {
+    public static void setColZero(int[][] matrix, int col) {
         for(int i=0; i<matrix.length; i++) {
             matrix[i][col] = 0;
         }
