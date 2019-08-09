@@ -23,7 +23,7 @@ public class Intersection {
             lenB--;
         }
 
-        while (headA != headB) {
+        while (headA != headB) { //nullable
             headA = headA.next;
             headB = headB.next;
         }
