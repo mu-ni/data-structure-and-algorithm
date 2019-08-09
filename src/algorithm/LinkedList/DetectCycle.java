@@ -8,18 +8,21 @@ public class DetectCycle {
     }
 
     public static ListNode detectCycle(ListNode head) {
-        if (head == null) return null;
+        if (head == null || head.next == null) return null;
 
         ListNode slow = head;
         ListNode fast = head;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            if (slow.val == fast.val) break;
+            if (slow == fast) break;
         }
 
+        // no meeting point
+        if (fast == null || fast.next == null) return null;
+
         slow = head;
-        while (slow.val != fast.val) {
+        while (slow != fast) {
             slow = slow.next;
             fast = fast.next;
         }

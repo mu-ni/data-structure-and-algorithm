@@ -16,7 +16,7 @@ public class HasCycle {
         while (fast.next != null && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            if (slow.val == fast.val) return true;
+            if (slow == fast) return true;
         }
         return false;
     }
