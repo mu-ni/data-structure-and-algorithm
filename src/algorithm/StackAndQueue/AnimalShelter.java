@@ -3,11 +3,31 @@ package algorithm.StackAndQueue;
 import java.util.LinkedList;
 
 public class AnimalShelter {
-    public class Animal {
+    public static void main(String[] args) {
+        enqueue(new Dog("d1"));
+        enqueue(new Cat("c1"));
+        enqueue(new Cat("c2"));
+        enqueue(new Dog("d2"));
+
+        Animal animal = dequeue();
+        System.out.println(animal.getName());
+        Dog dog = dequeueDog();
+        System.out.println(dog.getName());
+        Cat cat = dequeueCat();
+        System.out.println(cat.getName());
+        animal = dequeue();
+        System.out.println(animal.getName());
+    }
+
+    public static class Animal {
         private String name; //id
         private int order = 0; //timestamp
         public Animal(String name) {
             this.name = name;
+        }
+
+        public String getName() {
+            return name;
         }
 
         public int getOrder() {
@@ -18,24 +38,24 @@ public class AnimalShelter {
             this.order = order;
         }
     }
-    public class Dog extends Animal {
+    public static class Dog extends Animal {
         private String name;
         public Dog(String name) {
             super(name);
         }
     }
-    public class Cat extends Animal {
+    public static class Cat extends Animal {
         private String name;
         public Cat(String name) {
             super(name);
         }
     }
 
-    LinkedList<Dog> dogs = new LinkedList<>();
-    LinkedList<Cat> cats = new LinkedList<>();
-    int order = 0;
+    static LinkedList<Dog> dogs = new LinkedList<>();
+    static LinkedList<Cat> cats = new LinkedList<>();
+    static int order;
 
-    public void enqueue(Animal animal) {
+    public static void enqueue(Animal animal) {
         order++;
         animal.setOrder(order);
         if (animal instanceof Dog) {
@@ -45,7 +65,7 @@ public class AnimalShelter {
         } else {}
     }
 
-    public Animal dequeue() {
+    public static Animal dequeue() {
         if (dogs.isEmpty()) return cats.poll();
         if (cats.isEmpty()) return dogs.poll();
 
@@ -55,11 +75,11 @@ public class AnimalShelter {
         return cats.poll();
     }
 
-    public Dog dequeueDog() {
+    public static Dog dequeueDog() {
         return dogs.poll();
     }
 
-    public Cat dequeueCat() {
+    public static Cat dequeueCat() {
         return cats.poll();
     }
 }
