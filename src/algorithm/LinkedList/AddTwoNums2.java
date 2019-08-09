@@ -8,7 +8,7 @@ public class AddTwoNums2 {
     public static void main(String[] args) {
         ListNode l1 = ListNode.getList(new int[]{7,2,4,3});
         ListNode l2 = ListNode.getList(new int[]{5,6,4});
-        System.out.println(addTwoNumbers2(l1, l2).toString());
+        System.out.println(addTwoNumbers(l1, l2).toString());
     }
 
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
