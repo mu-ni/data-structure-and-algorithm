@@ -6,7 +6,6 @@ public class AddTwoNums2 {
     public static void main(String[] args) {
         ListNode l1 = ListNode.getList(new int[]{7,2,4,3});
         ListNode l2 = ListNode.getList(new int[]{5,6,4});
-        reverse2(l1);
         System.out.println(addTwoNumbers(l1, l2).toString());
     }
 
@@ -30,14 +29,8 @@ public class AddTwoNums2 {
         return pre;
     }
 
-    public static ListNode reverse2(ListNode head) { // clone
-        ListNode rst = null;
-        while (head != null) {
-            ListNode node = new ListNode(head.val);
-            node.next = rst;
-            rst = node;
-            head = head.next;
-        }
-        return rst;
+    public static ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+        // stack
+        return null;
     }
 }
