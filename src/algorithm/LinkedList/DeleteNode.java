@@ -21,6 +21,10 @@ public class DeleteNode {
     }
 
     public static void deleteNode(ListNode node) { //except the tail
+        if(node == null || node.next == null) {
+            // error -> node is tail
+            return;
+        }
         node.val = node.next.val; // copy next value
         node.next = node.next.next; // delete next node
     }
