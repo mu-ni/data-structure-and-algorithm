@@ -14,19 +14,14 @@ public class DeleteNode {
         n3.next = n4;
         n4.next = n5;
 
+        deleteNode(head);
+        System.out.println(head.toString());
         deleteNode(n3);
         System.out.println(head.toString());
     }
 
-    public static void deleteNode(ListNode node) {
-        if(node == null) {
-            return;
-        }
-        if(node.next == null) {
-            node = null;
-        }
-
-        node.val = node.next.val;
-        node.next = node.next.next;
+    public static void deleteNode(ListNode node) { //except the tail
+        node.val = node.next.val; // copy next value
+        node.next = node.next.next; // delete next node
     }
 }
