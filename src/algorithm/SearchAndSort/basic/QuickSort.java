@@ -4,42 +4,40 @@ import java.util.Arrays;
 
 public class QuickSort {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(quickSort(new int[]{1,4,2,6,9,3,7,8,5})));
+        System.out.println(Arrays.toString(quickSort(new int[]{5, 3, 2, 1})));
     }
 
     // time complexity O(nlogn)
     // space complexity O(logn)
     public static int[] quickSort(int[] nums) {
-        quickSort(nums, 0, nums.length-1);
+        quickSort(nums, 0, nums.length - 1);
         return nums;
     }
 
     public static void quickSort(int[] nums, int left, int right) {
+        if (left >= right) return;
         int partition = partition(nums, left, right);
-        if (left < partition) {
-            quickSort(nums, left, partition);
-        }
-        if (partition+1 < right) {
-            quickSort(nums, partition+1, right);
-        }
+        quickSort(nums, left, partition - 1);
+        quickSort(nums, partition + 1, right);
     }
 
     public static int partition(int[] arr, int left, int right) {
-        int pivot = arr[(left+right)/2];
-        while(left < right) {
-            while(arr[left] < pivot) {
-                left++;
+        int pivot = arr[right];
+
+        int i = left;
+        int j = right - 1;
+        while (true) {
+            while (i < right && arr[i] < pivot) {
+                i++;
             }
-            while(arr[right] > pivot) {
-                right--;
+            while (j >= left && arr[j] > pivot) {
+                j--;
             }
-            if(left < right) {
-                swap(arr, left, right);
-                left++;
-                right--;
-            }
+            if (i >= j) break;
+            swap(arr, i, j);
         }
-        return right;
+        swap(arr, i, right);
+        return i;
     }
 
     public static void swap(int[] arr, int a, int b) {
