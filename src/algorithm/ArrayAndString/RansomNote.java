@@ -8,14 +8,14 @@ public class RansomNote {
 
     public static boolean ransomNote(String ransomNote, String magazine) {
         int[] arr = new int[128];
-        for(char c : magazine.toCharArray()) {
-            arr[c] ++;
+        for (char c : magazine.toCharArray()) {
+            arr[c]++;
         }
-        for(char c : ransomNote.toCharArray()) {
-            if(arr[c] == 0) {
+        for (char c : ransomNote.toCharArray()) {
+            if (arr[c] == 0) {
                 return false;
             }
-            arr[c] --;
+            arr[c]--;
         }
         return true;
     }
