@@ -53,8 +53,12 @@ public class MergeSort {
             i++;
         }
 
-        for(int j=0; j< high - low + 1; j++){
-            nums[low + j] = tmp[j];
+        // copy tmp to nums
+        i=0;
+        while(i < tmp.length) {
+            nums[low] = tmp[i];
+            low++;
+            i++;
         }
     }
 
