@@ -14,7 +14,7 @@ public class TreeTraversal {
 
     public static void preOrder(Tree node) {
         if (node == null) return;
-        visit(node);
+        Tree.visit(node);
         preOrder(node.left);
         preOrder(node.right);
     }
@@ -22,7 +22,7 @@ public class TreeTraversal {
     public static void inOrder(Tree node) {
         if (node == null) return;
         inOrder(node.left);
-        visit(node);
+        Tree.visit(node);
         inOrder(node.right);
     }
 
@@ -30,10 +30,6 @@ public class TreeTraversal {
         if (node == null) return;
         postOrder(node.left);
         postOrder(node.right);
-        visit(node);
-    }
-
-    public static void visit(Tree node) {
-        System.out.println(node.val);
+        Tree.visit(node);
     }
 }

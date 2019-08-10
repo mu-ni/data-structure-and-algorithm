@@ -1,12 +1,23 @@
 package algorithm.TreeAndGraph.Dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tree {
     public int val;
     public Tree left;
     public Tree right;
+    public boolean visited = false;
 
     public Tree(int val) {
         this.val = val;
+    }
+
+    public List<Tree> adjacent() {
+        List<Tree> list = new ArrayList<>();
+        if (left != null) list.add(left);
+        if (right != null) list.add(right);
+        return list;
     }
 
     public static Tree genTree() {
@@ -26,5 +37,9 @@ public class Tree {
         child2.right = leaf4;
 
         return root;
+    }
+
+    public static void visit(Tree node) {
+        System.out.println(node.val);
     }
 }
