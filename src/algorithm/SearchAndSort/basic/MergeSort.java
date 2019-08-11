@@ -11,17 +11,16 @@ public class MergeSort {
     // time complexity O(nlogn)
     // space complexity O(n)
     public static int[] mergeSort(int[] nums) {
-        return mergeSort(nums, 0, nums.length-1);
+        mergeSort(nums, 0, nums.length-1);
+        return nums;
     }
 
-    public static int[] mergeSort(int[] nums, int low, int high) {
+    public static void mergeSort(int[] nums, int low, int high) {
+        if (low >= high) return;
         int mid = (low + high)/2;
-        if (low < high) {
-            mergeSort(nums, low, mid);
-            mergeSort(nums, mid+1, high);
-            merge(nums, low, mid, high);
-        }
-        return nums;
+        mergeSort(nums, low, mid);
+        mergeSort(nums, mid+1, high);
+        merge(nums, low, mid, high);
     }
 
     public static void merge(int[] nums, int low, int mid, int high) {
