@@ -21,7 +21,7 @@ public class BreadthFirstSearch {
             node.visited = true;
             for (Tree adj : n.adjacent()) {
                 if (!adj.visited) {
-                    queue.add(adj);
+                    queue.add(adj); // add only unvisited node
                 }
             }
         }
