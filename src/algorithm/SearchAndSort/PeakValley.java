@@ -26,7 +26,7 @@ public class PeakValley {
 
     // time complexity O(n)
     public static int[] peakValley2(int[] arr) {
-        for(int i=0; i<arr.length-1; i += 2) {
+        for(int i=0; i<arr.length; i += 2) {
             int maxIndex = maxIndex(arr, i-1, i, i+1);
             if(arr[maxIndex] != arr[i]) {
                 swap(arr, maxIndex, i);
