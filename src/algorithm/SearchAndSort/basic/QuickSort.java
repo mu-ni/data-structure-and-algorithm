@@ -30,7 +30,7 @@ public class QuickSort {
             while (i < right && arr[i] <= pivot) {
                 i++;
             }
-            while (j > left && arr[j] >= pivot) {
+            while (j >= left && arr[j] >= pivot) {
                 j--;
             }
             if (i >= j) break;
