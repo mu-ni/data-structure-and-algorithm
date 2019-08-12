@@ -1,25 +1,25 @@
 package algorithm.TreeAndGraph;
 
-import algorithm.TreeAndGraph.Dao.Tree;
+import algorithm.TreeAndGraph.Dao.TreeNode;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class BreadthFirstSearch {
     public static void main(String[] argd) {
-        Tree root = Tree.genTree();
+        TreeNode root = TreeNode.genTree();
         bfs(root);
     }
 
-    public static void bfs(Tree node) {
-        Queue<Tree> queue = new LinkedList<>();
+    public static void bfs(TreeNode node) {
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(node);
 
         while (!queue.isEmpty()){
-            Tree n = queue.poll();
-            Tree.visit(n);
+            TreeNode n = queue.poll();
+            TreeNode.visit(n);
             node.visited = true;
-            for (Tree adj : n.adjacent()) {
+            for (TreeNode adj : n.adjacent()) {
                 if (!adj.visited) {
                     queue.add(adj); // add only unvisited node
                 }

@@ -1,10 +1,10 @@
 package algorithm.TreeAndGraph;
 
-import algorithm.TreeAndGraph.Dao.Tree;
+import algorithm.TreeAndGraph.Dao.TreeNode;
 
 public class TreeTraversal {
     public static void main(String[] args) {
-        Tree root = Tree.genTree();
+        TreeNode root = TreeNode.genTree();
         preOrder(root);
         System.out.println("------");
         inOrder(root);
@@ -12,24 +12,24 @@ public class TreeTraversal {
         postOrder(root);
     }
 
-    public static void preOrder(Tree node) {
+    public static void preOrder(TreeNode node) {
         if (node == null) return;
-        Tree.visit(node);
+        TreeNode.visit(node);
         preOrder(node.left);
         preOrder(node.right);
     }
 
-    public static void inOrder(Tree node) {
+    public static void inOrder(TreeNode node) {
         if (node == null) return;
         inOrder(node.left);
-        Tree.visit(node);
+        TreeNode.visit(node);
         inOrder(node.right);
     }
 
-    public static void postOrder(Tree node) {
+    public static void postOrder(TreeNode node) {
         if (node == null) return;
         postOrder(node.left);
         postOrder(node.right);
-        Tree.visit(node);
+        TreeNode.visit(node);
     }
 }

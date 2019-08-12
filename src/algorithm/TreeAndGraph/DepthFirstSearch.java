@@ -1,18 +1,18 @@
 package algorithm.TreeAndGraph;
 
-import algorithm.TreeAndGraph.Dao.Tree;
+import algorithm.TreeAndGraph.Dao.TreeNode;
 
 public class DepthFirstSearch {
     public static void main(String[] argd) {
-        Tree root = Tree.genTree();
+        TreeNode root = TreeNode.genTree();
         dfs(root);
     }
 
-    public static void dfs(Tree node) {
+    public static void dfs(TreeNode node) {
         if (node == null) return;
-        Tree.visit(node);
+        TreeNode.visit(node);
         node.visited = true;
-        for (Tree n : node.adjacent()) {
+        for (TreeNode n : node.adjacent()) {
             if (!n.visited) {
                 dfs(n);
             }

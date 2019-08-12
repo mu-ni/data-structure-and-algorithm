@@ -1,6 +1,6 @@
 package algorithm.TreeAndGraph;
 
-import algorithm.TreeAndGraph.Dao.Tree;
+import algorithm.TreeAndGraph.Dao.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -9,22 +9,22 @@ import java.util.Queue;
 
 public class LevelOrder {
     public static void main(String[] args) {
-        System.out.println(bfs(Tree.genTree()));
-        System.out.println(dfs(Tree.genTree()));
+        System.out.println(bfs(TreeNode.genTree()));
+        System.out.println(dfs(TreeNode.genTree()));
     }
     
-    public static List<List<Integer>> bfs(Tree root) {
+    public static List<List<Integer>> bfs(TreeNode root) {
         List<List<Integer>> rst = new ArrayList<>();
         if(root == null) return rst;
 
-        Queue<Tree> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
 
         while(!queue.isEmpty()) {
             int size = queue.size();
             List<Integer> list = new ArrayList<>();
             for (int i=0; i<size; i++) {
-                Tree node = queue.poll();
+                TreeNode node = queue.poll();
                 list.add(node.val);
 
                 if (node.left != null) {
@@ -39,13 +39,13 @@ public class LevelOrder {
         return rst;
     }
 
-    public static List<List<Integer>> dfs(Tree root) {
+    public static List<List<Integer>> dfs(TreeNode root) {
         List<List<Integer>> rst = new ArrayList<>();
         if (root == null) return rst;
         return dfs(rst, root, 0);
     }
 
-    public static List<List<Integer>> dfs(List<List<Integer>> rst, Tree node, int level) {
+    public static List<List<Integer>> dfs(List<List<Integer>> rst, TreeNode node, int level) {
         if (rst.size() <= level) {
             rst.add(new ArrayList<>());
         }
