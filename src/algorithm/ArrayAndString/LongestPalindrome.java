@@ -4,6 +4,7 @@ import java.util.Stack;
 
 public class LongestPalindrome {
     public static void main(String[] args) {
+        System.out.println(longestPalindrome("babad"));
         System.out.println(longestPalindrome("cbbd"));
     }
 
