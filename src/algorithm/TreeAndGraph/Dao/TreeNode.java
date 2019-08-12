@@ -22,11 +22,11 @@ public class TreeNode {
 
     public static TreeNode genTree() {
         TreeNode root = new TreeNode(4);
-        TreeNode child1 = new TreeNode(3);
+        TreeNode child1 = new TreeNode(2);
         TreeNode leaf1 = new TreeNode(1);
-        TreeNode leaf2 = new TreeNode(2);
-        TreeNode child2 = new TreeNode(5);
-        TreeNode leaf3 = new TreeNode(6);
+        TreeNode leaf2 = new TreeNode(3);
+        TreeNode child2 = new TreeNode(6);
+        TreeNode leaf3 = new TreeNode(5);
         TreeNode leaf4 = new TreeNode(7);
 
         root.left = child1;
