@@ -42,7 +42,7 @@ public class ClimbingStairs2 {
             return arr[n];
         }
 
-        return arr[n] = climb(n - 1) + climb(n - 2) + climb(n - 3);
+        return arr[n] = climb2(n - 1) + climb2(n - 2) + climb2(n - 3);
     }
 
     // iteration
