@@ -46,7 +46,7 @@ public class LevelOrder {
     }
 
     public static List<List<Integer>> dfs(List<List<Integer>> rst, Tree node, int level) {
-        if (rst.size() < level+1) {
+        if (rst.size() <= level) {
             rst.add(new ArrayList<>());
         }
         rst.get(level).add(node.val);
