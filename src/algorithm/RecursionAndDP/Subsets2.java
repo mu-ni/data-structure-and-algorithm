@@ -16,7 +16,6 @@ public class Subsets2 {
     }
 
     public static void backtrack(List<List<Integer>> rst, int[] nums, List<Integer> path, int start) {
-        System.out.println(path);
         rst.add(new ArrayList<>(path));
         for(int i=start; i<nums.length; i++) {
             if(i > start && nums[i] == nums[i-1]) continue;
