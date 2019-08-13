@@ -10,7 +10,7 @@ public class Divide {
         System.out.println(divide(7, 0));
     }
 
-    public static int divide(int dividend, int divisor) { // num1/num2
+    public static int divide(int dividend, int divisor) {
         if (divisor == 0) {
             // error
             return Integer.MAX_VALUE;
