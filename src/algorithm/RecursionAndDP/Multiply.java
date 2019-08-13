@@ -1,16 +1,29 @@
 package algorithm.RecursionAndDP;
 
-public class MultiplyString {
+public class Multiply {
     public static void main(String[] args) {
-//        char a = "2580".charAt(2);
-//        System.out.println(a);
-//        int b = "2580".charAt(2) - '0';
-//        System.out.println(b);
-        System.out.println(multiply("123", "45"));
+        System.out.println(multiply(123, 45));
+        System.out.println(multiplyString("123", "45"));
     }
 
-    // TODO try with recursion
-    public static String multiply(String num1, String num2) {
+    public static int multiply(int num1, int num2) {
+        int smaller = Math.min(num1, num2);
+        int bigger = Math.max(num1, num2);
+        return helper(smaller, bigger);
+    }
+
+    public static int helper(int smaller, int bigger) {
+        if (smaller == 0) return 0;
+        if (smaller == 1) return bigger;
+
+        int half = smaller/2;
+        if (smaller%2 == 1) {
+            return helper(half, bigger) + helper(half+1, bigger);
+        }
+        return helper(half, bigger) + helper(half, bigger);
+    }
+
+    public static String multiplyString(String num1, String num2) {
         int len1 = num1.length();
         int len2 = num2.length();
         int[] num = new int[len1 + len2];
