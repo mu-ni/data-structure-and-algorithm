@@ -5,6 +5,7 @@ import com.sun.tools.javac.util.ArrayUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class CoinChange {
@@ -16,6 +17,7 @@ public class CoinChange {
     public static int rst = Integer.MAX_VALUE;
     public static int coinChange(int[] coins, int amount) {
         Arrays.sort(coins);// REVERSE
+        Collections.reverse(Arrays.asList(coins));
         helper(coins, amount, new ArrayList<>());
         return rst == Integer.MAX_VALUE ? -1 : rst;
     }
