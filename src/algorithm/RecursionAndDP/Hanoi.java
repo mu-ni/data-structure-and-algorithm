@@ -7,7 +7,7 @@ public class Hanoi {
 
     public static void hanoi(int n, String from, String tmp, String to) {
         if(n == 1) {
-            System.out.println("Disk 1: " + from + " -> " + to);
+            System.out.println(from + " -> " + to);
             return;
         }
         hanoi(n-1, from, to, tmp);
