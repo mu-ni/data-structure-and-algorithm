@@ -2,7 +2,7 @@ package algorithm.RecursionAndDP;
 
 import java.util.Arrays;
 
-public class CoinChange {
+public class CoinChange { // min coins make up amount
     public static void main(String[] args) {
         System.out.println(coinChange(new int[]{1,2,3}, 20));
         System.out.println(coinChange2(new int[]{1,2,3}, 20));
