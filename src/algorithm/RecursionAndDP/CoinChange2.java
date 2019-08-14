@@ -7,6 +7,8 @@ public class CoinChange2 { //combinations make up amount
         System.out.println(coinChange3(new int[]{1,2,3}, 5));
     }
 
+    // O(m*n)
+    // O(m*n)
     public static int coinChange(int[] coins, int amount) { // 2d array
         int[][] dp = new int[coins.length+1][amount+1];
 
@@ -15,7 +17,7 @@ public class CoinChange2 { //combinations make up amount
         }
 
         for (int i=1; i<=coins.length; i++) {
-            int coin = coins[i-1];
+            int coin = coins[i-1]; // first value index is 1
             for (int j=1; j<=amount; j++) {
                 if (j-coin < 0) {
                     dp[i][j] = dp[i-1][j];
