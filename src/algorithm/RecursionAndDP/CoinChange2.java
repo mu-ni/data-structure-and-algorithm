@@ -6,6 +6,9 @@ public class CoinChange2 { //combinations make up amount
         System.out.println(coinChange2(new int[]{1,2,3}, 6));
     }
 
+//    increasing i then the previous partial result dp[i - coin] is the result that has considered coin already
+//    decreasing i then the previous partial result dp[i - coin] is the result that has not considered coin yet
+
     public static int coinChange(int[] coins, int amount) { // use repeated coins
         int[] dp = new int[amount+1];
         dp[0] = 1;
