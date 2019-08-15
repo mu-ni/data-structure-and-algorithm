@@ -3,6 +3,7 @@ package algorithm.RecursionAndDP;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class NQueens {
     public static void main(String[] args) {
@@ -34,11 +35,9 @@ public class NQueens {
     }
 
     public static List<String> array2list(char[][] board) {
-        List<String> list = new ArrayList<>();
-        for(int i = 0; i < board.length; i++) {
-            list.add(String.valueOf(board[i]));
-        }
-        return list;
+        return Arrays.stream(board)
+                .map(String::valueOf)
+                .collect(Collectors.toList());
     }
 
     public static boolean validate(char[][] board, int x, int y) {
