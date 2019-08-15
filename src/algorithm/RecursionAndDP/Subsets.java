@@ -25,6 +25,8 @@ public class Subsets {
     }
 
     // recursion
+    // O(n*2^n)
+    // O(n*2^n)
     public static List<List<Integer>> subsets2(int[] nums) {
         // Arrays.sort(nums);
         List<List<Integer>> rst = new ArrayList<>();
