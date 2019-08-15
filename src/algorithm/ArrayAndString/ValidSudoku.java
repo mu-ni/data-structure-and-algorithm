@@ -1,8 +1,6 @@
 package algorithm.ArrayAndString;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class ValidSudoku {
@@ -48,16 +46,11 @@ public class ValidSudoku {
     }
 
     public static char[] getBlock(char[][] board, int x, int y) {
-        List<Character> list = new ArrayList<>();
-        for (int i=0; i<3; i++) {
-            for (int j=0; j<3; j++) {
-                list.add(board[x+i][y+j]);
-            }
-        }
-
         char[] arr = new char[9];
+        int blkrow = (x/3)*3;
+        int blkcol = (y/3)*3;
         for (int i=0; i<9; i++) {
-            arr[i] = list.get(i);
+            arr[i] = board[blkrow + i/3][blkcol + i%3];
         }
         return arr;
     }
