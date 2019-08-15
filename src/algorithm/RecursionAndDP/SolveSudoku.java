@@ -39,13 +39,13 @@ public class SolveSudoku {
         return true;
     }
 
-    // TODO
     private static boolean isValid(char[][] board, int row, int col, char c) {
+        int blkrow = (row / 3) * 3;
+        int blkcol = (col / 3) * 3;
         for (int i = 0; i < 9; i++) {
-            if (board[i][col] != '.' && board[i][col] == c) return false; //check row
-            if (board[row][i] != '.' && board[row][i] == c) return false; //check column
-            if (board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] != '.' &&
-                    board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c) return false; //check 3*3 block
+            if (board[i][col] == c) return false;
+            if (board[row][i] == c) return false;
+            if (board[blkrow+i/3][blkcol+i%3] == c) return false;
         }
         return true;
     }
