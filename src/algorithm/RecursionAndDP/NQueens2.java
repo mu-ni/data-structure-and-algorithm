@@ -50,7 +50,7 @@ public class NQueens2 {
     public int totalNQueens2(int n) {
         boolean[] rows = new boolean[n];
         boolean[] dia1 = new boolean[n*2]; // x1+y1 = x2+y2
-        boolean[] dia2 = new boolean[n*2]; // x1+y2 = x2+y1
+        boolean[] dia2 = new boolean[n*2]; // x1+y2 = x2+y1 // x1-y1+n = x2-y2+n
         dfs(0, rows, dia1, dia2);
         return rst2;
     }
