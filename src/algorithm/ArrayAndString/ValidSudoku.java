@@ -24,16 +24,14 @@ public class ValidSudoku {
             return false;
         }
 
-        for (char[] arr : board) {
-            if (!isUnique(arr)) return false;
-        }
-
         for (int i=0; i<9; i++) {
+            if (!isUnique(board[i])) return false;// row
+
             char[] arr = new char[9];
             for (int j=0; j<9; j++) {
                 arr[j] = board[j][i];
             }
-            if(!isUnique(arr)) return false;
+            if(!isUnique(arr)) return false;// col
         }
 
         for (int i=0; i<9; i+=3) {
