@@ -20,24 +20,22 @@ public class ValidSudoku {
     }
 
     public static boolean isValidSudoku(char[][] board) {
-        if (board.length != 9 || board[0].length != 9) {
+        if (board.length !=9 || board[0].length != 9) {
             return false;
         }
 
         for (int i=0; i<9; i++) {
-            if (!isUnique(board[i])) return false;// row
+            char[] row = board[i];
+            if (!isUnique(row)) return false;
 
-            char[] arr = new char[9];
+            char[] col = new char[9];
             for (int j=0; j<9; j++) {
-                arr[j] = board[j][i];
+                col[j] = board[j][i];
             }
-            if(!isUnique(arr)) return false;// col
-        }
+            if (!isUnique(col)) return false;
 
-        for (int i=0; i<9; i+=3) {
-            for (int j=0; j<9; j+=3) {
-                if (!isUnique(getBlock(board, i, j))) return false;
-            }
+            char[] block = getBlock(board, (i/3)*3, (i%3)*3);
+            if (!isUnique(block)) return false;
         }
 
         return true;
