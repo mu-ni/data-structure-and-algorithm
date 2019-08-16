@@ -47,7 +47,7 @@ public class TreeNode {
 
     private static TreeNode dfs(Integer[] arr, int index) {
         if (index >= arr.length) return null;
-        TreeNode node = arr[index] == null ? null : new TreeNode(arr[index].intValue());
+        TreeNode node = arr[index] == null ? null : new TreeNode(arr[index]);
         if (node != null) {
             node.left = dfs(arr, 2*index + 1);
             node.right = dfs(arr, 2*index + 2);
