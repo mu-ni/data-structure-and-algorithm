@@ -1,8 +1,5 @@
 package algorithm.ArrayAndString;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GasStation {
     public static void main(String[] args) {
         int[] arr = new int[]{1,2,3,4,5,1,6,6};
