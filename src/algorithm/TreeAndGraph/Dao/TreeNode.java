@@ -1,5 +1,7 @@
 package algorithm.TreeAndGraph.Dao;
 
+import algorithm.TreeAndGraph.SortedArrayToBST;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +39,20 @@ public class TreeNode {
         child2.right = leaf4;
 
         return root;
+    }
+
+    public static TreeNode arr2tree(Integer[] arr) {
+        return dfs(arr, 0);
+    }
+
+    private static TreeNode dfs(Integer[] arr, int index) {
+        if (index >= arr.length) return null;
+        TreeNode node = arr[index] == null ? null : new TreeNode(arr[index].intValue());
+        if (node != null) {
+            node.left = dfs(arr, 2*index + 1);
+            node.right = dfs(arr, 2*index + 2);
+        }
+        return node;
     }
 
     public static void visit(TreeNode node) {
