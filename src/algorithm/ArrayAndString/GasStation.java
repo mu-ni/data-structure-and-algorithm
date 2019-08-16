@@ -14,16 +14,16 @@ public class GasStation {
     // arr - distance between k ~ k-1
     // starting with full petrol
     public static int gasStation(int n, int k, int[] arr) { // not fully tested
-        List<Integer> rst = new ArrayList<>();
+        int rst = 0;
         int cur = n; // current petrol
-        for (int i=0; i<=k; i++) {
-            if (arr[i] > cur) {
-                cur = n;
-                rst.add(i);
-            }
+        for (int i=0; i<k; i++) {
             cur -= arr[i];
             if (cur < 0) return -1;
+            if (arr[i+1] > cur) {
+                cur = n;
+                rst++;
+            }
         }
-        return rst.size();
+        return rst;
     }
 }
