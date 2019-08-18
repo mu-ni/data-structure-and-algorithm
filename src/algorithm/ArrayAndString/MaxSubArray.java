@@ -24,12 +24,10 @@ public class MaxSubArray {
     public static int maxSubArray2(int[] nums) { // DP
         int[] arr = new int[nums.length];
         arr[0] = nums[0];
+        int max = nums[0];
         for (int i=1; i<nums.length; i++) {
             arr[i] = Math.max(nums[i] + arr[i-1], nums[i]);
-        }
-        int max = arr[0];
-        for (int n : arr) {
-            max = Math.max(n, max);
+            max = Math.max(arr[i], max);
         }
         return max;
     }
