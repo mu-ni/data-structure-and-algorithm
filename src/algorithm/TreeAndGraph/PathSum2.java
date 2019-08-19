@@ -10,6 +10,7 @@ public class PathSum2 {
         System.out.println(pathSum(TreeNode.genTree(), 9));
     }
 
+    // root-to-leaf paths
     public static List<List<Integer>> pathSum(TreeNode root, int sum) {
         List<List<Integer>> rst = new ArrayList<>();
         dfs(rst, root, sum, new ArrayList<>());

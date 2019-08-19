@@ -8,6 +8,7 @@ public class PathSum3 {
         System.out.println(pathSum(root, 8));
     }
 
+    // does not need to start or end at the root or a leaf
     public static int pathSum(TreeNode root, int sum) {
         if (root == null) return 0;
         return dfs(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
