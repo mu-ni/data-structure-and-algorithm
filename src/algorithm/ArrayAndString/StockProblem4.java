@@ -7,6 +7,7 @@ public class StockProblem4 {
         System.out.println(maxProfit(2, new int[]{1,2,4,2,5,7,2,4,9,0}));
     }
 
+    // at most k transactions
     public static int maxProfit(int k, int[] prices) {
         if (k >= prices.length/2) return greedy(prices);
 
