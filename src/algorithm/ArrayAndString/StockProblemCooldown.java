@@ -9,10 +9,6 @@ public class StockProblemCooldown {
     public static int maxProfit(int[] prices) {
         int[] buy = new int[prices.length];
         int[] sell = new int[prices.length];
-        for (int i=1; i<prices.length; i++) {
-            buy[i] = Math.max(buy[i - 1], sell[i - 2] - prices[i]);
-            sell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i]);
-        }
-        return 0;
+        return -1;
     }
 }
