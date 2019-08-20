@@ -12,13 +12,8 @@ public class PlusOne {
         int rst[] = new int[digits.length+1];
         for (int i=digits.length-1; i>=0; i--) {
             int sum = digits[i] + carry;
-            if (sum > 9) {
-                rst[i+1] = sum%10;
-                carry = sum/10;
-                continue;
-            }
-            rst[i+1] = sum;
-            carry = 0;
+            rst[i+1] = sum%10;
+            carry = sum/10;
         }
 
         if (carry != 0) {
