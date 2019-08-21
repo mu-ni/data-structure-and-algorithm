@@ -10,6 +10,7 @@ public class MergeSort {
 
     // time complexity O(nlogn)
     // space complexity O(n)
+    // 时间复杂度（最优、平均、最差）都是O(n log n)
     public static int[] mergeSort(int[] nums) {
         mergeSort(nums, 0, nums.length-1);
         return nums;
