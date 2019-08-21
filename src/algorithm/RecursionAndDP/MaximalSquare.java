@@ -4,32 +4,26 @@ public class MaximalSquare {
     public static void main(String[] args) {
         MaximalSquare obj = new MaximalSquare();
         char[][] matrix = new char[][]{{'1','0','1','0','0'},{'1','0','1','1','1'},{'1','1','1','1','1'},{'1','0','0','1','0'}};
-//        System.out.println(obj.isSquare(matrix, 0, 0, 1));
-//        System.out.println(obj.isSquare(matrix, 1, 2, 1));
         System.out.println(obj.maximalSquare(matrix));
     }
 
-    int max = 0;
     public int maximalSquare(char[][] matrix) { // return max area
-        dfs(0, matrix);
-        return max;
-    }
-
-    public void dfs(int row, char[][] matrix) {
-        if (row == matrix.length-1) {
-            return;
-        }
-        for (int col=0; col<matrix.length; col++) {
-            if (matrix[row][col] != '1') continue;
-            loop:
-            for (int i = 1; col + i<matrix.length; i++) {
-                if (!isSquare(matrix, row, col, i)) {
-                    break loop;
+        if (matrix.length == 0) return 0;
+        int max = 0;
+        for (int i=0; i<matrix.length; i++) {
+            for (int j=0; j<matrix[0].length; j++) {
+                if (matrix[i][j] != '1') continue;
+                max = Math.max(max, 1);
+                loop:
+                for (int l = 1; l+i<matrix.length && l+j<matrix[0].length; l++) {
+                    if (!isSquare(matrix,i,j,l)) {
+                        break loop;
+                    }
+                    max = Math.max(max, (l+1)*(l+1));
                 }
-                max = Math.max(max, (i+1)*(i+1));
             }
-            dfs(row+1, matrix);
         }
+        return max;
     }
 
     public boolean isSquare(char[][] matrix, int x, int y, int len) {
