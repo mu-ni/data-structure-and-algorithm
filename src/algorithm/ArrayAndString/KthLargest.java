@@ -2,6 +2,7 @@ package algorithm.ArrayAndString;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;
+import java.util.Random;
 
 public class KthLargest {
     public static void main(String[] args) {
@@ -33,6 +34,7 @@ public class KthLargest {
     // O(nlogn)
     // O(1)
     public static int findKthLargest3(int[] nums, int k) {
+//        shuffle(nums); // O(logn)
         k = nums.length - k;
         int lo = 0;
         int hi = nums.length-1;
@@ -73,5 +75,12 @@ public class KthLargest {
         int tmp = nums[a];
         nums[a] = nums[b];
         nums[b] = tmp;
+    }
+
+    public static void shuffle(int[] nums) {
+        for (int i=0; i<nums.length; i++) {
+            int seed = new Random().nextInt(nums.length);
+            swap(nums, i, seed);
+        }
     }
 }
