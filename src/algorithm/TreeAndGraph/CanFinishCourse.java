@@ -35,9 +35,7 @@ public class CanFinishCourse {
             for (int cur=0; cur<numCourses; cur++) {
                 if (matrix[pre][cur] == 1) {
                     indegree[cur]--;
-                    if (indegree[cur] == 0) {
-                        queue.offer(cur);
-                    }
+                    if (indegree[cur] == 0) queue.offer(cur);
                 }
             }
         }
