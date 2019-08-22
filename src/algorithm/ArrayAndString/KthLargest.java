@@ -7,6 +7,7 @@ public class KthLargest {
     public static void main(String[] args) {
         System.out.println(findKthLargest(new int[]{3,2,1,5,6,4}, 2));
         System.out.println(findKthLargest2(new int[]{3,2,1,5,6,4}, 2));
+        System.out.println(findKthLargest3(new int[]{3,2,1,5,6,4}, 2));
     }
 
     // O(nlogn)
@@ -16,8 +17,8 @@ public class KthLargest {
         return nums[nums.length-k];
     }
 
-    // O(n) ~ O(n^2)
-    // O(1)
+    // O(nlogk)
+    // O(k)
     public static int findKthLargest2(int[] nums, int k) {
         PriorityQueue<Integer> queue = new PriorityQueue<>();
         for (int n : nums) {
@@ -27,5 +28,50 @@ public class KthLargest {
             }
         }
         return queue.peek();
+    }
+
+    // O(nlogn)
+    // O(1)
+    public static int findKthLargest3(int[] nums, int k) {
+        k = nums.length - k;
+        int lo = 0;
+        int hi = nums.length-1;
+        while (lo < hi) {
+            int p = partition(nums, lo, hi);
+            if (p < k) {
+                lo++;
+                continue;
+            }
+            if (p > k) {
+                hi--;
+                continue;
+            }
+            break;
+        }
+        return nums[k];
+    }
+
+    public static int partition(int[] nums, int left, int right) {
+        int pivot = nums[right];
+        int l = left;
+        int r = right-1;
+        while (true) {
+            while (l < right && nums[l] <= pivot) {
+                l++;
+            }
+            while (r >= left && nums[r] >= pivot) {
+                r--;
+            }
+            if (l >= r) break;
+            swap(nums, l, r);
+        }
+        swap(nums, l, right);
+        return l;
+    }
+
+    public static void swap(int[] nums, int a, int b) {
+        int tmp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = tmp;
     }
 }
