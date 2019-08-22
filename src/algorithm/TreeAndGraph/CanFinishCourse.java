@@ -6,6 +6,8 @@ public class CanFinishCourse {
     public static void main(String[] args) {
         System.out.println(new CanFinishCourse().canFinish(3, new int[][]{{2,0},{2,1}}));
         System.out.println(new CanFinishCourse().canFinish2(3, new int[][]{{2,0},{2,1}}));
+        System.out.println(new CanFinishCourse().canFinish3(3, new int[][]{{2,0},{2,1}}));
+        System.out.println(new CanFinishCourse().canFinish4(3, new int[][]{{2,0},{2,1}}));
     }
 
     public boolean canFinish(int numCourses, int[][] prerequisites) { // adjMatrix, bfs
@@ -71,5 +73,66 @@ public class CanFinishCourse {
         }
 
         return count == numCourses;
+    }
+
+    public boolean canFinish3(int numCourses, int[][] prerequisites) { // adjMatrix, dfs
+        int[][] matrix = new int[numCourses][numCourses];
+        for (int i=0; i<prerequisites.length; i++) {
+            int cur = prerequisites[i][0];
+            int pre = prerequisites[i][1];
+            matrix[pre][cur] = 1;
+        }
+
+        boolean[] visited = new boolean[numCourses];
+        for(int pre = 0; pre < numCourses; pre++) {
+            if (!dfs(matrix, pre, visited)) return false;
+        }
+
+        return true;
+    }
+
+    public boolean dfs(int[][] matrix, int pre, boolean[] visited) {
+        if (visited[pre]) return false;
+        visited[pre] = true;
+        for (int cur=0; cur<matrix.length; cur++) {
+            if (matrix[pre][cur] == 1) {
+                if (!dfs(matrix, cur, visited)) return false;
+            }
+        }
+
+        visited[pre] = false;
+        return true;
+    }
+
+    public boolean canFinish4(int numCourses, int[][] prerequisites) { // adjList, dfs
+        List<Integer>[] list = new List[numCourses];
+        for (int i = 0; i < list.length; i++) {
+            list[i] = new ArrayList<>();
+        }
+        for (int i = 0; i < prerequisites.length; i++) {
+            int cur = prerequisites[i][0];
+            int pre = prerequisites[i][1];
+            list[pre].add(cur);
+        }
+
+        boolean[] visited = new boolean[numCourses];
+        for (int pre = 0; pre < numCourses; pre++) {
+            if (!dfs(list, pre, visited))
+                return false;
+        }
+
+        return true;
+    }
+
+    public boolean dfs(List<Integer>[] list, int pre, boolean[] visited) {
+        if(visited[pre]) return false;
+        visited[pre] = true;
+
+        for(int cur : list[pre]){
+            if(!dfs(list,cur, visited))
+                return false;
+        }
+        visited[pre] = false;
+        return true;
     }
 }
