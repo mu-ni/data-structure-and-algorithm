@@ -2,12 +2,12 @@ package algorithm.TreeAndGraph;
 
 import java.util.*;
 
-public class CanFinishCourse {
+public class CourseCanFinish {
     public static void main(String[] args) {
-        System.out.println(new CanFinishCourse().canFinish(3, new int[][]{{2,0},{2,1}}));
-        System.out.println(new CanFinishCourse().canFinish2(3, new int[][]{{2,0},{2,1}}));
-        System.out.println(new CanFinishCourse().canFinish3(3, new int[][]{{2,0},{2,1}}));
-        System.out.println(new CanFinishCourse().canFinish4(3, new int[][]{{2,0},{2,1}}));
+        System.out.println(new CourseCanFinish().canFinish(3, new int[][]{{2,0},{2,1}}));
+        System.out.println(new CourseCanFinish().canFinish2(3, new int[][]{{2,0},{2,1}}));
+        System.out.println(new CourseCanFinish().canFinish3(3, new int[][]{{2,0},{2,1}}));
+        System.out.println(new CourseCanFinish().canFinish4(3, new int[][]{{2,0},{2,1}}));
     }
 
     public boolean canFinish(int numCourses, int[][] prerequisites) { // adjMatrix, bfs
