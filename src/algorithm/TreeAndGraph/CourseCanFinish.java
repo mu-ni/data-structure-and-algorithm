@@ -105,31 +105,31 @@ public class CourseCanFinish {
     }
 
     public boolean canFinish4(int numCourses, int[][] prerequisites) { // adjList, dfs
-        List<Integer>[] list = new List[numCourses];
-        for (int i = 0; i < list.length; i++) {
-            list[i] = new ArrayList<>();
+        List<Integer>[] lists = new List[numCourses];
+        for (int i = 0; i < lists.length; i++) {
+            lists[i] = new ArrayList<>();
         }
         for (int i = 0; i < prerequisites.length; i++) {
             int cur = prerequisites[i][0];
             int pre = prerequisites[i][1];
-            list[pre].add(cur);
+            lists[pre].add(cur);
         }
 
         boolean[] visited = new boolean[numCourses];
         for (int pre = 0; pre < numCourses; pre++) {
-            if (!topoSort(list, pre, visited))
+            if (!topoSort(lists, pre, visited))
                 return false;
         }
 
         return true;
     }
 
-    public boolean topoSort(List<Integer>[] list, int pre, boolean[] visited) {
+    public boolean topoSort(List<Integer>[] lists, int pre, boolean[] visited) {
         if(visited[pre]) return false;
         visited[pre] = true;
 
-        for(int cur : list[pre]){
-            if(!topoSort(list,cur, visited))
+        for(int cur : lists[pre]){
+            if(!topoSort(lists,cur, visited))
                 return false;
         }
         visited[pre] = false;
