@@ -85,21 +85,21 @@ public class CourseCanFinish {
 
         boolean[] visited = new boolean[numCourses];
         for(int pre = 0; pre < numCourses; pre++) {
-            if (!dfs(matrix, pre, visited)) return false;
+            if (!topoSort(matrix, pre, visited)) return false;
         }
 
         return true;
     }
 
-    public boolean dfs(int[][] matrix, int pre, boolean[] visited) {
+    public boolean topoSort(int[][] matrix, int pre, boolean[] visited) {
         if (visited[pre]) return false;
         visited[pre] = true;
+
         for (int cur=0; cur<matrix.length; cur++) {
             if (matrix[pre][cur] == 1) {
-                if (!dfs(matrix, cur, visited)) return false;
+                if (!topoSort(matrix, cur, visited)) return false;
             }
         }
-
         visited[pre] = false;
         return true;
     }
@@ -117,19 +117,19 @@ public class CourseCanFinish {
 
         boolean[] visited = new boolean[numCourses];
         for (int pre = 0; pre < numCourses; pre++) {
-            if (!dfs(list, pre, visited))
+            if (!topoSort(list, pre, visited))
                 return false;
         }
 
         return true;
     }
 
-    public boolean dfs(List<Integer>[] list, int pre, boolean[] visited) {
+    public boolean topoSort(List<Integer>[] list, int pre, boolean[] visited) {
         if(visited[pre]) return false;
         visited[pre] = true;
 
         for(int cur : list[pre]){
-            if(!dfs(list,cur, visited))
+            if(!topoSort(list,cur, visited))
                 return false;
         }
         visited[pre] = false;
