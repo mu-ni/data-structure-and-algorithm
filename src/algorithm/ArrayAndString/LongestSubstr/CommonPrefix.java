@@ -1,6 +1,6 @@
-package algorithm.ArrayAndString;
+package algorithm.ArrayAndString.LongestSubstr;
 
-public class LongestCommonPrefix {
+public class CommonPrefix {
     public static void main(String[] args) {
         System.out.println(longestCommonPrefix(new String[]{"flower","flow","flight"}));
     }

@@ -1,8 +1,8 @@
-package algorithm.ArrayAndString;
+package algorithm.ArrayAndString.LongestSubstr;
 
 import java.util.Stack;
 
-public class LongestPalindromeSubstring {
+public class PalindromeSubstring {
     public static void main(String[] args) {
         System.out.println(longestPalindrome("a"));
         System.out.println(longestPalindrome("bb"));

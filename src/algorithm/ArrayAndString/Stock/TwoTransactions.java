@@ -1,6 +1,6 @@
-package algorithm.ArrayAndString;
+package algorithm.ArrayAndString.Stock;
 
-public class StockProblem3 {
+public class TwoTransactions {
     public static void main(String[] args) {
         System.out.println(maxProfit(new int[]{3, 3, 5, 0, 0, 3, 1, 4}));
     }

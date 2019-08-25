@@ -1,8 +1,8 @@
-package algorithm.ArrayAndString;
+package algorithm.ArrayAndString.Stock;
 
 import java.util.Arrays;
 
-public class StockProblem4 {
+public class KTransactions {
     public static void main(String[] args) {
         System.out.println(maxProfit(2, new int[]{1,2,4,2,5,7,2,4,9,0}));
     }

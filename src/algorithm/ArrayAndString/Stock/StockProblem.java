@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString;
+package algorithm.ArrayAndString.Stock;
 
 public class StockProblem {
     public static void main(String[] args) {

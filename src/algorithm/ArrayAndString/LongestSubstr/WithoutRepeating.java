@@ -1,9 +1,9 @@
-package algorithm.ArrayAndString;
+package algorithm.ArrayAndString.LongestSubstr;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class LongestSubstring { //Longest Substring without Repeating Character
+public class WithoutRepeating { //Longest Substring without Repeating Character
     public static void main(String[] args) {
         System.out.println(longestSubstring("pwwkew"));
     }

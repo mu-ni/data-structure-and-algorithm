@@ -1,6 +1,6 @@
-package algorithm.ArrayAndString;
+package algorithm.ArrayAndString.LongestSubstr;
 
-public class LongestCommonSubsequence {
+public class CommonSubsequence {
     public static void main(String[] args) {
         System.out.println(longestCommonSubsequence("bsbininm","jmjkbkjkv"));
     }
