@@ -1,4 +1,4 @@
-package algorithm.RecursionAndDP;
+package algorithm.RecursionAndDP.Backtrack;
 
 public class CoinChange2 { //combinations make up amount
     public static void main(String[] args) {

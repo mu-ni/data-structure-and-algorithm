@@ -1,4 +1,4 @@
-package algorithm.RecursionAndDP;
+package algorithm.RecursionAndDP.Grid;
 
 import java.util.*;
 

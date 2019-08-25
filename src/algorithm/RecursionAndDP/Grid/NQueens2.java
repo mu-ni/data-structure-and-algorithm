@@ -1,4 +1,4 @@
-package algorithm.RecursionAndDP;
+package algorithm.RecursionAndDP.Grid;
 
 public class NQueens2 {
     public static void main(String[] args) {

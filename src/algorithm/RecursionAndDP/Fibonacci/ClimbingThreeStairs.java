@@ -1,6 +1,6 @@
-package algorithm.RecursionAndDP;
+package algorithm.RecursionAndDP.Fibonacci;
 
-public class ClimbingStairs2 {
+public class ClimbingThreeStairs {
     public static void main(String[] args) {
         System.out.println(climb(25));
         System.out.println(climb2(25));

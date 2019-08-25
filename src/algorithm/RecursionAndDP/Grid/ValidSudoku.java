@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString;
+package algorithm.RecursionAndDP.Grid;
 
 import java.util.HashSet;
 import java.util.Set;
