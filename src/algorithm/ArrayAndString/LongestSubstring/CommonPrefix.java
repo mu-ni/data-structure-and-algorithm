@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString.LongestSubstr;
+package algorithm.ArrayAndString.LongestSubstring;
 
 public class CommonPrefix {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString.LongestSubstr;
+package algorithm.ArrayAndString.LongestSubstring;
 
 import java.util.Stack;
 
