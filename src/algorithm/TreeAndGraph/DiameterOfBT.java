@@ -10,11 +10,11 @@ public class DiameterOfBT {
     public int diameterOfBinaryTree(TreeNode root) {
         if (root == null) return 0;
 
-        int cur = maxDepth(root.left, 0) + maxDepth(root.right, 0);
+        int withRoot = maxDepth(root.left, 0) + maxDepth(root.right, 0);
         int left = diameterOfBinaryTree(root.left);
         int right = diameterOfBinaryTree(root.right);
 
-        return Math.max(cur, Math.max(left, right));
+        return Math.max(withRoot, Math.max(left, right));
     }
 
     public int maxDepth(TreeNode node, int depth) {
