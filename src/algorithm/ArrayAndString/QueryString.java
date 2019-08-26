@@ -13,35 +13,37 @@ public class QueryString {
         map.put("cde", 30);
         map.put("e", 3);
         map.put("fg", 5);
-        System.out.println(new QueryString().queryString(map, "abcedfg"));
+        System.out.println(new QueryString().queryString(map, "abcdefg"));
     }
 
     public int queryString(Map<String, Integer> dict, String str) {
-        int[][] dp = new int[dict.size()][str.length()];
+        int[] dp = new int[str.length()];
         Object[] keys = dict.keySet().toArray();
         Arrays.sort(keys);
 
-        for (int i=0; i<keys.length; i++) {
-            String key = (String) keys[i];
-            for (int j=0; j < str.length(); j++) {
-                String s = str.substring(0, j+1);
-                if (s.equals(key)) {
-                    dp[i][j] = dict.get(key);
-                } else {
-                    dp[i][j] = -1;
-                }
-//                int len =
-//                dp[i][j] = Math.max(dp[i][j], );
-            }
+        for (int j=0; j < str.length(); j++) {
+            String s = str.substring(0, j+1);
+            dp[j] = helper(s, dict, dp);
         }
 
-        return dp[dict.size()-1][str.length()-1];
+        return dp[str.length()-1];
     }
 
-    public int subLen(String s, Map<String, Integer> dict, int cur) {
-        for () {
-
+    public int helper(String s, Map<String, Integer> dict, int[] dp) {
+        int max = -1;
+        if (dict.containsKey(s)) {
+            max = dict.get(s);
         }
-
+        for (int i=1; i<s.length(); i++) {
+            String s1 = s.substring(0, i);
+            String s2 = s.substring(i, s.length());
+            if (dict.containsKey(s1) && dict.containsKey(s2)) {
+                max = Math.max(max, dict.get(s1) + dict.get(s2));
+            }
+            if (dp[i-1]!= -1 && dict.containsKey(s2)) {
+                max = Math.max(max, dp[i-1] + dict.get(s2));
+            }
+        }
+        return max;
     }
 }
