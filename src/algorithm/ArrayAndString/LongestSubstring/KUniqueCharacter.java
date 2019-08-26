@@ -1,0 +1,36 @@
+package algorithm.ArrayAndString.LongestSubstring;
+
+public class KUniqueCharacter {
+    public static void main(String[] args) {
+//        System.out.println(longestSubstring("abcbbb", 3));
+        System.out.println(longestSubstring("aaaabbc", 3));
+    }
+
+    // every character in s appears <= k times
+    public static int longestSubstring(String s, int k) {
+        int slow = 0;
+        int fast = k-1;
+        int max = 0;
+        while (slow < s.length() && fast < s.length()) {
+            String sub = s.substring(slow, fast+1);
+            if (isValid(sub, k)) {
+                fast++;
+                continue;
+            }
+            max = Math.max(max, fast-slow);
+            slow++;
+        }
+        return max;
+    }
+
+    public static boolean isValid(String s, int k) {
+        int[] arr = new int[26];
+        for (char c : s.toCharArray()) {
+            arr[c - 'a'] ++;
+        }
+        for (int i : arr) {
+            if (i > k) return false;
+        }
+        return true;
+    }
+}
