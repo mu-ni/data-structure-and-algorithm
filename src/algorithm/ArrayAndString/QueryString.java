@@ -14,9 +14,12 @@ public class QueryString {
         map.put("e", 3);
         map.put("fg", 5);
         System.out.println(new QueryString().queryString(map, "abcdefg"));
+        System.out.println(new QueryString().queryString(map, "a"));
+        System.out.println(new QueryString().queryString(map, "b"));
     }
 
     public int queryString(Map<String, Integer> dict, String str) {
+        if (str.length() <= 1) return dict.getOrDefault(str, -1);
         int[] dp = new int[str.length()];
         Object[] keys = dict.keySet().toArray();
         Arrays.sort(keys);
