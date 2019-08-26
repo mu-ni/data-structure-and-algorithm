@@ -20,10 +20,8 @@ public class QueryString {
 
     public int queryString(Map<String, Integer> dict, String str) {
         if (str.length() <= 1) return dict.getOrDefault(str, -1);
-        int[] dp = new int[str.length()];
-        Object[] keys = dict.keySet().toArray();
-        Arrays.sort(keys);
 
+        int[] dp = new int[str.length()];
         for (int j=0; j < str.length(); j++) {
             String s = str.substring(0, j+1);
             dp[j] = helper(s, dict, dp);
