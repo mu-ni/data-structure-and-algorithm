@@ -1,6 +1,6 @@
 package algorithm.ArrayAndString.LongestSubstring;
 
-public class KRepeatingCharacter {
+public class AtLeastKRepeatingCharacter {
     public static void main(String[] args) {
         System.out.println(longestSubstring("aaabb", 3));
     }
