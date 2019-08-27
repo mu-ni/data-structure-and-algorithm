@@ -17,7 +17,7 @@ public class QueryString {
         System.out.println(new QueryString().queryString(map, "b"));
     }
 
-    public int queryString(Map<String, Integer> dict, String str) {
+    public int queryString(Map<String, Integer> dict, String str) { // not fully tested
         if (str.length() <= 1) return dict.getOrDefault(str, -1);
 
         int[] dp = new int[str.length()];

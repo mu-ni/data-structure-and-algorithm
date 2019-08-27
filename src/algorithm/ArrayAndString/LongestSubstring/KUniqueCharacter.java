@@ -2,12 +2,12 @@ package algorithm.ArrayAndString.LongestSubstring;
 
 public class KUniqueCharacter {
     public static void main(String[] args) {
-//        System.out.println(longestSubstring("abcbbb", 3));
+        System.out.println(longestSubstring("abcbbb", 3));
         System.out.println(longestSubstring("aaaabbc", 3));
     }
 
     // every character in s appears <= k times
-    public static int longestSubstring(String s, int k) {
+    public static int longestSubstring(String s, int k) { // not fully tested
         int slow = 0;
         int fast = k-1;
         int max = 0;
@@ -15,9 +15,9 @@ public class KUniqueCharacter {
             String sub = s.substring(slow, fast+1);
             if (isValid(sub, k)) {
                 fast++;
+                max = Math.max(max, fast-slow);
                 continue;
             }
-            max = Math.max(max, fast-slow);
             slow++;
         }
         return max;
