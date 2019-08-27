@@ -4,6 +4,7 @@ public class UniquePath {
     public static void main(String[] args) {
         System.out.println(uniquePaths(36, 7));
         System.out.println(uniquePaths2(36, 7));
+        System.out.println(uniquePaths3(36, 7));
     }
 
     public static int uniquePaths(int m, int n) {
@@ -30,6 +31,24 @@ public class UniquePath {
         }
 
         return dfs(r-1, c) + dfs(r, c-1);
+    }
+
+    public static int uniquePaths3(int m, int n) {
+        return backtrack(m,n);
+    }
+
+    static int rst = 0;
+    public static int backtrack(int x, int y) {
+        if (x == 1 && y == 1) {
+            rst++;
+        }
+        if (x >1) {
+            backtrack(x-1, y);
+        }
+        if (y >1) {
+            backtrack(x, y-1);
+        }
+        return rst;
     }
 
 }
