@@ -1,5 +1,7 @@
 package test;
 
+import test.dao.User;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;

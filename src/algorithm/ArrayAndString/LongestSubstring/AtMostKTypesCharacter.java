@@ -4,6 +4,8 @@ public class AtMostKTypesCharacter {
     public static void main(String[] args) {
         System.out.println(longestSubstring("ababc", 3));
         System.out.println(longestSubstring("abcab", 3));
+        System.out.println(longestSubstring2("ababc", 3));
+        System.out.println(longestSubstring2("abcab", 3));
     }
 
     // character types < k
@@ -34,5 +36,30 @@ public class AtMostKTypesCharacter {
             if (types >= k) return false;
         }
         return true;
+    }
+
+    public static int longestSubstring2(String s, int k) {
+        int slow = 0;
+        int fast = 0;
+        int max = 0;
+        int[] arr = new int[26];
+        int types = 0;
+        while(slow < s.length() && fast < s.length()) {
+            if (arr[s.charAt(fast) - 'a'] == 0) {
+                types++;
+            }
+            arr[s.charAt(fast) - 'a']++;
+            if (types <k) {
+                fast++;
+                max = Math.max(max, fast-slow);
+                continue;
+            }
+            arr[s.charAt(slow) - 'a']--;
+            if (arr[s.charAt(slow) - 'a'] == 0) {
+                types--;
+            }
+            slow++;
+        }
+        return max;
     }
 }
