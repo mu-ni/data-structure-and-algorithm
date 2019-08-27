@@ -12,7 +12,7 @@ public class PrintDiamond {
                     System.out.print("*");
                     continue;
                 }
-                if (i > n/2 && k >= n/2 - (n-i-1) && k <= n/2 + (n-i-1)) {
+                if (i > n/2 && k >= n/2 - (n-1-i) && k <= n/2 + (n-1-i)) {
                     System.out.print("*");
                     continue;
                 }
