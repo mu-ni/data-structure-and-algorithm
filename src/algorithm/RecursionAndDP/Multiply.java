@@ -2,8 +2,8 @@ package algorithm.RecursionAndDP;
 
 public class Multiply {
     public static void main(String[] args) {
-        System.out.println(multiply(123, 45));
-        System.out.println(multiplyString("123", "45"));
+        System.out.println(multiply(123, 456));
+        System.out.println(multiplyString("123", "456"));
     }
 
     public static int multiply(int num1, int num2) {
