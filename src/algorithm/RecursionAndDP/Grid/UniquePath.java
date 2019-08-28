@@ -21,16 +21,12 @@ public class UniquePath {
         return grid[m-1][n-1];
     }
 
-    public static int uniquePaths2(int m, int n) {
-        return dfs(m, n);
-    }
-
-    public static int dfs(int r, int c) {
+    public static int uniquePaths2(int r, int c) {
         if(r == 1 || c == 1) {
             return 1;
         }
 
-        return dfs(r-1, c) + dfs(r, c-1);
+        return uniquePaths2(r-1, c) + uniquePaths2(r, c-1);
     }
 
     public static int uniquePaths3(int m, int n) {

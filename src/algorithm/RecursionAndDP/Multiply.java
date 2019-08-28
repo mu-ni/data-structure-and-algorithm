@@ -24,29 +24,25 @@ public class Multiply {
     }
 
     public static String multiplyString(String num1, String num2) {
-        int len1 = num1.length();
-        int len2 = num2.length();
-        int[] num = new int[len1 + len2];
+        int[] rst = new int[num1.length() + num2.length()];
+        for (int i=num1.length()-1; i>=0; i--) {
+            for (int j=num2.length()-1; j>=0; j--) {
+                int a = num1.charAt(i) - '0';
+                int b = num2.charAt(j) - '0';
+                int mul = a*b;
 
-        for(int i=len1-1; i>=0; i--) {
-            for(int j=len2-1; j>=0; j--) {
-                int n1 = num1.charAt(i) - '0';
-                int n2 = num2.charAt(j) - '0';
-                int mul = n1 * n2;
-
-                int p1 = i+j;
-                int p2 = i+j+1;
-                int sum = mul + num[p2];
-
-                num[p1] = num[p1] + sum/10;
-                num[p2] = sum%10;
+                int index = i+j+1;
+                int sum = mul + rst[index];
+                rst[index] = sum%10;
+                rst[index-1] = rst[index-1] + sum/10;
             }
         }
-
         StringBuilder sb = new StringBuilder();
-        for(int p: num) {
-            if(sb.length() == 0 && p == 0) continue;
-            sb.append(p);
+        for (int i=0; i<num1.length() + num2.length(); i++) {
+            if (sb.length() == 0 && rst[i] ==0) {
+                continue;
+            }
+            sb.append(rst[i]);
         }
         return sb.length() == 0 ? "0" : sb.toString();
     }
