@@ -1,7 +1,6 @@
 package algorithm.RecursionAndDP;
 
 public class CountAndSay {
-
 	public static void main(String[] args) {
 		System.out.println(countAndSay(5));
 	}
