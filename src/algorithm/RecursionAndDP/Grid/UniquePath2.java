@@ -49,9 +49,10 @@ public class UniquePath2 {
                     grid[j] = 1;
                     continue;
                 }
-                if (j > 0) {
-                    grid[j] += grid[j-1];
+                if (j == 0) {
+                    continue;
                 }
+                grid[j] += grid[j-1];
             }
         }
 
