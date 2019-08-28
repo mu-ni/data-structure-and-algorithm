@@ -3,6 +3,7 @@ package algorithm.ArrayAndString.LongestSubstring;
 public class AtLeastKRepeatingCharacter {
     public static void main(String[] args) {
         System.out.println(longestSubstring("aaabb", 3));
+        System.out.println(longestSubstring2("bbaaacbd", 3));
     }
 
     // every character in s appears >= k times
@@ -16,10 +17,42 @@ public class AtLeastKRepeatingCharacter {
         for (int i = start; i<end; i++) {
             arr[str[i] - 'a']++;
         }
+
+        boolean isValid = true;
+        for (int i : arr) {
+            if (i > 0 && i < k) isValid = false;
+        }
+        if (isValid) return end - start;
+
         for (int i = start; i<end; i++) {
             if (arr[str[i] - 'a'] >=k) continue;
             return Math.max(helper(str, start, i, k), helper(str,i+1,end,k));
         }
         return end - start;
     }
+
+    public static int longestSubstring2(String s, int k) {
+        if (s.length() == 0 || s.length() < k) return 0;
+
+        int[] arr = new int[26];
+        for (char c : s.toCharArray()) {
+            arr[c - 'a']++;
+        }
+
+        boolean isValid = true;
+        for (int i : arr) {
+            if (i > 0 && i < k) isValid = false;
+        }
+        if (isValid) return s.length();
+
+        for (int i=0; i<s.length()-1; i++) {
+            if (arr[s.charAt(i) - 'a'] >=k) continue;
+            String s1 = s.substring(0, i+1);
+            String s2 = s.substring(i+1);
+            return Math.max(longestSubstring2(s1, k), longestSubstring2(s2, k));
+        }
+        char last = s.charAt(s.length()-1);
+        return arr[last - 'a'] >= k ? s.length() : s.length()-1;
+    }
+
 }
