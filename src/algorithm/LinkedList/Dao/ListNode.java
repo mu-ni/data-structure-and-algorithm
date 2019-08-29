@@ -30,11 +30,13 @@ public class ListNode {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         ListNode cur = this;
-        while(cur != null) {
+        int len = 0;
+        while(cur != null && ++len < 10) {
             sb.append(cur.val);
             sb.append(" -> ");
             cur = cur.next;
         }
+        if (len == 10) sb.append("...");
         return sb.toString();
     }
 }

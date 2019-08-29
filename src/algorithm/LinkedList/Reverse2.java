@@ -4,7 +4,7 @@ import algorithm.LinkedList.Dao.ListNode;
 
 public class Reverse2 {
     public static void main(String[] args) {
-        System.out.println(reverse(ListNode.getList(new int[]{1,2,3,4,5}), 2,4).toString());
+        System.out.println(reverse(ListNode.getList(new int[]{1,2,3,4,5,6,7}), 2,6).toString());
     }
 
     // reverse m~n
