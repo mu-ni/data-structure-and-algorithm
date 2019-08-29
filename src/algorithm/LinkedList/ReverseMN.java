@@ -2,7 +2,7 @@ package algorithm.LinkedList;
 
 import algorithm.LinkedList.Dao.ListNode;
 
-public class Reverse2 {
+public class ReverseMN {
     public static void main(String[] args) {
         System.out.println(reverse(ListNode.getList(new int[]{1,2,3,4,5,6,7}), 2,6).toString());
     }
