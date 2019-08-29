@@ -54,6 +54,6 @@ public class TreeNode {
     }
 
     public static void visit(TreeNode node) {
-        System.out.println(node.val);
+        System.out.print(node.val + ", ");
     }
 }
