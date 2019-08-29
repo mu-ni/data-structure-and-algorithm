@@ -1,4 +1,4 @@
-package algorithm.RecursionAndDP.Permutation;
+package algorithm.ArrayAndString.Permutation;
 
 public class KthPermutation {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString;
+package algorithm.ArrayAndString.Permutation;
 
 import java.util.Arrays;
 

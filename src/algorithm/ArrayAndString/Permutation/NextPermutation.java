@@ -1,4 +1,4 @@
-package algorithm.RecursionAndDP.Permutation;
+package algorithm.ArrayAndString.Permutation;
 
 import java.util.Arrays;
 
