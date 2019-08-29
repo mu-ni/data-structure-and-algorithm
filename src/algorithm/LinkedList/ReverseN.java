@@ -11,6 +11,8 @@ public class ReverseN {
     }
 
     public static ListNode reverseN(ListNode head, int n) {
+        if (n <=1) return head;
+
         ListNode pre = null;
         ListNode cur = head;
         while (cur != null && n-- > 0) {
@@ -21,7 +23,7 @@ public class ReverseN {
         }
 
         if (n > 0) return new ListNode(-1); //invalid n
-        if (pre == null) return cur;
+
         head.next = cur;
         return pre;
     }
