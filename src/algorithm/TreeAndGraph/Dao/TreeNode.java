@@ -1,7 +1,11 @@
 package algorithm.TreeAndGraph.Dao;
 
+import algorithm.TreeAndGraph.MaxDepthBST;
+
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class TreeNode {
     public int val;
@@ -53,7 +57,23 @@ public class TreeNode {
         return node;
     }
 
+    public static List<Integer> tree2arr(TreeNode tree) {
+        int maxDepth = MaxDepthBST.maxDepth(tree);
+        int n = (int) Math.pow(2, maxDepth)-1;
+
+        List<Integer> list = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(tree);
+        while (!queue.isEmpty() && n-- > 0) {
+            TreeNode node = queue.poll();
+            list.add(node == null ? null : node.val);
+            queue.offer(node == null ? null : node.left);
+            queue.offer(node == null ? null : node.right);
+        }
+        return list;
+    }
+
     public static void visit(TreeNode node) {
-        System.out.print(node.val + ", ");
+        System.out.print(node == null ? "null, ": node.val + ", ");
     }
 }
