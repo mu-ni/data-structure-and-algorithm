@@ -9,9 +9,10 @@ public class UniqueBST2 {
     public static void main(String[] args) {
         List<TreeNode> rst = new UniqueBST2().generateTrees(3);
         rst.stream().map(TreeNode::tree2arr).forEach(node -> System.out.println(node.toString()));
+        System.out.println("-------------");
+        rst.stream().map(TreeNode::tree2arrRemoveDupNull).forEach(node -> System.out.println(node.toString()));
     }
 
-    // [[1,null,2,null,3],[1,null,3,2],[2,1,3],[3,1,null,null,2],[3,2,null,1]]
     public List<TreeNode> generateTrees(int n) {
         if (n == 0) return new ArrayList<>();
         return helper(1, n);

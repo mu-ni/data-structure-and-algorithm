@@ -73,6 +73,32 @@ public class TreeNode {
         return list;
     }
 
+    public static List<Integer> tree2arrRemoveDupNull(TreeNode tree) {
+        int maxDepth = MaxDepthBST.maxDepth(tree);
+        int n = (int) Math.pow(2, maxDepth)-1;
+
+        List<Integer> list = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(tree);
+        while (!queue.isEmpty() && n-- > 0) {
+            TreeNode node = queue.poll();
+            if (node == null) {
+                list.add(null);
+                continue;
+            }
+            list.add(node.val);
+            queue.offer(node.left);
+            queue.offer(node.right);
+        }
+
+        int lastIndex = list.size()-1;
+        while (list.size() != 0 && list.get(lastIndex) == null) {
+            list.remove(lastIndex);
+            lastIndex--;
+        }
+        return list;
+    }
+
     public static void visit(TreeNode node) {
         System.out.print(node == null ? "null, ": node.val + ", ");
     }
