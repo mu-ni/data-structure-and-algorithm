@@ -6,6 +6,9 @@ public class UniqueBST {
         System.out.println(numTrees2(3));
     }
 
+    // f(3) =
+    // G(1,3) + G(2,3) + G(3,3) =
+    // f(1-1)*f(3-1) + f(2-1)*f(3-2) + f(3-1)*f(3-3)
     public static int numTrees(int n) {
         int[] dp = new int[n+1];
         dp[0] = 1;
