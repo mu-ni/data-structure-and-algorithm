@@ -1,7 +1,5 @@
 package algorithm.ArrayAndString;
 
-import java.util.Arrays;
-
 public class MedianOfTwoSortedArrays {
     public static void main(String[] args) {
         int[] nums1 = new int[]{1,2,3,4,5};
@@ -30,15 +28,9 @@ public class MedianOfTwoSortedArrays {
         int midVal1 = mid1 >= nums1.length ? Integer.MAX_VALUE : nums1[mid1];
         int midVal2 = mid2 >= nums2.length ? Integer.MAX_VALUE : nums2[mid2];
 
-        if (midVal1 < midVal2) {
+        if (midVal1 <= midVal2) {
             return helper(nums1, mid1+1, nums2, start2, k-k/2);
         }
-        if (midVal1 > midVal2) {
-            return helper(nums1, start1, nums2, mid2+1, k-k/2);
-        }
-
-        double left = helper(nums1, mid1+1, nums2, start2, k-k/2);
-        double right =  helper(nums1, start1, nums2, mid2+1, k-k/2);
-        return (left + right)/2;
+        return helper(nums1, start1, nums2, mid2+1, k-k/2);
     }
 }
