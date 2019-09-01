@@ -1,8 +1,6 @@
-package algorithm.RecursionAndDP;
+package algorithm.ArrayAndString;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ThreeSum {
     public static void main(String[] args) {
@@ -13,26 +11,28 @@ public class ThreeSum {
     public static List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> rst = new ArrayList<>();
-        for (int i = 0; i + 2 < nums.length; i++) {
-            if (i != 0 && nums[i] == nums[i - 1]) continue;
+        for (int i = 0; i < nums.length; i++) {
+            if (i != 0 && nums[i] == nums[i-1]) continue;
             int target = -nums[i];
-            int head = i + 1;
-            int tail = nums.length - 1;
-            while (head < tail) {
-                if (nums[head] + nums[tail] == target) {
-                    rst.add(Arrays.asList(nums[i], nums[head], nums[tail]));
-                    head++;
-                    tail--;
-                    while (head < tail && nums[head] == nums[head - 1]) {
-                        head++;
-                    }
-                    while (head < tail && nums[tail] == nums[tail + 1]) {
-                        tail--;
-                    }
-                } else if (nums[head] + nums[tail] > target) {
-                    tail--;
-                } else {
-                    head++;
+            int left = i+1;
+            int right = nums.length-1;
+            while (left < right) {
+                if (nums[left] + nums[right] < target) {
+                    left++;
+                    continue;
+                }
+                if (nums[left] + nums[right] > target) {
+                    right--;
+                    continue;
+                }
+                rst.add(Arrays.asList(nums[left], nums[right], nums[i]));
+                left++;
+                right--;
+                while (left < right && nums[left] == nums[left-1]) {
+                    left++;
+                }
+                while (left < right && nums[right] == nums[right+1]) {
+                    right--;
                 }
             }
         }
