@@ -6,6 +6,7 @@ public class ThreeSum {
     public static void main(String[] args) {
         System.out.println(threeSum(new int[]{-1, 0, 1, 2, -1, -4}));
         System.out.println(threeSum2(new int[]{-1, 0, 1, 2, -1, -4}));
+        System.out.println(threeSum3(new int[]{-1, 0, 1, 2, -1, -4}));
     }
 
     public static List<List<Integer>> threeSum(int[] nums) {
@@ -59,5 +60,28 @@ public class ThreeSum {
             threeSum(rst, nums, sum + nums[i], i + 1, path);
             path.remove(path.size() - 1);
         }
+    }
+
+    public static List<List<Integer>> threeSum3(int[] nums) {
+        Arrays.sort(nums);
+        Set<List<Integer>> set = new HashSet<>();
+        for (int i=0; i<nums.length; i++) {
+            int left = i+1;
+            int right = nums.length-1;
+            while (left < right) {
+                if (nums[left] + nums[right] + nums[i] < 0) {
+                    left++;
+                    continue;
+                }
+                if (nums[left] + nums[right] + nums[i] > 0) {
+                    right--;
+                    continue;
+                }
+                set.add(Arrays.asList(nums[left],nums[right],nums[i]));
+                left++;
+                right--;
+            }
+        }
+        return new ArrayList<>(set);
     }
 }
