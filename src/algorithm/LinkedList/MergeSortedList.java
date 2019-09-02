@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString;
+package algorithm.LinkedList;
 
 import algorithm.LinkedList.Dao.ListNode;
 
