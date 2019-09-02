@@ -4,8 +4,8 @@ import algorithm.LinkedList.Dao.ListNode;
 
 public class SwapPair {
     public static void main(String[] args) {
-        System.out.println(swapPairs(ListNode.getList(new int[]{1,2,3,4})).toString());
         System.out.println(swapPairs(ListNode.getList(new int[]{1,2,3,4,5})).toString());
+        System.out.println(swapPairs2(ListNode.getList(new int[]{1,2,3,4,5})).toString());
     }
 
     public static ListNode swapPairs(ListNode head) {
@@ -22,5 +22,15 @@ public class SwapPair {
             cur = cur.next.next;
         }
         return dummy.next;
+    }
+
+    public static ListNode swapPairs2(ListNode head) {
+        if (head == null || head.next == null) return head;
+
+        ListNode second = head.next;
+        ListNode tmp = second.next;
+        second.next = head;
+        head.next = swapPairs2(tmp);
+        return second;
     }
 }
