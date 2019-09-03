@@ -15,7 +15,7 @@ public class CountAndSay {
 			char say = s.charAt(i);
 			if (i == s.length()-1) {
 				sb.append(count).append(say);
-				continue;
+				break;
 			}
 			if (say == s.charAt(i+1)) {
 				count++;
