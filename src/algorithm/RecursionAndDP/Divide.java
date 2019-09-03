@@ -3,7 +3,8 @@ package algorithm.RecursionAndDP;
 public class Divide {
     public static void main(String[] args) {
         System.out.println(divide(123, 45));
-        System.out.println(divide2(10, 3));
+        System.out.println(divide2(5, 1));
+        System.out.println(divide3(5, 1));
     }
 
     public static int divide(int dividend, int divisor) { // 2147483647/2 -> stack overflow
@@ -54,5 +55,32 @@ public class Divide {
         }
 
         return isNegative ? -result : result;
+    }
+
+    public static int divide3(int dividend, int divisor) {
+        int sign = 1;
+        if ((dividend < 0 && divisor > 0) || (dividend > 0 && divisor < 0)) {
+            sign = -1;
+        }
+
+        long dend = Math.abs((long) dividend);
+        long sor = Math.abs((long) divisor);
+        long rst = sign*divideLong(dend, sor);
+
+        if (rst > Integer.MAX_VALUE) return Integer.MAX_VALUE;
+        if (rst < Integer.MIN_VALUE) return Integer.MIN_VALUE;
+        return (int) rst;
+    }
+
+    public static long divideLong(long dividend, long divisor) {
+        if (dividend < divisor) return 0;
+
+        long sum = divisor;
+        long count = 1;
+        while (sum + sum < dividend) {
+            sum += sum;
+            count += count;
+        }
+        return count + divideLong(dividend-sum, divisor);
     }
 }
