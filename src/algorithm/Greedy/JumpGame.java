@@ -16,14 +16,14 @@ public class JumpGame {
     }
 
     public boolean canJump2(int[] nums) {
-        int end = 0;
         int pos = 0;
-        for (int i=0; i<nums.length-1; i++) {
+        int max = 0;
+        for (int i=0; i<nums.length; i++) {
             pos = Math.max(pos, i + nums[i]);
-            if (i == end) {
-                end = pos;
+            if (i == max) {
+                max = pos;
             }
         }
-        return end >= nums.length - 1;
+        return max >= nums.length-1;
     }
 }
