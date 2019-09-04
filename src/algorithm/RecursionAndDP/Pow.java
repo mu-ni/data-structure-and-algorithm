@@ -9,6 +9,25 @@ public class Pow {
     }
 
     public double myPow(double x, int n) {
+        if (n == 0) return 1;
+        if (n == 1) return x;
+        if (n == 2) return x*x;
+
+        if (n == Integer.MIN_VALUE) {
+            return 1/x*myPow(1/x, -(n+1));
+        }
+        if (n < 0) {
+            return myPow(1/x, -n);
+        }
+
+        if (n%2 == 0) {
+            return myPow(myPow(x, n/2), 2);
+        }
+        return x*myPow(myPow(x, n/2), 2);
+    }
+
+
+    public double myPow2(double x, int n) {
         if (n > 0) return posPow(x, n);
         if (n < 0) return negPow(x, n);
         return 1;
@@ -22,21 +41,5 @@ public class Pow {
     public double negPow(double x, int n) {
         if (n == -1) return 1 / x;
         return 1 / x * negPow(x, n + 1);
-    }
-
-    public double myPow2(double x, int n) {
-        if (n == 0) return 1;
-        if (n == 1) return x;
-        if (n == 2) return x * x;
-//        if (n < 0) {
-//            n = -n;
-//            x = 1/x;
-//        }
-        if (n < 0) return 1 / x * myPow(1 / x, -(n + 1));
-
-        if (n % 2 == 0) {
-            return myPow2(myPow2(x, n / 2), 2);
-        }
-        return x * myPow2(myPow2(x, n / 2), 2);
     }
 }
