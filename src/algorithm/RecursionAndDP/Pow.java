@@ -6,6 +6,8 @@ public class Pow {
         System.out.println(new Pow().myPow(2.0, -2));
         System.out.println(new Pow().myPow2(2.0, 10));
         System.out.println(new Pow().myPow2(2.0, -2));
+        System.out.println(new Pow().myPow3(2.0, 10));
+        System.out.println(new Pow().myPow3(2.0, -2));
     }
 
     public double myPow(double x, int n) {
@@ -41,5 +43,24 @@ public class Pow {
     public double negPow(double x, int n) {
         if (n == -1) return 1 / x;
         return 1 / x * negPow(x, n + 1);
+    }
+
+    public double myPow3(double x, int n) {
+        if (n == 0) return 1;
+
+        if (n < 0) {
+            x = 1/x;
+            n = -n;
+        }
+
+        double prod = x;
+        double rst = 1;
+        for (int i=n; i> 0; i /= 2) {
+            if (i%2 == 1) {
+                rst = rst*prod;
+            }
+            prod = prod*prod;
+        }
+        return rst;
     }
 }
