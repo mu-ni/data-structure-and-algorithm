@@ -35,6 +35,7 @@ public class UniquePath2 {
         return grid[m-1][n-1];
     }
 
+    // dp[i-1][j] = old dp[j]
     public static int uniquePaths2(int[][] obstacleGrid) { //1d
         int m = obstacleGrid.length;
         int n = obstacleGrid[0].length;
@@ -49,7 +50,12 @@ public class UniquePath2 {
                     grid[j] = 1;
                     continue;
                 }
+                if (i == 0) {
+                    grid[j] = grid[j-1];
+                    continue;
+                }
                 if (j == 0) {
+//                    grid[j] = grid[j];
                     continue;
                 }
                 grid[j] += grid[j-1];
