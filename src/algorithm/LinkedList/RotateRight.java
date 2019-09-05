@@ -51,11 +51,9 @@ public class RotateRight {
             slow = slow.next;
         }
 
-        if (slow == null) return head;
         fast.next = head;
         head = slow.next;
         slow.next = null;
-
         return head;
     }
 }
