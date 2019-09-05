@@ -43,15 +43,13 @@ public class PlusOne {
     }
 
     public static int[] plusOne3(int[] digits) {
-        int carry = 1;
         for (int i=digits.length-1; i>=0; i--) {
-            digits[i] += carry;
-            if (digits[i] <= 9) {
+            if (digits[i] < 9) {
+                digits[i] += 1;
                 return digits;
             }
             digits[i] = 0;
         }
-
         int[] rst = new int[digits.length+1];
         rst[0] = 1;
         return rst;
