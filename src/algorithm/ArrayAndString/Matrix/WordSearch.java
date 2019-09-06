@@ -18,7 +18,7 @@ public class WordSearch {
     public boolean backtrack(char[][] board, int x, int y, String word, int i) {
         if (i == word.length()) return true;
         if (x < 0 || x >= board.length || y < 0 || y >= board[0].length) return false;
-        if (board[x][y] != word.charAt(i) || board[x][y] == '#') return false;
+        if (board[x][y] != word.charAt(i)) return false;
 
         char c = board[x][y];
         board[x][y] = '#';
