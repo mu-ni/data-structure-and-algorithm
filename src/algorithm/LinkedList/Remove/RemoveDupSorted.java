@@ -1,4 +1,4 @@
-package algorithm.LinkedList;
+package algorithm.LinkedList.Remove;
 
 import algorithm.LinkedList.Dao.ListNode;
 

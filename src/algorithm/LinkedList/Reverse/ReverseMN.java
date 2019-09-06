@@ -1,4 +1,4 @@
-package algorithm.LinkedList;
+package algorithm.LinkedList.Reverse;
 
 import algorithm.LinkedList.Dao.ListNode;
 
