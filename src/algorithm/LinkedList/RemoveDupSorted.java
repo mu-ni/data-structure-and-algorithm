@@ -6,20 +6,37 @@ public class RemoveDupSorted {
     public static void main(String[] args) {
         ListNode head = ListNode.getList(new int[]{1,1,2,2,3,4,4});
         System.out.println(removeDuplicates(head).toString());
+        head = ListNode.getList(new int[]{1,1,2,2,3,4,4});
+        System.out.println(removeDuplicates2(head).toString());
     }
 
     public static ListNode removeDuplicates(ListNode head) {
-        if(head == null) return head;
+        if (head == null) return head;
 
-        ListNode pre = head;
-        ListNode cur = head.next;
-        while(cur != null) {
-            if(pre.val == cur.val) {
-                pre.next = cur.next;
-            }else {
-                pre = cur;
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (fast != null) {
+            if (slow.val == fast.val) {
+                slow.next = fast.next;
+                fast = fast.next;
+                continue;
             }
-            cur = cur.next;
+            slow = fast;
+            fast = fast.next;
+        }
+        return head;
+    }
+
+    public static ListNode removeDuplicates2(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null) {
+            while (fast.next != null && fast.val == fast.next.val) {
+                fast = fast.next;
+            }
+            slow.next = fast.next;
+            slow = slow.next;
+            fast = fast.next;
         }
         return head;
     }
