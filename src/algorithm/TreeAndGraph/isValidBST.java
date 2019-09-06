@@ -27,6 +27,7 @@ public class isValidBST {
         return isValidBST(node.left, min, node.val) && isValidBST(node.right, node.val, max);
     }
 
+    // inorder -> 结果从小到大排列
     public static boolean isValidBST2(TreeNode root) {
         Stack<TreeNode> stack = new Stack<>();
         TreeNode left = null;
