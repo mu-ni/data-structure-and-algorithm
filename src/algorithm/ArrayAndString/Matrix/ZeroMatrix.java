@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString;
+package algorithm.ArrayAndString.Matrix;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,6 +7,7 @@ import java.util.List;
 public class ZeroMatrix {
     public static void main(String[] args) {
         System.out.println(Arrays.deepToString(setZeroes(new int[][]{{1,1,1},{1,0,1},{1,1,1}})));
+        System.out.println(Arrays.deepToString(setZeroes2(new int[][]{{1,1,1},{1,0,1},{1,1,1}})));
     }
 
     public static int[][] setZeroes(int[][] matrix) {
@@ -41,7 +42,7 @@ public class ZeroMatrix {
         }
     }
 
-    public static void setZeroes2(int[][] matrix) {
+    public static int[][] setZeroes2(int[][] matrix) {
         int r = matrix.length;
         int c = matrix[0].length;
         boolean[] rows = new boolean[r];
@@ -63,6 +64,7 @@ public class ZeroMatrix {
         for(int i=0; i<cols.length; i++) {
             if(cols[i]) setColZero(matrix, i);
         }
+        return matrix;
     }
 
     public static void setRowZero(int[][] matrix, int row) {
