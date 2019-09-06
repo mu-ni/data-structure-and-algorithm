@@ -11,19 +11,20 @@ public class RemoveDupSorted2 {
     public static ListNode removeDuplicates(ListNode head) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
+        ListNode slow = dummy;
+        ListNode fast = head;
 
-        ListNode pre = dummy;
-        ListNode cur = head;
-        while (cur != null) {
-            while (cur.next != null && cur.val == cur.next.val) {
-                cur = cur.next;
+        while (fast != null) {
+            while (fast.next != null && fast.val == fast.next.val) {
+                fast = fast.next;
             }
-            if (pre.next == cur) {
-                pre = pre.next;
-            } else {
-                pre.next = cur.next;
+            if (slow.next == fast) {
+                slow = fast;
+                fast = fast.next;
+                continue;
             }
-            cur = cur.next;
+            slow.next = fast.next;
+            fast = fast.next;
         }
         return dummy.next;
     }
