@@ -22,20 +22,11 @@ public class UniqueBST {
     }
 
     public static int numTrees2(int n) {
-        int[] dp = new int[n+1];
-        dp[0] = 1;
-        dp[1] = 1;
-        for (int i=2; i<=n; i++) {
-            dp[i] = helper(i, dp);
-        }
-
-        return dp[n];
-    }
-
-    public static int helper(int n, int[] dp) {
+        if (n <= 1) return 1;
+        int sum = 0;
         for (int i=1; i<=n; i++) {
-            dp[n] += dp[i-1] * dp[n-i];
+            sum += numTrees2(i-1)*numTrees2(n-i);
         }
-        return dp[n];
+        return sum;
     }
 }
