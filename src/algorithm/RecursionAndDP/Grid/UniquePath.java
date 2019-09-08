@@ -47,16 +47,16 @@ public class UniquePath {
 
     public static int uniquePaths2(int m, int n) { //1d
         int[] grid = new int[n];
-        for(int i=0; i< m; i++) {
-            for(int j=0; j<n; j++) {
-                if(i == 0 || j == 0) {
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == 0 || j == 0) {
                     grid[j] = 1;
                     continue;
                 }
-                grid[j] += grid[j-1];
+                grid[j] += grid[j - 1];
             }
         }
-        return grid[n-1];
+        return grid[n - 1];
     }
 
     public static int uniquePaths3(int r, int c) {
