@@ -9,11 +9,11 @@ import java.util.Queue;
 
 public class LevelOrder {
     public static void main(String[] args) {
-        System.out.println(bfs(TreeNode.genTree()));
-        System.out.println(dfs(TreeNode.genTree()));
+        System.out.println(levelOrder(TreeNode.genTree()));
+        System.out.println(levelOrder2(TreeNode.genTree()));
     }
     
-    public static List<List<Integer>> bfs(TreeNode root) {
+    public static List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> rst = new ArrayList<>();
         if(root == null) return rst;
 
@@ -39,23 +39,21 @@ public class LevelOrder {
         return rst;
     }
 
-    public static List<List<Integer>> dfs(TreeNode root) {
+    public static List<List<Integer>> levelOrder2(TreeNode root) {
         List<List<Integer>> rst = new ArrayList<>();
-        if (root == null) return rst;
-        return dfs(rst, root, 0);
+        dfs(rst, 0, root);
+        return rst;
     }
 
-    public static List<List<Integer>> dfs(List<List<Integer>> rst, TreeNode node, int level) {
+    public static void dfs(List<List<Integer>> rst, int level, TreeNode node) {
+        if(node == null) return;
+
         if (rst.size() <= level) {
             rst.add(new ArrayList<>());
         }
         rst.get(level).add(node.val);
-        if (node.left != null) {
-            dfs(rst, node.left, level+1);
-        }
-        if (node.right != null) {
-            dfs(rst, node.right, level+1);
-        }
-        return rst;
+
+        dfs(rst, level+1, node.left);
+        dfs(rst, level+1, node.right);
     }
 }
