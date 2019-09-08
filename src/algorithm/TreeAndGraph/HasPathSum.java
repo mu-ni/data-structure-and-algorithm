@@ -9,7 +9,6 @@ public class HasPathSum {
 
     public static boolean hasPathSum(TreeNode node, int sum) {
         if (node == null) return false;
-
         if (node.left == null && node.right == null) return node.val == sum;
 
         return hasPathSum(node.left, sum - node.val) || hasPathSum(node.right, sum - node.val);
