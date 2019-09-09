@@ -4,12 +4,12 @@ import algorithm.TreeAndGraph.Dao.TreeNode;
 
 public class FlattenBT {
     public static void main(String[] args) {
-        TreeNode root = new FlattenBT().flatten(TreeNode.arr2tree(new Integer[]{1,2,5,3,4,null,6}));
+        TreeNode root = TreeNode.arr2tree(new Integer[]{1,2,5,3,4,null,6});
+        flatten(root);
         TreeTraversal.inOrder(root);
     }
 
-    public TreeNode flatten(TreeNode root) {
-        TreeNode node = root;
+    public static void flatten(TreeNode root) {
         while (root != null) {
             if (root.left == null) {
                 root = root.right;
@@ -24,6 +24,5 @@ public class FlattenBT {
             root.left = null;
             root = root.right;
         }
-        return node;
     }
 }
