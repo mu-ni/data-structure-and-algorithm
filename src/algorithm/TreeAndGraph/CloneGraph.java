@@ -2,10 +2,7 @@ package algorithm.TreeAndGraph;
 
 import algorithm.TreeAndGraph.Dao.Node;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CloneGraph {
     public static void main(String[] args) {
@@ -22,8 +19,8 @@ public class CloneGraph {
         n3.neighbors = Arrays.asList(n2, n4);
         n4.neighbors = Arrays.asList(n1, n3);
 
-        Node newNode = new CloneGraph().cloneGraph(n1);
-        System.out.println(newNode);
+        System.out.println(new CloneGraph().cloneGraph(n1));
+        System.out.println(new CloneGraph().cloneGraph2(n1));
     }
 
     public Node cloneGraph(Node node) {
@@ -41,5 +38,26 @@ public class CloneGraph {
             n.neighbors.add(helper(nbs, map));
         }
         return n;
+    }
+
+    public Node cloneGraph2(Node node) {
+        if (node == null) return node;
+
+        Map<Integer, Node> map = new HashMap<>();
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(node);
+        map.put(node.val, new Node(node.val, new ArrayList<>()));
+        while (!queue.isEmpty()) {
+            Node cur = queue.poll();
+            for (Node nbs : cur.neighbors) {
+                if (!map.containsKey(nbs.val)) {
+                    map.put(nbs.val, new Node(nbs.val, new ArrayList<>()));
+                    queue.offer(nbs);
+                }
+                map.get(cur.val).neighbors.add(map.get(nbs.val));
+            }
+        }
+
+        return map.get(node.val);
     }
 }
