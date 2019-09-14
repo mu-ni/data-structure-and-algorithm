@@ -1,8 +1,5 @@
 package algorithm.ArrayAndString;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class ReverseWord2 {
     public static void main(String[] args) {
@@ -10,31 +7,30 @@ public class ReverseWord2 {
         System.out.println(new ReverseWord2().reverseWords(str));
     }
 
-    public char[] reverseWords(char[] str) { // not fully tested
-        List<String> list = new ArrayList<>();
-        StringBuilder sb = new StringBuilder();
-        for (char c : str) {
-            if (c == ' ') {
-                list.add(sb.toString());
-                sb = new StringBuilder();
+    public char[] reverseWords(char[] str) {
+        reverse(str, 0, str.length-1);
+        int start = 0;
+        for (int i=0; i<str.length; i++) {
+            if (i == str.length-1) {
+                reverse(str, start, i);
                 continue;
             }
-            sb.append(c);
-        }
-        list.add(sb.toString());
-        Collections.sort(list);
-        char[] rst = new char[str.length];
-        int index = 0;
-        for (int i=0; i<list.size(); i++) {
-            for (char c : list.get(i).toCharArray()) {
-                rst[index] = c;
-                index++;
-            }
-            if (i != list.size()-1) {
-                rst[index] = ' ';
-                index++;
+            if (str[i] == ' ') {
+                reverse(str, start, i-1);
+                start = i+1;
             }
         }
-        return rst;
+        return str;
+    }
+
+    public void reverse(char[] str, int start, int end) {
+        while(start < end) {
+            char tmp = str[start];
+            str[start] = str[end];
+            str[end] = tmp;
+
+            start++;
+            end--;
+        }
     }
 }
