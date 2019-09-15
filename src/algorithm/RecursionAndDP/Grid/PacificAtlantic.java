@@ -108,4 +108,20 @@ public class PacificAtlantic {
         }
         return down || right;
     }
+
+    public List<List<Integer>> pacificAtlantic3(int[][] matrix) {
+        List<List<Integer>> rst = new ArrayList<>();
+        m = matrix.length;
+        if (m == 0) return rst;
+        n = matrix[0].length;
+
+        boolean[][] pacific = new boolean[m][n];
+        boolean[][] atlantic = new boolean[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+
+            }
+        }
+        return rst;
+    }
 }
