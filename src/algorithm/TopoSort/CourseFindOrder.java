@@ -1,4 +1,4 @@
-package algorithm.TreeAndGraph;
+package algorithm.TopoSort;
 
 import java.util.*;
 
