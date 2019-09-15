@@ -1,4 +1,4 @@
-package algorithm.RecursionAndDP;
+package algorithm.UnionFind;
 
 public class MaxAreaOfIslands {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package algorithm.RecursionAndDP.Grid;
+package algorithm.UnionFind;
 
 public class NumOfIslands {
     public static void main(String[] args) {

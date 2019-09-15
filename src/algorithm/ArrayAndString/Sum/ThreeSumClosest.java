@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString;
+package algorithm.ArrayAndString.Sum;
 
 import java.util.Arrays;
 

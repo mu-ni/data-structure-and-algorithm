@@ -1,4 +1,4 @@
-package algorithm.RecursionAndDP.Grid;
+package algorithm.UnionFind;
 
 import java.util.Arrays;
 
