@@ -1,15 +1,17 @@
-package algorithm.RecursionAndDP.Backtrack;
+package algorithm.Backtrack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class CombinationSum {
+public class CombinationSum2 {
     public static void main(String[] args) {
-        System.out.println(combinationSum(new int[]{2,3,6,7}, 7));
+        System.out.println(combinationSum2(new int[]{10,1,2,7,6,1,5}, 8));
     }
 
-    public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+    public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> rst = new ArrayList<>();
+        Arrays.sort(candidates);
         backtrack(rst, candidates, target, 0, new ArrayList<>());
         return rst;
     }
@@ -20,8 +22,9 @@ public class CombinationSum {
             rst.add(new ArrayList<>(path));
         }
         for (int i=start; i<nums.length; i++) {
+            if (i != start && nums[i] == nums[i-1]) continue;
             path.add(nums[i]);
-            backtrack(rst, nums, remain - nums[i], i, path);
+            backtrack(rst, nums, remain - nums[i], i+1, path);
             path.remove(path.size()-1);
         }
     }

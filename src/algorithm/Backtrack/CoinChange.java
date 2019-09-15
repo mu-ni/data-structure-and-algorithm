@@ -1,4 +1,4 @@
-package algorithm.RecursionAndDP.Backtrack;
+package algorithm.Backtrack;
 
 import java.util.Arrays;
 
