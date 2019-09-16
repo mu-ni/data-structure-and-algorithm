@@ -86,9 +86,8 @@ public class KthLargest {
     }
 
     public static int findKthLargest4(int[] nums, int k) {
-        int maxIndex = 0;
         for (int i = 0; i < k; i++) {
-            maxIndex = i;
+            int maxIndex = i;
             for (int j = i + 1; j < nums.length; j++) {
                 if (nums[j] > nums[maxIndex]) {
                     maxIndex = j;
