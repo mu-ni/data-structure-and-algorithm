@@ -5,6 +5,8 @@ public class CoinChange2 { //combinations make up amount
         System.out.println(coinChange(new int[]{1,2,3}, 5));
         System.out.println(coinChange2(new int[]{1,2,3}, 5));
         System.out.println(coinChange3(new int[]{1,2,3}, 5));
+        System.out.println(coinChange4(new int[]{1,2,3}, 5));
+        System.out.println(coinChange5(new int[]{1,2,3}, 5));
     }
 
     // O(m*n)
@@ -50,6 +52,68 @@ public class CoinChange2 { //combinations make up amount
                 dp[i] += dp[i-coin];
             }
         }
+        return dp[amount];
+    }
+
+    public static int coinChange4(int[] coins, int amount) {
+        if (coins.length == 0 && amount == 0) return 1;
+        if (coins.length == 0) return 0;
+
+        int[][] dp = new int[coins.length][amount+1];
+        for (int i=0; i<coins.length; i++) {
+            int coin = coins[i];
+            for (int j=0; j<=amount; j++) {
+                if (j == 0) {
+                    dp[i][j] = 1;
+                    continue;
+                }
+                if (i == 0) {
+                    if (j < coin) {
+                        dp[i][j] = 0;
+                    } else {
+                        dp[i][j] = dp[i][j-coin];
+                    }
+                    continue;
+                }
+                if (j < coin) {
+                    dp[i][j] = dp[i-1][j];
+                    continue;
+                }
+                dp[i][j] = dp[i-1][j] + dp[i][j-coin];
+            }
+        }
+
+        return dp[coins.length-1][amount];
+    }
+
+    public static int coinChange5(int[] coins, int amount) {
+        if (coins.length == 0 && amount == 0) return 1;
+        if (coins.length == 0) return 0;
+
+        int[] dp = new int[amount+1];
+        for (int i=0; i<coins.length; i++) {
+            int coin = coins[i];
+            for (int j=0; j<=amount; j++) {
+                if (j == 0) {
+                    dp[j] = 1;
+                    continue;
+                }
+                if (i == 0) {
+                    if (j < coin) {
+                        dp[j] = 0;
+                    } else {
+                        dp[j] = dp[j-coin];
+                    }
+                    continue;
+                }
+                if (j < coin) {
+//                    dp[j] = dp[j];
+                    continue;
+                }
+                dp[j] = dp[j] + dp[j-coin];
+            }
+        }
+
         return dp[amount];
     }
 }
