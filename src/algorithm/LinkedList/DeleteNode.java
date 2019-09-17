@@ -28,4 +28,16 @@ public class DeleteNode {
         node.val = node.next.val; // copy next value
         node.next = node.next.next; // delete next node
     }
+
+    public static void deleteNode2(ListNode node) {
+        ListNode pre = null;
+        while (node != null && node.next != null) {
+            node.val = node.next.val;
+            pre = node;
+            node = node.next;
+        }
+        if (pre != null) {
+            pre.next = null;
+        }
+    }
 }
