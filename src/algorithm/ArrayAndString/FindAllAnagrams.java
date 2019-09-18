@@ -6,6 +6,7 @@ import java.util.List;
 public class FindAllAnagrams {
     public static void main(String[] args) {
         System.out.println(findAnagrams("cbaebabacd", "abc"));
+        System.out.println(findAnagrams2("cbaebabacd", "abc"));
     }
 
 
@@ -30,5 +31,37 @@ public class FindAllAnagrams {
             arr[c - 'a']--;
         }
         return true;
+    }
+
+    public static List<Integer> findAnagrams2(String s, String p) {
+        List<Integer> list = new ArrayList<>();
+        int[] arr = new int[26];
+        for (char c : p.toCharArray()) {
+            arr[c - 'a'] ++;
+        }
+
+        int start = 0;
+        int end = 0;
+        int diff = p.length();
+        while (end < s.length()) {
+            if (arr[s.charAt(end) - 'a'] > 0) {
+                diff --;
+            }
+            arr[s.charAt(end) - 'a'] --;
+            end++;
+
+            if (diff == 0) {
+                list.add(start);
+            }
+
+            if (end - start == p.length()) {
+                if (arr[s.charAt(start) - 'a'] >= 0) {
+                    diff ++;
+                }
+                arr[s.charAt(start) - 'a'] ++;
+                start++;
+            }
+        }
+        return list;
     }
 }
