@@ -5,7 +5,9 @@ import java.util.Arrays;
 public class PermutationInString {
     public static void main(String[] args) {
         System.out.println(checkInclusion("ab", "eidbaooo"));
-        System.out.println(checkInclusion("abc", "eidbaooo"));
+        System.out.println(checkInclusion2("ab", "eidbaooo"));
+        System.out.println(checkInclusion3("ab", "eidbaooo"));
+        System.out.println(checkInclusion4("ab", "eidbaooo"));
     }
 
     public static boolean checkInclusion(String s1, String s2) {
@@ -68,5 +70,34 @@ public class PermutationInString {
             if(i != 0) return false;
         }
         return true;
+    }
+
+    public static boolean checkInclusion4(String s1, String s2) {
+        int[] arr = new int[26];
+        for (char c : s1.toCharArray()) {
+            arr[c - 'a'] ++;
+        }
+
+        int diff = s1.length();
+        int start = 0;
+        int end = 0;
+        while (end < s2.length()) {
+            if (arr[s2.charAt(end) - 'a'] > 0) {
+                diff--;
+            }
+            arr[s2.charAt(end) - 'a'] --;
+            end ++;
+
+            if (diff == 0) return true;
+
+            if (end - start == s1.length()) {
+                if (arr[s2.charAt(start) - 'a'] >= 0) {
+                    diff ++;
+                }
+                arr[s2.charAt(start) - 'a'] ++;
+                start ++;
+            }
+        }
+        return false;
     }
 }
