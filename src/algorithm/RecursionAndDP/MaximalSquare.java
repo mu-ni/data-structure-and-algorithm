@@ -114,8 +114,8 @@ public class MaximalSquare {
 
         int[] dp = new int[n];
         int max = 0;
-        int pre = 0;
         for (int i = 0; i < m; i++) {
+            int pre = 0;
             for (int j = 0; j < n; j++) {
                 int tmp = dp[j];
                 if (matrix[i][j] == '0') {
