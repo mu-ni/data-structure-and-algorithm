@@ -4,7 +4,7 @@ public class CommonSubSequence {
     public static void main(String[] args) {
         System.out.println(longestCommonSubSequence("abcde", "ace"));
         System.out.println(longestCommonSubSequence2("abcde", "ace"));
-        System.out.println(longestCommonSubSequence3("mhunuzqrkzsnidwbun", "szulspmhwpazoxijwbq"));// 6
+        System.out.println(longestCommonSubSequence3("abcde", "ace"));
     }
 
     public static int longestCommonSubSequence(String text1, String text2) {
