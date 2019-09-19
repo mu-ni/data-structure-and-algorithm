@@ -1,4 +1,4 @@
-package algorithm.DfsBfs;
+package algorithm.UnionFind;
 
 import java.util.LinkedList;
 import java.util.Queue;
