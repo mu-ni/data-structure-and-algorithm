@@ -18,15 +18,16 @@ public class ShortestBridge {
     int[][] dirs = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
     Queue<int[]> queue = new LinkedList<>();
 
+    // two islands
     public int shortestBridge(int[][] A) {
         m = A.length;
         if (m == 0) return 0;
         n = A[0].length;
 
-        boolean[][] visited = new boolean[m][n];
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (A[i][j] == 0) continue;
+                boolean[][] visited = new boolean[m][n];
                 dfs(A, i, j, visited);
                 return minDistance(A, visited);
             }
@@ -35,7 +36,7 @@ public class ShortestBridge {
         return -1;
     }
 
-    // mark island
+    // mark one island
     public void dfs(int[][] A, int x, int y, boolean[][] visited) {
         if (x < 0 || y < 0 || x >= m || y >= n) return;
         if (visited[x][y] || A[x][y] == 0) return;
