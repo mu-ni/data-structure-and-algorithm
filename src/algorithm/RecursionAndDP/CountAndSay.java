@@ -1,4 +1,4 @@
-package algorithm.Math;
+package algorithm.RecursionAndDP;
 
 public class CountAndSay {
 	public static void main(String[] args) {
