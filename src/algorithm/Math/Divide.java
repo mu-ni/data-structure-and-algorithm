@@ -1,4 +1,4 @@
-package algorithm.RecursionAndDP;
+package algorithm.Math;
 
 public class Divide {
     public static void main(String[] args) {
