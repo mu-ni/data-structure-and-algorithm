@@ -6,6 +6,7 @@ public class FourSum {
     public static void main(String[] args) {
         System.out.println(fourSum(new int[]{1,0,-1,0,-2,2}, 0));
         System.out.println(fourSum2(new int[]{1,0,-1,0,-2,2}, 0));
+        System.out.println(fourSum3(new int[]{1,0,-1,0,-2,2}, 0));
     }
 
     public static List<List<Integer>> fourSum(int[] nums, int target) {
@@ -66,5 +67,33 @@ public class FourSum {
             }
         }
         return rst;
+    }
+
+    public static List<List<Integer>> fourSum3(int[] nums, int target) {
+        Arrays.sort(nums);
+        Set<List<Integer>> rst = new HashSet<>();
+        for (int i=0; i<nums.length-3; i++) {
+            for (int j=i+1; j<nums.length-2; j++) {
+                int slow = j+1;
+                int fast = nums.length-1;
+                while (slow < fast) {
+                    int sum = nums[i] + nums[j] + nums[slow] + nums[fast];
+                    if (sum < target) {
+                        slow ++;
+                        continue;
+                    }
+                    if (sum > target) {
+                        fast --;
+                        continue;
+                    }
+                    rst.add(Arrays.asList(nums[i], nums[j], nums[slow], nums[fast]));
+                    slow ++;
+                    fast --;
+                }
+
+            }
+        }
+
+        return new ArrayList<>(rst);
     }
 }
