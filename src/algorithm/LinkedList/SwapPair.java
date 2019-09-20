@@ -6,6 +6,7 @@ public class SwapPair {
     public static void main(String[] args) {
         System.out.println(swapPairs(ListNode.getList(new int[]{1,2,3,4,5})).toString());
         System.out.println(swapPairs2(ListNode.getList(new int[]{1,2,3,4,5})).toString());
+        System.out.println(swapPairs3(ListNode.getList(new int[]{1,2,3,4,5})).toString());
     }
 
     public static ListNode swapPairs(ListNode head) {
@@ -32,5 +33,21 @@ public class SwapPair {
         second.next = head;
         head.next = swapPairs2(tmp);
         return second;
+    }
+
+    public static ListNode swapPairs3(ListNode head) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode pre = dummy;
+        while (pre.next != null && pre.next.next != null) {
+            ListNode even = pre.next;
+            ListNode odd = pre.next.next;
+
+            even.next = odd.next;
+            odd.next = even;
+            pre.next = odd;
+            pre = pre.next.next;
+        }
+        return dummy.next;
     }
 }
