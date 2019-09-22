@@ -1,10 +1,13 @@
 package algorithm.ArrayAndString;
 
+import java.util.Arrays;
+
 public class MedianOfTwoSortedArrays {
     public static void main(String[] args) {
-        int[] nums1 = new int[]{1,2,3,4,5};
-        int[] nums2 = new int[]{5,6,7,8,9};
+        int[] nums1 = new int[]{1,2};
+        int[] nums2 = new int[]{3,4};
         System.out.println(new MedianOfTwoSortedArrays().findMedianSortedArrays(nums1, nums2));
+        System.out.println(new MedianOfTwoSortedArrays().findMedianSortedArrays2(nums1, nums2));
     }
 
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
@@ -32,5 +35,19 @@ public class MedianOfTwoSortedArrays {
             return helper(nums1, mid1+1, nums2, start2, k-k/2);
         }
         return helper(nums1, start1, nums2, mid2+1, k-k/2);
+    }
+
+    public double findMedianSortedArrays2(int[] nums1, int[] nums2) {
+        int[] nums = new int[nums1.length + nums2.length];
+        int index = 0;
+        for (int n1 : nums1) {
+            nums[index++] = n1;
+        }
+        for (int n2 : nums2) {
+            nums[index++] = n2;
+        }
+        Arrays.sort(nums);
+        int len = nums.length;
+        return len%2 == 1 ? nums[len/2] : (double)(nums[len/2] + nums[len/2-1])/2;
     }
 }
