@@ -4,15 +4,8 @@ import java.util.Stack;
 
 public class PalindromeSubstring {
     public static void main(String[] args) {
-        System.out.println(longestPalindrome("a"));
-        System.out.println(longestPalindrome("bb"));
         System.out.println(longestPalindrome("babad"));
-        System.out.println(longestPalindrome("cbbd"));
-
-        System.out.println(longestPalindrome2("a"));
-        System.out.println(longestPalindrome2("bb"));
         System.out.println(longestPalindrome2("babad"));
-        System.out.println(longestPalindrome2("cbbd"));
     }
 
     public static String longestPalindrome(String s) {
@@ -41,29 +34,25 @@ public class PalindromeSubstring {
     }
 
     public static String longestPalindrome2(String s) {
-        if (s.length() <=1) return s;
+        if (s.length() <= 1) return s;
         String rst = "";
-        for (int i=0; i<s.length(); i++) {
-            String s2 = expandAroundCenter(s, i, i+1);
-            String s1 = expandAroundCenter(s, i, i);
+        for (int i=1; i<s.length(); i++) {
+            String s1 = expand(s, i, i);
+            String s2 = expand(s, i-1, i);
             int max = Math.max(s1.length(), s2.length());
             if (max > rst.length()) {
-                rst = s1.length() > s2.length() ? s1 : s2;
+                rst = s1.length() == max ? s1 : s2;
             }
         }
         return rst;
     }
 
-    public static String expandAroundCenter(String s, int start, int end) {
-        int left = start;
-        int right = end;
-        while(left >=0 && right <s.length() && s.charAt(left) == s.charAt(right)) {
-            left--;
-            right++;
+    public static String expand(String s, int slow, int fast) {
+        while (slow >= 0 && fast < s.length()) {
+            if (s.charAt(slow) != s.charAt(fast)) break;
+            slow--;
+            fast++;
         }
-
-        // now left < 0 or right > s.length()
-        // get previous substring
-        return s.substring(left+1,right);
+        return s.substring(slow+1, fast);
     }
 }

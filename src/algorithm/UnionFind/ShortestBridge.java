@@ -1,4 +1,4 @@
-package algorithm.DfsBfs;
+package algorithm.UnionFind;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -16,42 +16,40 @@ public class ShortestBridge {
     int m;
     int n;
     int[][] dirs = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    Queue<int[]> queue = new LinkedList<>();
 
+    // two islands
     public int shortestBridge(int[][] A) {
         m = A.length;
         if (m == 0) return 0;
         n = A[0].length;
 
-        Queue<int[]> queue = new LinkedList<>();
-        boolean[][] visited = new boolean[m][n];
-        boolean found = false;
         for (int i = 0; i < m; i++) {
-            if (found) break;
             for (int j = 0; j < n; j++) {
                 if (A[i][j] == 0) continue;
-                dfs(A, i, j, visited, queue);
-                found = true;
-                break;
+                boolean[][] visited = new boolean[m][n];
+                dfs(A, i, j, visited);
+                return minDistance(A, visited);
             }
         }
 
-        return minDistance(A, visited, queue);
+        return -1;
     }
 
-    // mark island
-    public void dfs(int[][] A, int x, int y, boolean[][] visited, Queue<int[]> queue) {
+    // mark one island
+    public void dfs(int[][] A, int x, int y, boolean[][] visited) {
         if (x < 0 || y < 0 || x >= m || y >= n) return;
         if (visited[x][y] || A[x][y] == 0) return;
 
         visited[x][y] = true;
         queue.offer(new int[]{x, y});
         for (int[] dir : dirs) {
-            dfs(A, x + dir[0], y + dir[1], visited, queue);
+            dfs(A, x + dir[0], y + dir[1], visited);
         }
     }
 
     // expand dist
-    public int minDistance(int[][] A, boolean[][] visited, Queue<int[]> queue) {
+    public int minDistance(int[][] A, boolean[][] visited) {
         int dist = 0;
         while (!queue.isEmpty()) {
             int size = queue.size();

@@ -20,7 +20,6 @@ public class ThreeSumClosest {
                 }
                 if (Math.abs(sum - target) < Math.abs(rst - target)) {
                     rst = sum;
-                    continue;
                 }
                 if (sum < target) {
                     left++;
