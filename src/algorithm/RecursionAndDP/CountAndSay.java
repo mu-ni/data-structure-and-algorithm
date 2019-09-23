@@ -11,19 +11,17 @@ public class CountAndSay {
 
 		StringBuilder sb = new StringBuilder();
 		int count = 1;
-		for (int i=0; i<s.length(); i++) {
-			char say = s.charAt(i);
-			if (i == s.length()-1) {
-				sb.append(count).append(say);
-				break;
-			}
-			if (say == s.charAt(i+1)) {
+		char say = s.charAt(0);
+		for (int i=1; i<s.length(); i++) {
+			if (s.charAt(i) == s.charAt(i-1)) {
 				count++;
 				continue;
 			}
 			sb.append(count).append(say);
 			count = 1;
+			say = s.charAt(i);
 		}
+		sb.append(count).append(say);
 		return sb.toString();
 	}
 }
