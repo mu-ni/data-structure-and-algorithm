@@ -21,18 +21,18 @@ public class MeetingRooms2 {
         Arrays.sort(start);
         Arrays.sort(end);
         int rooms = 0;
-        int cur = 0;
+        int overlap = 0;
         int i = 0;
         int j = 0;
         while (i < intervals.length && j < intervals.length) {
             if (start[i] < end[j]) {
                 i++;
-                cur++;
+                overlap++;
             } else {
                 j++;
-                cur--;
+                overlap--;
             }
-            rooms = Math.max(rooms, cur);
+            rooms = Math.max(rooms, overlap);
         }
 
         return rooms;
