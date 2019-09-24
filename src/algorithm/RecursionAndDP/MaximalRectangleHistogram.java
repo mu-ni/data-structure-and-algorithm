@@ -1,5 +1,7 @@
 package algorithm.RecursionAndDP;
 
+import java.util.Stack;
+
 public class MaximalRectangleHistogram {
     public static void main(String[] args) {
         int[] heights = new int[]{2,1,5,6,2,3};
@@ -26,23 +28,26 @@ public class MaximalRectangleHistogram {
         return min;
     }
 
+    // 递增栈
     public int largestRectangleArea2(int[] heights) {
-        int[] left = new int[heights.length];
-        left[0] = heights[0];
-        for (int i=1; i<heights.length; i++) {
-            left[i] = Math.min(left[i-1], heights[i]);
-        }
-        int[] right = new int[heights.length];
-        right[heights.length-1] = heights[heights.length-1];
-        for (int i=heights.length-2; i>=0; i--) {
-            heights[i] = Math.min(heights[i+1], heights[i]);
+        int max = 0;
+        Stack<Integer> stack = new Stack<>();
+        for (int i=0; i<heights.length; i++) {
+            while (!stack.isEmpty() && heights[stack.peek()] > heights[i]) {
+                // 出栈元素构成的最大面积
+                int h = heights[stack.pop()];
+                int w = i - (stack.isEmpty() ? 0 : stack.peek()+1);
+                max = Math.max(max, h*w);
+            }
+            stack.push(i);
         }
 
-        int rst = 0;
-        for (int i=0; i<heights.length; i++) {
-            int area = heights[i]*(right[i] - left[i] - 1);
-            rst = Math.max(rst, area);
+        while (!stack.isEmpty()) {
+            int h = heights[stack.pop()];
+            int w = heights.length - (stack.isEmpty() ? 0 : stack.peek()+1);
+            max = Math.max(max, h*w);
         }
-        return rst;
+
+        return max;
     }
 }
