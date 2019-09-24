@@ -15,7 +15,7 @@ public class DecodeString {
         int k = 0;
         for (char c : s.toCharArray()) {
             if (Character.isDigit(c)) {
-                k = k*10 + (c - '0');
+                k = k * 10 + (c - '0');
             } else if (c == '[') {
                 //
             } else if (c == ']') {
@@ -31,31 +31,32 @@ public class DecodeString {
 
     public String decodeString(String s) {
         Stack<Integer> intStack = new Stack<>();
-        Stack<StringBuilder> strStack = new Stack<>();
-        StringBuilder cur = new StringBuilder();
+        Stack<String> stack = new Stack<>();
+        StringBuilder sb = new StringBuilder();
         int k = 0;
-        for (char ch : s.toCharArray()) {
-            if (Character.isDigit(ch)) {
-                k = k * 10 + ch - '0';
-            } else if (ch == '[') {
+        for (char c : s.toCharArray()) {
+            if (Character.isDigit(c)) {
+                k = k * 10 + (c - '0');
+            } else if (c == '[') {
+                stack.push(sb.toString());
                 intStack.push(k);
-                strStack.push(cur);
-                cur = new StringBuilder();
+                sb = new StringBuilder();
                 k = 0;
-            } else if (ch == ']') {
-                String str = repeat(cur.toString(), intStack.pop());
-                cur = strStack.pop();
-                cur.append(str);
+            } else if (c == ']') {
+                String str = stack.pop();
+                str += repeat(sb.toString(), intStack.pop());
+                sb = new StringBuilder(str);
             } else {
-                cur.append(ch);
+                sb.append(c);
             }
         }
-        return cur.toString();
+
+        return sb.toString();
     }
 
     public String repeat(String str, int k) {
         StringBuilder sb = new StringBuilder();
-        for (int i=0; i<k; i++) {
+        for (int i = 0; i < k; i++) {
             sb.append(str);
         }
         return sb.toString();
