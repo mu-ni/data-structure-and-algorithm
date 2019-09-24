@@ -3,7 +3,7 @@ package algorithm.RecursionAndDP;
 public class RegularExpression {
     public static void main(String[] args) {
         System.out.println(new RegularExpression().isMatch0("aa", "a."));
-        System.out.println(new RegularExpression().isMatch("aa", "a*"));
+        System.out.println(new RegularExpression().isMatch("aa", "a*c*a"));
         System.out.println(new RegularExpression().isMatch2("aab", "c*a*b"));
     }
 
