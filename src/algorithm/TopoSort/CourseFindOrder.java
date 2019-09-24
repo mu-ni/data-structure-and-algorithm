@@ -11,7 +11,7 @@ public class CourseFindOrder {
 
     public int[] findOrder(int numCourses, int[][] prerequisites) { // bfs
         int[] indegree = new int[numCourses];
-        for (int i=0; i<prerequisites.length; i++) {
+        for (int i = 0; i < prerequisites.length; i++) {
             int cur = prerequisites[i][0];
 //            int pre = prerequisites[i][1];
             indegree[cur]++;
@@ -20,7 +20,7 @@ public class CourseFindOrder {
         Queue<Integer> queue = new LinkedList<>();
         int[] order = new int[numCourses];
         int index = 0;
-        for (int i=0; i<indegree.length; i++) {
+        for (int i = 0; i < indegree.length; i++) {
             if (indegree[i] == 0) {
                 queue.offer(i);
                 order[index++] = i;
@@ -29,7 +29,7 @@ public class CourseFindOrder {
 
         while (!queue.isEmpty()) {
             int finished = queue.poll();
-            for (int i = 0; i<prerequisites.length; i++) {
+            for (int i = 0; i < prerequisites.length; i++) {
                 int cur = prerequisites[i][0];
                 int pre = prerequisites[i][1];
                 if (pre == finished) {
@@ -48,7 +48,7 @@ public class CourseFindOrder {
     public int[] findOrder2(int numCourses, int[][] prerequisites) { //adjMatrix, dfs
         int[][] matrix = new int[numCourses][numCourses];
         int[] indegree = new int[numCourses];
-        for (int i=0; i<prerequisites.length; i++) {
+        for (int i = 0; i < prerequisites.length; i++) {
             int cur = prerequisites[i][0];
             int pre = prerequisites[i][1];
             indegree[cur]++;
@@ -57,13 +57,13 @@ public class CourseFindOrder {
 
         int[] visited = new int[numCourses];
         Stack<Integer> stack = new Stack<>();
-        for(int pre = 0; pre < numCourses; pre++) {
+        for (int pre = 0; pre < numCourses; pre++) {
             if (!topoSort(matrix, pre, visited, stack)) return new int[0];
         }
 
         int index = 0;
         int[] order = new int[numCourses];
-        while(!stack.isEmpty()) {
+        while (!stack.isEmpty()) {
             int pre = stack.pop();
             order[index++] = pre;
         }
@@ -75,7 +75,7 @@ public class CourseFindOrder {
         if (visited[pre] == 1) return false;
         visited[pre] = 1;
 
-        for (int cur=0; cur<matrix.length; cur++) {
+        for (int cur = 0; cur < matrix.length; cur++) {
             if (matrix[pre][cur] == 1) {
                 if (!topoSort(matrix, cur, visited, stack)) return false;
             }
@@ -87,11 +87,11 @@ public class CourseFindOrder {
 
     public int[] findOrder3(int numCourses, int[][] prerequisites) { //adjList, dfs
         List<Integer>[] lists = new List[numCourses];
-        for (int i=0; i<lists.length; i++) {
+        for (int i = 0; i < lists.length; i++) {
             lists[i] = new ArrayList<>();
         }
         int[] indegree = new int[numCourses];
-        for (int i=0; i<prerequisites.length; i++) {
+        for (int i = 0; i < prerequisites.length; i++) {
             int cur = prerequisites[i][0];
             int pre = prerequisites[i][1];
             lists[pre].add(cur);
@@ -100,7 +100,7 @@ public class CourseFindOrder {
 
         int[] visited = new int[numCourses];
         Stack<Integer> stack = new Stack<>();
-        for (int pre = 0; pre<numCourses; pre++) {
+        for (int pre = 0; pre < numCourses; pre++) {
             if (!topoSort(lists, pre, visited, stack)) return new int[0];
         }
 
@@ -125,5 +125,10 @@ public class CourseFindOrder {
         visited[pre] = 2;
         stack.push(pre);
         return true;
+    }
+
+    public int[] findOrder4(int numCourses, int[][] prerequisites) {
+        // TODO
+        return new int[0];
     }
 }
