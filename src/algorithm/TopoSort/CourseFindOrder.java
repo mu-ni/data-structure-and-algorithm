@@ -126,9 +126,4 @@ public class CourseFindOrder {
         stack.push(pre);
         return true;
     }
-
-    public int[] findOrder4(int numCourses, int[][] prerequisites) {
-        // TODO
-        return new int[0];
-    }
 }
