@@ -9,6 +9,7 @@ public class MaximalRectangle {
                 {'1','0','0','1','0'},
         };
         System.out.println(new MaximalRectangle().maximalRectangle(matrix));
+        System.out.println(new MaximalRectangle().maximalRectangle2(matrix));
     }
 
     public int maximalRectangle(char[][] matrix) {
@@ -32,6 +33,33 @@ public class MaximalRectangle {
         int max = 0;
         for (int[] a : dp) {
             int area = new MaximalRectangleHistogram().largestRectangleArea2(a);
+            max=Math.max(area, max);
+        }
+
+        return max;
+    }
+
+    public int maximalRectangle2(char[][] matrix) {
+        int m = matrix.length;
+        if(m==0) return 0;
+        int n = matrix[0].length;
+
+
+        int max = 0;
+        int[] dp = new int[n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == 0 && matrix[i][j] == '1') {
+                    dp[j] = 1;
+                    continue;
+                }
+                if (matrix[i][j] == '1') {
+                    dp[j] += 1;
+                    continue;
+                }
+                dp[j] = 0;
+            }
+            int area = new MaximalRectangleHistogram().largestRectangleArea2(dp);
             max=Math.max(area, max);
         }
 
