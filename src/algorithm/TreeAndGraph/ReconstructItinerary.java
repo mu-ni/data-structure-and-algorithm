@@ -5,10 +5,11 @@ import java.util.*;
 public class ReconstructItinerary {
     public static void main(String[] args) {
         List<List<String>> tickets = new ArrayList<>();
-        tickets.add(Arrays.asList("MUC", "LHR"));
-        tickets.add(Arrays.asList("JFK", "MUC"));
-        tickets.add(Arrays.asList("SFO", "SJC"));
-        tickets.add(Arrays.asList("LHR", "SFO"));
+        tickets.add(Arrays.asList("JFK","SFO"));
+        tickets.add(Arrays.asList("JFK","ATL"));
+        tickets.add(Arrays.asList("SFO","ATL"));
+        tickets.add(Arrays.asList("ATL","JFK"));
+        tickets.add(Arrays.asList("ATL","SFO"));
         System.out.println(new ReconstructItinerary().findItinerary(tickets));
     }
 
@@ -32,7 +33,8 @@ public class ReconstructItinerary {
         List<String> dest = map.get(depa);
         while (dest != null && !dest.isEmpty()) {
             Collections.sort(dest); // not necessary
-            dfs(dest.remove(0), rst, map);
+            String next_depa = dest.remove(0);
+            dfs(next_depa, rst, map);
         }
         rst.add(0, depa);
     }
