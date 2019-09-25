@@ -5,7 +5,8 @@ import java.util.Stack;
 public class BasicCalculator {
     public static void main(String[] args) {
         System.out.println(new BasicCalculator().calculate0("2-1 + 20"));
-//        System.out.println(new BasicCalculator().calculate("(1+(4+5+2)-3)+(6+8)"));
+        System.out.println(new BasicCalculator().calculate("(1+(4+5+2)-3)+(6+8)"));
+        System.out.println(new BasicCalculator().calculate2("2-1 + 20"));
     }
 
     // no ()
@@ -48,5 +49,61 @@ public class BasicCalculator {
                 System.out.println("error");
         }
         return -1;
+    }
+
+    public int calculate(String s) {
+        Stack<Integer> stack = new Stack<>();
+        int rst = 0;
+        int sign = 1;
+        for (int i=0; i<s.length(); i++) {
+            char c = s.charAt(i);
+            if (Character.isDigit(c)) {
+                int n = c - '0';
+                while (i+1 < s.length() && Character.isDigit(s.charAt(i+1))) {
+                    n = n*10 + (s.charAt(i+1) - '0');
+                    i ++;
+                }
+                rst += n*sign;
+            } else if (c == '(') {
+                stack.push(rst);
+                stack.push(sign);
+                rst = 0;
+                sign = 1;
+            } else if (c == ')') {
+                rst = rst*stack.pop() + stack.pop();
+            } else if (c == '+') {
+                sign = 1;
+            } else if (c == '-') {
+                sign = -1;
+            }
+        }
+        return rst;
+    }
+
+    // no ()
+    public int calculate2(String s) {
+        Stack<Integer> stack = new Stack<>();
+        int sign = 1;
+        for (int i=0; i<s.length(); i++) {
+            char c = s.charAt(i);
+            if (Character.isDigit(c)) {
+                int n = c - '0';
+                while (i+1 < s.length() && Character.isDigit(s.charAt(i+1))) {
+                    n = n*10 + (s.charAt(i+1) - '0');
+                    i ++;
+                }
+                if (stack.isEmpty()) {
+                    stack.push(n);
+                } else {
+                    stack.push(stack.pop() + sign*n);
+                }
+            } else if (c == '+') {
+                sign = 1;
+            } else if (c == '-') {
+                sign = -1;
+            }
+        }
+
+        return stack.pop();
     }
 }
