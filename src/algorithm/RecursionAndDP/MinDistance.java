@@ -25,8 +25,7 @@ public class MinDistance {
                     dp[i][j] = i;
                     continue;
                 }
-                int replaceDistance = dp[i - 1][j - 1];
-                if (word1.charAt(i-1) != word2.charAt(j-1)) replaceDistance++;
+                int replaceDistance = word1.charAt(i - 1) == word2.charAt(j - 1) ? dp[i - 1][j - 1] : dp[i - 1][j - 1] + 1;
                 int editDistance = Math.min(dp[i - 1][j], dp[i][j - 1]) + 1;
                 dp[i][j] = Math.min(replaceDistance, editDistance);
             }
@@ -66,7 +65,7 @@ public class MinDistance {
                     dp[j] = i;
                 } else {
                     int replaceDistance = pre;
-                    if (word1.charAt(i-1) != word2.charAt(j-1)) replaceDistance++;
+                    if (word1.charAt(i - 1) != word2.charAt(j - 1)) replaceDistance++;
                     int editDistance = Math.min(dp[j], dp[j - 1]) + 1;
                     dp[j] = Math.min(replaceDistance, editDistance);
                 }
