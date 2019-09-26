@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// Least Recently Used (LRU) cache
 public class LRUCache {
     List<Integer> list;
     Map<Integer, Integer> map;
