@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString.Matrix;
+package algorithm.Backtrack;
 
 public class WordSearch {
     public static void main(String[] args) {
