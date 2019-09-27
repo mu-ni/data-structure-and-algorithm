@@ -8,7 +8,7 @@ public class WithoutRepeating { //Longest Substring without Repeating Character
         System.out.println(lengthOfLongestSubstring("pwwkew"));
         System.out.println(lengthOfLongestSubstring2("pwwkew"));
         System.out.println(lengthOfLongestSubstring3("pwwkew"));
-        System.out.println(lengthOfLongestSubstring4("pwwkewabc"));
+        System.out.println(lengthOfLongestSubstring4("pwwkew"));
     }
 
     public static int lengthOfLongestSubstring(String s) {
