@@ -6,6 +6,7 @@ public class ValidParentheses {
     public static void main(String[] args) {
         System.out.println(new ValidParentheses().longestValidParentheses(")()()"));
         System.out.println(new ValidParentheses().longestValidParentheses2(")()()"));
+        System.out.println(new ValidParentheses().longestValidParentheses3(")()()"));
     }
 
     public int longestValidParentheses(String s) {
@@ -35,5 +36,31 @@ public class ValidParentheses {
             }
         }
         return max;
+    }
+
+    // brute force TLE
+    public int longestValidParentheses3(String s) {
+        int max = 0;
+        for (int i=0; i<s.length(); i++) {
+            for (int j=i; j<s.length(); j++) {
+                String sub = s.substring(i, j+1);
+                if (isValid(sub)) {
+                    max = Math.max(max, sub.length());
+                }
+            }
+        }
+        return max;
+    }
+
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            if (c == ')' && !stack.isEmpty() && stack.peek() == '(') {
+                stack.pop();
+            } else {
+                stack.push(c);
+            }
+        }
+        return stack.isEmpty();
     }
 }
