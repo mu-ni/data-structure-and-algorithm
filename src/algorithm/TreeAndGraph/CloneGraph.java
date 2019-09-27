@@ -32,12 +32,12 @@ public class CloneGraph {
         map.put(node.val, new Node(node.val, new ArrayList<>()));
         while (!queue.isEmpty()) {
             Node cur = queue.poll();
-            for (Node nbs : cur.neighbors) {
-                if (!map.containsKey(nbs.val)) {
-                    map.put(nbs.val, new Node(nbs.val, new ArrayList<>()));
-                    queue.offer(nbs);
+            for (Node nbr : cur.neighbors) {
+                if (!map.containsKey(nbr.val)) {
+                    map.put(nbr.val, new Node(nbr.val, new ArrayList<>()));
+                    queue.offer(nbr);
                 }
-                map.get(cur.val).neighbors.add(map.get(nbs.val));
+                map.get(cur.val).neighbors.add(map.get(nbr.val));
             }
         }
 
