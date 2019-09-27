@@ -24,24 +24,7 @@ public class CloneGraph {
     }
 
     public Node cloneGraph(Node node) {
-        if (node == null) return node;
-        Map<Integer, Node> map = new HashMap<>();
-        return helper(node, map);
-    }
-
-    public Node helper(Node node, Map<Integer, Node> map) {
-        if (map.containsKey(node.val)) return map.get(node.val);
-
-        Node n = new Node(node.val, new ArrayList<>());
-        map.put(n.val, n);
-        for (Node nbs : node.neighbors) {
-            n.neighbors.add(helper(nbs, map));
-        }
-        return n;
-    }
-
-    public Node cloneGraph2(Node node) {
-        if (node == null) return node;
+        if (node == null) return null;
 
         Map<Integer, Node> map = new HashMap<>();
         Queue<Node> queue = new LinkedList<>();
@@ -59,5 +42,23 @@ public class CloneGraph {
         }
 
         return map.get(node.val);
+    }
+
+    public Node cloneGraph2(Node node) {
+        if (node == null) return null;
+        Map<Integer, Node> map = new HashMap<>();
+        map.put(node.val, new Node(node.val, new ArrayList<>()));
+        dfs(node, map);
+        return map.get(node.val);
+    }
+
+    public void dfs(Node node, Map<Integer, Node> map) {
+        for (Node nbr : node.neighbors) {
+            if (!map.containsKey(nbr.val)) {
+                map.put(nbr.val, new Node(nbr.val, new ArrayList<>()));
+                dfs(nbr, map);
+            }
+            map.get(node.val).neighbors.add(map.get(nbr.val));
+        }
     }
 }
