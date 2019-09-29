@@ -19,11 +19,11 @@ public class JumpGame {
         int pos = 0;
         int max = 0;
         for (int i=0; i<nums.length; i++) {
-            pos = Math.max(pos, i + nums[i]);
-            if (i == max) {
-                max = pos;
+            max = Math.max(max, i + nums[i]);
+            if (pos == i) {
+                pos = max;
             }
         }
-        return max >= nums.length-1;
+        return pos >= nums.length -1;
     }
 }
