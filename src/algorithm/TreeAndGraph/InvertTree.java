@@ -1,21 +1,22 @@
 package algorithm.TreeAndGraph;
 
 import algorithm.TreeAndGraph.Dao.TreeNode;
+import algorithm.TreeAndGraph.Traversal.PreOrder;
 
 import java.util.Stack;
 
 public class InvertTree {
     public static void main(String[] args) {
         TreeNode tree = new InvertTree().invertTree(TreeNode.genTree());
-        TreeTraversal.inOrder(tree);
+        System.out.println(new PreOrder().preOrder(tree));
 
         System.out.println();
         tree = new InvertTree().invertTree2(TreeNode.genTree());
-        TreeTraversal.inOrder(tree);
+        System.out.println(new PreOrder().preOrder(tree));
 
         System.out.println();
         tree = new InvertTree().invertTree3(TreeNode.genTree());
-        TreeTraversal.inOrder(tree);
+        System.out.println(new PreOrder().preOrder(tree));
     }
 
     public TreeNode invertTree(TreeNode root) {

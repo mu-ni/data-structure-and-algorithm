@@ -99,7 +99,4 @@ public class TreeNode {
         return list;
     }
 
-    public static void visit(TreeNode node) {
-        System.out.print(node == null ? "null, ": node.val + ", ");
-    }
 }

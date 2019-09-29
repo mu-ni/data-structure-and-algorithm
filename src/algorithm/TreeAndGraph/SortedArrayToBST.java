@@ -1,11 +1,12 @@
 package algorithm.TreeAndGraph;
 
 import algorithm.TreeAndGraph.Dao.TreeNode;
+import algorithm.TreeAndGraph.Traversal.PreOrder;
 
 public class SortedArrayToBST {
     public static void main(String[] args) {
         TreeNode tree = sortedArrayToBST(new int[]{-10,-3,0,5,9});
-        TreeTraversal.preOrder(tree);
+        System.out.println(new PreOrder().preOrder(tree));
     }
 
     public static TreeNode sortedArrayToBST(int[] nums) {

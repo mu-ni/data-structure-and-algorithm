@@ -2,11 +2,12 @@ package algorithm.TreeAndGraph;
 
 import algorithm.LinkedList.Dao.ListNode;
 import algorithm.TreeAndGraph.Dao.TreeNode;
+import algorithm.TreeAndGraph.Traversal.PreOrder;
 
 public class SortedListToBST {
     public static void main(String[] args) {
         TreeNode tree = new SortedListToBST().sortedListToBST(ListNode.getList(new int[]{-10,-3,0,5,9}));
-        TreeTraversal.preOrder(tree);
+        System.out.println(new PreOrder().preOrder(tree));
     }
 
     public TreeNode sortedListToBST(ListNode head) {
