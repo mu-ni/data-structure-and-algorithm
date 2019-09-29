@@ -2,7 +2,7 @@ package algorithm.RecursionAndDP;
 
 public class DecodeWays {
     public static void main(String[] args) {
-        System.out.println(new DecodeWays().numDecodings("226"));
+        System.out.println(new DecodeWays().numDecodings("23421"));
     }
 
     public int numDecodings(String s) {
