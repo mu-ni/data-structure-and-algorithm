@@ -36,9 +36,9 @@ public class InOrder {
                 stack.push(cur);
                 cur = cur.left;
             }
-            TreeNode node = stack.pop();
-            rst.add(node.val);
-            cur = node.right;
+            cur = stack.pop();
+            rst.add(cur.val);
+            cur = cur.right;
         }
         return rst;
     }
