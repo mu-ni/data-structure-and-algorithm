@@ -13,6 +13,10 @@ public class RemoveDuplicates2 {
         nums = new int[]{0,0,1,1,1,2,2,3,3,4};
         i = new RemoveDuplicates2().removeDuplicates2(nums, 2);
         System.out.println(Arrays.toString(Arrays.copyOfRange(nums, 0, i)));
+
+        nums = new int[]{0,0,1,1,1,2,2,3,3,4};
+        i = new RemoveDuplicates2().removeDuplicates3(nums, 2);
+        System.out.println(Arrays.toString(Arrays.copyOfRange(nums, 0, i)));
     }
 
     public int removeDuplicates(int[] nums, int max) {
@@ -48,5 +52,15 @@ public class RemoveDuplicates2 {
             }
         }
         return index;
+    }
+
+    public int removeDuplicates3(int[] nums, int max) {
+        if (nums.length <= max) return nums.length;
+        int i = 0;
+        for (int n : nums) {
+            if (i >= max && nums[i - max] == n) continue;
+            nums[i++] = n;
+        }
+        return i;
     }
 }
