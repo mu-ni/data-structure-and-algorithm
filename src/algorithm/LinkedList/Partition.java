@@ -9,25 +9,24 @@ public class Partition {
     }
 
     public static ListNode partition(ListNode head, int x) {
-        ListNode less = new ListNode(0);
-        ListNode more = new ListNode(0);
-        ListNode lessCur = less;
-        ListNode moreCur = more;
+        ListNode dummy1 = new ListNode(0);
+        ListNode dummy2 = new ListNode(0);
+        ListNode smaller = dummy1;
+        ListNode larger = dummy2;
 
-        ListNode cur = head;
-        while(cur != null) {
-            if(cur.val < x) {
-                lessCur.next = cur;
-                lessCur = lessCur.next;
+        while (head != null) {
+            if (head.val < x) {
+                smaller.next = head;
+                smaller = smaller.next;
             } else {
-                moreCur.next = cur;
-                moreCur = moreCur.next;
+                larger.next = head;
+                larger = larger.next;
             }
-            cur = cur.next;
+            head = head.next;
         }
 
-        lessCur.next = more.next;
-        moreCur.next = null; // rm cur.next
-        return less.next;
+        larger.next = null;
+        smaller.next = dummy2.next;
+        return dummy1.next;
     }
 }
