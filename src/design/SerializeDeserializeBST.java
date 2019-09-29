@@ -1,7 +1,7 @@
 package design;
 
 import algorithm.TreeAndGraph.Dao.TreeNode;
-import algorithm.TreeAndGraph.TreeTraversal;
+import algorithm.TreeAndGraph.Traversal.PreOrder;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -45,7 +45,7 @@ public class SerializeDeserializeBST {
         String encode = coder.serialize(TreeNode.genTree());
         System.out.println(encode);
         TreeNode decode = coder.deserialize(encode);
-        TreeTraversal.preOrder(decode);
+        System.out.println(new PreOrder().preOrder(decode));
     }
 
 }
