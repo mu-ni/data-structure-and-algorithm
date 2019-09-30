@@ -18,7 +18,7 @@ public class SortedListToBST {
 
     // [head, tail) -> tail not included
     public TreeNode helper(ListNode head, ListNode tail) {
-        if (head == tail) return null;
+        if (head == null || head == tail) return null;
 
         ListNode slow = head;
         ListNode fast = head;
