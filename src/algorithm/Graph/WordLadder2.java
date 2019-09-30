@@ -1,4 +1,4 @@
-package algorithm.DfsBfs;
+package algorithm.Graph;
 
 import java.util.*;
 
