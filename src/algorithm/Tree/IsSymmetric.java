@@ -10,6 +10,7 @@ public class IsSymmetric {
         TreeNode tree = TreeNode.arr2tree(new Integer[]{1,2,2,3,4,4,3});
         System.out.println(new IsSymmetric().isSymmetric(tree));
         System.out.println(new IsSymmetric().isSymmetric2(tree));
+        System.out.println(new IsSymmetric().isSymmetric3(tree));
     }
 
     public boolean isSymmetric(TreeNode root) {
@@ -41,6 +42,33 @@ public class IsSymmetric {
             queue.offer(right.right);
             queue.offer(left.right);
             queue.offer(right.left);
+        }
+        return true;
+    }
+
+    public boolean isSymmetric3(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            Integer[] level = new Integer[size];
+            for (int i=0; i<size; i++) {
+                TreeNode node = queue.poll();
+                if (node == null) {
+                    level[i] = null;
+                } else {
+                    level[i] = node.val;
+                    queue.offer(node.left);
+                    queue.offer(node.right);
+                }
+            }
+            int start = 0;
+            int end = size-1;
+            while (start < end) {
+                if (level[start] != level[end]) return false;
+                start ++;
+                end --;
+            }
         }
         return true;
     }
