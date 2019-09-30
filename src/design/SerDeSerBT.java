@@ -1,6 +1,6 @@
 package design;
 
-import algorithm.TreeAndGraph.Dao.TreeNode;
+import algorithm.Tree.Dao.TreeNode;
 
 import java.util.*;
 

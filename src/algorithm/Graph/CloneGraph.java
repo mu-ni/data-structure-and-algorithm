@@ -1,6 +1,6 @@
 package algorithm.Graph;
 
-import algorithm.TreeAndGraph.Dao.Node;
+import algorithm.Tree.Dao.Node;
 
 import java.util.*;
 
