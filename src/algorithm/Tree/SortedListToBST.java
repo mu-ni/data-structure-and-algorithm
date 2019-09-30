@@ -8,12 +8,15 @@ public class SortedListToBST {
     public static void main(String[] args) {
         TreeNode tree = new SortedListToBST().sortedListToBST(ListNode.getList(new int[]{-10,-3,0,5,9}));
         System.out.println(new PreOrder().preOrder(tree));
+        tree = new SortedListToBST().sortedListToBST(ListNode.getList(new int[]{1,2,3,4}));
+        System.out.println(new PreOrder().preOrder(tree));
     }
 
     public TreeNode sortedListToBST(ListNode head) {
         return helper(head, null);
     }
 
+    // [head, tail) -> tail not included
     public TreeNode helper(ListNode head, ListNode tail) {
         if (head == tail) return null;
 
