@@ -11,15 +11,14 @@ public class PathSum3 {
     // does not need to start or end at the root or a leaf
     public static int pathSum(TreeNode root, int sum) {
         if (root == null) return 0;
-        return dfs(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+        return helper(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
     }
 
-    public static int dfs(TreeNode node, int rem) {
+    public static int helper(TreeNode node, int rem) {
         if (node == null) return 0;
-        rem -= node.val;
-        if (rem == 0) {
-            return 1 + dfs(node.left, rem) + dfs(node.right, rem);
+        if (node.val == rem) {
+            return 1 + helper(node.left, rem-node.val) + helper(node.right, rem-node.val);
         }
-        return dfs(node.left, rem) + dfs(node.right, rem);
+        return helper(node.left, rem-node.val) + helper(node.right, rem-node.val);
     }
 }
