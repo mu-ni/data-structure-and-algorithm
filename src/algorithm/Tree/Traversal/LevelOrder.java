@@ -39,19 +39,18 @@ public class LevelOrder {
 
     public static List<List<Integer>> levelOrder2(TreeNode root) {
         List<List<Integer>> rst = new ArrayList<>();
-        dfs(rst, 0, root);
+        helper(rst, root, 0);
         return rst;
     }
 
-    public static void dfs(List<List<Integer>> rst, int level, TreeNode node) {
-        if(node == null) return;
-
-        if (rst.size() <= level) {
+    public static void helper(List<List<Integer>> rst, TreeNode node, int level) {
+        if (node == null) return;
+        if (rst.size() == level) {
             rst.add(new ArrayList<>());
         }
         rst.get(level).add(node.val);
 
-        dfs(rst, level+1, node.left);
-        dfs(rst, level+1, node.right);
+        helper(rst, node.left, level+1);
+        helper(rst, node.right, level+1);
     }
 }
