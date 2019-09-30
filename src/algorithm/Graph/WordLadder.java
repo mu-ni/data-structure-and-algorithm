@@ -41,13 +41,12 @@ public class WordLadder {
     // TLE
     int dist = Integer.MAX_VALUE;
     public int ladderLength2(String beginWord, String endWord, List<String> wordList) {
-        Set<String> set = new HashSet<>(wordList);
-        set.remove(beginWord);
-        backtrack(beginWord, endWord, set, 1);
+        wordList.remove(beginWord);
+        backtrack(beginWord, endWord, new ArrayList<>(wordList), 1);
         return dist == Integer.MAX_VALUE ? 0 : dist;
     }
 
-    public void backtrack(String beginWord, String endWord, Set<String> set, int step) {
+    public void backtrack(String beginWord, String endWord, List<String> wordList, int step) {
         if (beginWord.equals(endWord)) {
             dist = Math.min(dist, step);
             return;
@@ -59,10 +58,10 @@ public class WordLadder {
             for (char j = 'a'; j <= 'z'; j++) {
                 arr[i] = j;
                 String newWord = new String(arr);
-                if (set.contains(newWord)) {
-                    set.remove(newWord);
-                    backtrack(new String(arr), endWord, set, step + 1);
-                    set.add(newWord);
+                if (wordList.contains(newWord)) {
+                    wordList.remove(newWord);
+                    backtrack(newWord, endWord, wordList, step + 1);
+                    wordList.add(newWord);
                 }
                 arr[i] = tmp;
             }
