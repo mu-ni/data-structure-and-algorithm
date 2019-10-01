@@ -9,12 +9,9 @@ public class InsertionSort {
     }
 
     public ListNode insertionSortList(ListNode head) {
-        if (head == null || head.next == null) return head;
-
         ListNode dummy = new ListNode(0);
-        ListNode pre = dummy;
         while (head != null) {
-            pre = dummy;
+            ListNode pre = dummy;
             while (pre.next != null && pre.next.val < head.val) {
                 pre = pre.next;
             }
