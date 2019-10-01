@@ -9,37 +9,39 @@ public class SurroundedRegions {
         System.out.println(Arrays.deepToString(board));
     }
 
+    int m;
+    int n;
     public void solve(char[][] board) {
-        if (board.length == 0 || board[0].length == 0) return;
-        int m = board.length;
-        int n = board[0].length;
+        m = board.length;
+        if (m == 0) return;
+        n = board[0].length;
         boolean[][] visited = new boolean[m][n];
-
         for (int i=0; i<m; i++) {
-            if (board[i][0] == 'O') dfs(i, 0, board, visited);
-            if (board[i][n-1] == 'O') dfs(i, n-1, board, visited);
+            dfs(board, i, 0, visited);
+            dfs(board, i, n-1, visited);
         }
         for (int j=0; j<n; j++) {
-            if (board[0][j] == 'O') dfs(0, j, board, visited);
-            if (board[m-1][j] == 'O') dfs(m-1, j, board, visited);
+            dfs(board, 0, j, visited);
+            dfs(board, m-1, j, visited);
         }
 
         for (int i=0; i<m; i++) {
             for (int j=0; j<n; j++) {
-                if (!visited[i][j] && board[i][j] == 'O') {
+                if (board[i][j] == 'O' && !visited[i][j]) {
                     board[i][j] = 'X';
                 }
             }
         }
     }
 
-    private void dfs(int i, int j, char[][] board, boolean[][] visited) {
-        if (i < 0 || j < 0 || i >= board.length || j >= board[0].length) return;
-        if (visited[i][j] || board[i][j] != 'O') return;
-        visited[i][j] = true;
-        dfs(i-1, j, board, visited);
-        dfs(i+1, j, board, visited);
-        dfs(i, j-1, board, visited);
-        dfs(i, j+1, board, visited);
+    public void dfs(char[][] board, int x, int y, boolean[][] visited) {
+        if (x < 0 || y < 0 || x >= m || y >= n) return;
+        if (board[x][y] != 'O' || visited[x][y]) return;
+
+        visited[x][y] = true;
+        dfs(board, x+1, y, visited);
+        dfs(board, x-1, y, visited);
+        dfs(board, x, y+1, visited);
+        dfs(board, x, y-1, visited);
     }
 }
