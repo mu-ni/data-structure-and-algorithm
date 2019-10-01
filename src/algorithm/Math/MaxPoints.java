@@ -20,6 +20,7 @@ public class MaxPoints {
             for (int j=i+1; j<points.length; j++) {
                 int x = points[i][0] - points[j][0];
                 int y = points[i][1] - points[j][1];
+                // avoid / by zero
                 if (x == 0 && y == 0) {
                     overlap++;
                     continue;
