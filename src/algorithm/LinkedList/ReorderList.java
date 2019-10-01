@@ -64,8 +64,8 @@ public class ReorderList {
             slow = slow.next;
         }
         pre.next = null;
-        ListNode rev = reverse(slow);
 
+        ListNode rev = reverse(slow);
         ListNode cur = head;
         while (cur != null && rev != null) {
             ListNode tmp1 = cur.next;
