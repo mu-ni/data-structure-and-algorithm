@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString;
+package algorithm.RecursionAndDP;
 
 public class MaxProductSubArray {
     public static void main(String[] args) {

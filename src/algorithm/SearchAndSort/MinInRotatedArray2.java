@@ -2,7 +2,29 @@ package algorithm.SearchAndSort;
 
 public class MinInRotatedArray2 {
     public static void main(String[] args) {
+        System.out.println(new MinInRotatedArray2().findMin0(new int[]{2,2,2,0,1}));
         System.out.println(new MinInRotatedArray2().findMin(new int[]{2,2,2,0,1}));
+    }
+
+    public int findMin0(int[] nums) {
+        if (nums.length == 0) return -1;
+        if (nums.length == 1) return nums[0];
+
+        int start = 0;
+        int end = nums.length-1;
+        if (nums[start] < nums[end]) return nums[start];
+
+        while (start <= end) {
+            int mid = (start + end)/2;
+            if (nums[mid] > nums[mid+1]) return nums[mid+1];
+            if (nums[mid] < nums[mid-1]) return nums[mid];
+            if (nums[mid] > nums[end]) {
+                start = mid+1;
+            } else if (nums[mid] < nums[end]) {
+                end = mid;
+            }
+        }
+        return -1;
     }
 
     public int findMin(int[] nums) {
