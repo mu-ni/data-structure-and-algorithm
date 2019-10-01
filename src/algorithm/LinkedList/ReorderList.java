@@ -4,11 +4,12 @@ import algorithm.LinkedList.Dao.ListNode;
 
 public class ReorderList {
     public static void main(String[] args) {
-        ListNode list = ListNode.getList(new int[]{1,2,3,4});
+        ListNode list = ListNode.getList(new int[]{1,2,3,4,5});
         new ReorderList().reorderList(list);
         System.out.println(list);
+
         list = ListNode.getList(new int[]{1,2,3,4,5});
-        new ReorderList().reorderList(list);
+        new ReorderList().reorderList2(list);
         System.out.println(list);
     }
 
@@ -46,5 +47,33 @@ public class ReorderList {
             cur = tmp;
         }
         return pre;
+    }
+
+    public void reorderList2(ListNode head) {
+        if (head == null || head.next == null) return;
+        ListNode pre = null;
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            pre = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        if (fast != null) {
+            pre = slow;
+            slow = slow.next;
+        }
+        pre.next = null;
+        ListNode rev = reverse(slow);
+
+        ListNode cur = head;
+        while (cur != null && rev != null) {
+            ListNode tmp1 = cur.next;
+            ListNode tmp2 = rev.next;
+            cur.next = rev;
+            rev.next = tmp1;
+            cur = tmp1;
+            rev = tmp2;
+        }
     }
 }
