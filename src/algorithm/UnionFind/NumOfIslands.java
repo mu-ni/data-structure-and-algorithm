@@ -9,9 +9,40 @@ public class NumOfIslands {
                 {'0','0','0','1','1'}
         };
         System.out.println(new NumOfIslands().numIslands(grid));
+        System.out.println(new NumOfIslands().numIslands2(grid));
     }
 
+    int m;
+    int n;
     public int numIslands(char[][] grid) {
+        m = grid.length;
+        if (m == 0) return 0;
+        n = grid[0].length;
+        int rst = 0;
+        boolean[][] visited = new boolean[m][n];
+        for (int i=0; i<m; i++) {
+            for (int j=0; j<n; j++) {
+                if (grid[i][j] == '1' && !visited[i][j]) {
+                    dfs(grid, i, j, visited);
+                    rst++;
+                }
+            }
+        }
+        return rst;
+    }
+
+    public void dfs(char[][] grid, int x, int y, boolean[][] visited) {
+        if (x < 0 || y < 0 || x >= m || y >= n) return;
+        if (grid[x][y] == '0' || visited[x][y]) return;
+
+        visited[x][y] = true;
+        dfs(grid, x+1, y, visited);
+        dfs(grid, x-1, y, visited);
+        dfs(grid, x, y+1, visited);
+        dfs(grid, x, y-1, visited);
+    }
+
+    public int numIslands2(char[][] grid) {
         int count = 0;
         int m = grid.length;
         if (m == 0) return count;
