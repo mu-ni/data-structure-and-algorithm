@@ -50,10 +50,8 @@ public class MinSizeSubArrSum {
                 slow++;
                 continue;
             }
-            if (sum < s) {
-                sum += nums[fast];
-                fast++;
-            }
+            sum += nums[fast];
+            fast++;
         }
         return rst == Integer.MAX_VALUE ? 0 : rst;
     }
