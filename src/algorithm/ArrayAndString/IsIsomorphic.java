@@ -6,7 +6,6 @@ import java.util.Map;
 public class IsIsomorphic {
     public static void main(String[] args) {
         System.out.println(new IsIsomorphic().isIsomorphic("foo", "bar"));
-        System.out.println(new IsIsomorphic().isIsomorphic("egg", "add"));
     }
 
     public boolean isIsomorphic(String s, String t) {

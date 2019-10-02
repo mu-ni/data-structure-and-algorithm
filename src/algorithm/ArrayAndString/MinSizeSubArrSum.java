@@ -6,6 +6,7 @@ public class MinSizeSubArrSum {
     public static void main(String[] args) {
         System.out.println(new MinSizeSubArrSum().minSubArrayLen(7, new int[]{2, 3, 1, 2, 4, 3}));
         System.out.println(new MinSizeSubArrSum().minSubArrayLen2(7, new int[]{2, 3, 1, 2, 4, 3}));
+        System.out.println(new MinSizeSubArrSum().minSubArrayLen3(7, new int[]{2, 3, 1, 2, 4, 3}));
     }
 
     // time limited exceed
@@ -33,5 +34,27 @@ public class MinSizeSubArrSum {
             }
         }
         return min == Integer.MAX_VALUE ? 0 : min;
+    }
+
+    public int minSubArrayLen3(int s, int[] nums) {
+        int slow = 0;
+        int fast = 0;
+        int rst = Integer.MAX_VALUE;
+        int sum = 0;
+        while (slow < nums.length) {
+            if (sum >= s || fast == nums.length) {
+                if (sum >= s) {
+                    rst = Math.min(fast - slow, rst);
+                }
+                sum -= nums[slow];
+                slow++;
+                continue;
+            }
+            if (sum < s) {
+                sum += nums[fast];
+                fast++;
+            }
+        }
+        return rst == Integer.MAX_VALUE ? 0 : rst;
     }
 }
