@@ -55,6 +55,7 @@ public class FindAllAnagrams {
             }
 
             if (end - start == p.length()) {
+                // count >= 0 -> it was original in arr
                 if (arr[s.charAt(start) - 'a'] >= 0) {
                     diff ++;
                 }
