@@ -4,7 +4,8 @@ import java.util.*;
 
 public class TopKFrequent {
     public static void main(String[] args) {
-        System.out.println(new TopKFrequent().topKFrequent(new int[]{1}, 1));
+        System.out.println(new TopKFrequent().topKFrequent(new int[]{1,1,1,2,2,3}, 2));
+        System.out.println(new TopKFrequent().topKFrequent2(new int[]{1,1,1,2,2,3}, 2));
     }
 
     public List<Integer> topKFrequent(int[] nums, int k) {
@@ -30,6 +31,38 @@ public class TopKFrequent {
             if (k <= 0) break;
         }
 
+        return rst;
+    }
+
+    public List<Integer> topKFrequent2(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i=0; i<nums.length; i++) {
+            map.put(nums[i], map.getOrDefault(nums[i], 0)+1);
+        }
+
+        List<Integer>[] times = new List[nums.length];
+        for (int key : map.keySet()) {
+            if (times[map.get(key)-1] == null) {
+                times[map.get(key)-1] = new ArrayList<>();
+            }
+            times[map.get(key)-1].add(key);
+        }
+
+        List<Integer> rst = new ArrayList<>();
+        int index = 0;
+        boolean found = false;
+        for (int i=nums.length-1; i>=0; i--) {
+            if (found) break;
+            if (times[i] == null) continue;
+            for (int n : times[i]) {
+                rst.add(n);
+                index++;
+                if (index == k) {
+                    found = true;
+                    break;
+                }
+            }
+        }
         return rst;
     }
 }
