@@ -7,6 +7,7 @@ public class RemoveInvalidParentheses {
         System.out.println(new RemoveInvalidParentheses().removeInvalidParentheses("(a)())()"));
         System.out.println(new RemoveInvalidParentheses().removeInvalidParentheses2("(a)())()"));
         System.out.println(new RemoveInvalidParentheses().removeInvalidParentheses3("(a)())()"));
+        System.out.println(new RemoveInvalidParentheses().removeInvalidParentheses4("(a)())()"));
     }
 
     // bfs - min remove
@@ -92,6 +93,31 @@ public class RemoveInvalidParentheses {
             visited.add(sub);
             dfs(rst, sub, visited);
         }
+    }
+
+    // TLE -> add visited set for optimize
+    public List<String> removeInvalidParentheses4(String s) {
+        Set<String> set = new HashSet<>();
+        Queue<String> queue = new LinkedList<>();
+        queue.offer(s);
+        boolean found = false;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i=0; i<size; i++) {
+                String str = queue.poll();
+                if (isValid(str)) {
+                    set.add(str);
+                    found = true;
+                }
+                for (int j=0; j<str.length(); j++) {
+                    if (str.charAt(j) != '(' && str.charAt(j) != ')') continue;
+                    String sub = str.substring(0, j) + str.substring(j+1);
+                    queue.offer(sub);
+                }
+            }
+            if (found) break;
+        }
+        return new ArrayList<>(set);
     }
 
     public boolean isValid(String s) {

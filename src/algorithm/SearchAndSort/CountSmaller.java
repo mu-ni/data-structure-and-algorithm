@@ -34,8 +34,6 @@ public class CountSmaller {
         return Arrays.asList(res);
     }
 
-
-
     private int getIndex(List<Integer> sorted, int target) {
         if (sorted.size() == 0) return 0;
         int start = 0;
