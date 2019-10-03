@@ -3,7 +3,8 @@ package algorithm.ArrayAndString;
 public class thirdMax {
     public static void main(String[] args) {
         System.out.println(thirdMax(new int[]{2,2,1,3}));
-        System.out.println(thirdMax2(new int[]{-2147483648,-2147483648,-2147483648,-2147483648,1,1,1}));
+        System.out.println(thirdMax2(new int[]{2,2,1,3}));
+        System.out.println(thirdMax3(new int[]{2,2,1,3}));
     }
 
     public static int thirdMax(int[] nums) {
@@ -46,5 +47,30 @@ public class thirdMax {
             }
         }
         return l3 == null ? l1 : l3;
+    }
+
+    public static int thirdMax3(int[] nums) {
+        Integer max = null;
+        Integer sec = null;
+        Integer trd = null;
+        for (int n : nums) {
+            if (max == null || n >= max) {
+                if (max != null && n == max) continue;
+                trd = sec;
+                sec = max;
+                max = n;
+                continue;
+            }
+            if (sec == null || n >= sec) {
+                if (sec != null && n == sec) continue;
+                trd = sec;
+                sec = n;
+                continue;
+            }
+            if (trd == null || n >= trd) {
+                trd = n;
+            }
+        }
+        return trd == null ? max : trd;
     }
 }
