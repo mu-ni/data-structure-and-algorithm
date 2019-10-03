@@ -6,6 +6,7 @@ public class DiameterOfBT {
     public static void main(String[] args) {
         System.out.println(new DiameterOfBT().diameterOfBinaryTree(TreeNode.arr2tree(new Integer[]{3,2,3,4,5})));
         System.out.println(new DiameterOfBT().diameterOfBinaryTree2(TreeNode.arr2tree(new Integer[]{3,2,3,4,5})));
+        System.out.println(new DiameterOfBT().diameterOfBinaryTree3(TreeNode.arr2tree(new Integer[]{3,2,3,4,5})));
     }
 
     public int diameterOfBinaryTree(TreeNode root) {
@@ -37,5 +38,17 @@ public class DiameterOfBT {
         int r = depth(node.right);
         rst = Math.max(rst, l + r + 1);
         return 1 + Math.max(l, r);
+    }
+
+    public int diameterOfBinaryTree3(TreeNode root) {
+        if (root == null) return 0;
+        int left = diameterOfBinaryTree(root.left);
+        int right = diameterOfBinaryTree(root.right);
+        return Math.max(maxDepth(root.left)+maxDepth(root.right), Math.max(left, right));
+    }
+
+    public int maxDepth(TreeNode node) {
+        if (node == null) return 0;
+        return 1 + Math.max(maxDepth(node.left), maxDepth(node.right));
     }
 }
