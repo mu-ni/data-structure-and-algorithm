@@ -7,10 +7,6 @@ public class ReorderLogFiles {
         String[] logs = new String[]{"a1 9 2 3 1","g1 act car","zo4 4 7","ab1 off key dog","a8 act zoo","a2 act car"};
         String[] reordered = new ReorderLogFiles().reorderLogFiles(logs);
         System.out.println(Arrays.toString(reordered));
-
-        logs = new String[]{"a1 9 2 3 1","g1 act car","zo4 4 7","ab1 off key dog","a8 act zoo","a2 act car"};
-        reordered = new ReorderLogFiles().reorderLogFiles2(logs);
-        System.out.println(Arrays.toString(reordered));
     }
 
     public String[] reorderLogFiles(String[] logs) {
