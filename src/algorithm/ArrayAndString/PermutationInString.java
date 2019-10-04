@@ -58,8 +58,8 @@ public class PermutationInString {
         if(isEmpty(arr)) return true;
 
         for(int i=s1.length(); i<s2.length(); i++) {
-            arr[s2.charAt(i)] --; // reduce difference
-            arr[s2.charAt(i-s1.length())] ++;
+            arr[s2.charAt(i)] --; // fast -> reduce difference
+            arr[s2.charAt(i-s1.length())] ++;// slow
             if(isEmpty(arr)) return true;
         }
         return false;
