@@ -12,10 +12,9 @@ public class KClosestToOrigin {
 
     public int[][] kClosest(int[][] points, int K) {
         Comparator<int[]> comparator = (int[] crd1, int[] crd2) -> {
-            double dist1 = Math.pow(crd1[0], 2) + Math.pow(crd1[1], 2);
-            double dist2 = Math.pow(crd2[0], 2) + Math.pow(crd2[1], 2);
-            if (dist1 == dist2) return 0;
-            return dist1 > dist2 ? 1 : -1;
+            Double dist1 = Math.pow(crd1[0], 2) + Math.pow(crd1[1], 2);
+            Double dist2 = Math.pow(crd2[0], 2) + Math.pow(crd2[1], 2);
+            return dist1.compareTo(dist2);
         };
 
         Arrays.sort(points, comparator);
