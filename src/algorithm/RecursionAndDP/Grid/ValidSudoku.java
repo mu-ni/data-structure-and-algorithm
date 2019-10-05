@@ -18,6 +18,7 @@ public class ValidSudoku {
         };
         System.out.println(new ValidSudoku().isValidSudoku(board));
         System.out.println(new ValidSudoku().isValidSudoku2(board));
+        System.out.println(new ValidSudoku().isValidSudoku3(board));
     }
 
     public boolean isValidSudoku(char[][] board) {
@@ -43,13 +44,11 @@ public class ValidSudoku {
     }
 
     public char[] getBlock(char[][] board, int x, int y) {
-        char[] arr = new char[9];
-        int blkrow = (x / 3) * 3;
-        int blkcol = (y / 3) * 3;
-        for (int i = 0; i < 9; i++) {
-            arr[i] = board[blkrow + i / 3][blkcol + i % 3];
+        char[] block = new char[9];
+        for (int i=0; i<9; i++) {
+            block[i] = board[x + i/3][y + i%3];
         }
-        return arr;
+        return block;
     }
 
     public boolean isUnique(char[] arr) {
@@ -76,5 +75,38 @@ public class ValidSudoku {
             }
         }
         return true;
+    }
+
+    public boolean isValidSudoku3(char[][] board) {
+        int m = board.length;
+        if (m != 9) return false;
+        int n = board[0].length;
+        if (n != 9) return false;
+
+        for (int i=0; i<9; i++) {
+            char[] rows = board[i];
+            if (hasDup(rows)) return false;
+
+            char[] cols = new char[9];
+            for (int j=0; j<9; j++) {
+                cols[j] = board[j][i];
+            }
+            if (hasDup(cols)) return false;
+
+            char[] block = getBlock(board, (i/3)*3, (i%3)*3);
+            if (hasDup(block)) return false;
+        }
+
+        return true;
+    }
+
+    public boolean hasDup(char[] arr) {
+        int[] map = new int[9];
+        for (char c : arr) {
+            if (c == '.') continue;
+            if (map[c - '1'] != 0) return true;
+            map[c - '1']++;
+        }
+        return false;
     }
 }
