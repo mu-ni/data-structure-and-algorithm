@@ -4,6 +4,7 @@ import java.util.*;
 
 public class SolveSudoku {
     public static void main(String[] args) {
+        SolveSudoku slove = new SolveSudoku();
         char[][] board = new char[][]{
                 {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
                 {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
@@ -15,15 +16,15 @@ public class SolveSudoku {
                 {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
                 {'.', '.', '.', '.', '8', '.', '.', '7', '9'},
         };
-        solveSudoku(board);
+        slove.solveSudoku(board);
         System.out.println(Arrays.deepToString(board));
     }
 
-    public static void solveSudoku(char[][] board) {
+    public void solveSudoku(char[][] board) {
         isSolved(board);
     }
 
-    public static boolean isSolved(char[][] board) {
+    public boolean isSolved(char[][] board) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (board[i][j] != '.') continue;
@@ -39,7 +40,7 @@ public class SolveSudoku {
         return true;
     }
 
-    private static boolean isValid(char[][] board, int row, int col, char c) {
+    private boolean isValid(char[][] board, int row, int col, char c) {
         int blkrow = (row / 3) * 3;
         int blkcol = (col / 3) * 3;
         for (int i = 0; i < 9; i++) {
