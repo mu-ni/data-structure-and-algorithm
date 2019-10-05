@@ -63,15 +63,15 @@ public class ValidSudoku {
     }
 
     public boolean isValidSudoku2(char[][] board) {
-        Set set = new HashSet();
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                char c = board[i][j];
-                if (c == '.') continue;
-                if (!set.add(c + " in row " + i)
-                        || !set.add(c + " in column " + j)
-                        || !set.add(c + " in block " + i / 3 + "-" + j / 3))
+        Set<String> set = new HashSet<>();
+        for (int i=0; i<9; i++) {
+            for (int j=0; j<9; j++) {
+                if (board[i][j] == '.') continue;
+                if (!set.add(board[i][j] + " in row " + i) ||
+                        !set.add(board[i][j] + " in col " + j) ||
+                        !set.add(board[i][j] + " in blk " + i/3 + "," + j/3)) {
                     return false;
+                }
             }
         }
         return true;

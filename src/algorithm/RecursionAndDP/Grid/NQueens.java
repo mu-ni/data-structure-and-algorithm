@@ -9,47 +9,81 @@ public class NQueens {
     public static void main(String[] args) {
         NQueens nQueens = new NQueens();
         System.out.println(nQueens.solveNQueens(4));
+        System.out.println(nQueens.solveNQueens2(4));
     }
 
     public List<List<String>> solveNQueens(int n) {
         List<List<String>> rst = new ArrayList<>();
         char[][] board = new char[n][n];
         Arrays.stream(board).forEach(arr -> Arrays.fill(arr, '.'));
-        dfs(board, 0, rst);
+        backtrack(board, 0, rst);
         return rst;
     }
 
-    public void dfs(char[][] board, int colIndex, List<List<String>> rst) {
-        if (colIndex == board.length) {
+    public void backtrack(char[][] board, int x, List<List<String>> rst) {
+        if (x == board.length) {
             rst.add(array2list(board));
             return;
         }
 
-        for (int i = 0; i < board.length; i++) {
-            if (!idValid(board, i, colIndex)) {
-                continue;
+        for (int j=0; j<board.length; j++) {
+            board[x][j] = 'Q';
+            if (isValid(board, x, j)) {
+                backtrack(board, x+1, rst);
             }
-            board[i][colIndex] = 'Q';
-            dfs(board, colIndex + 1, rst);
-            board[i][colIndex] = '.';
+            board[x][j] = '.';
         }
     }
 
-    public List<String> array2list(char[][] board) {
-        return Arrays.stream(board)
-                .map(String::valueOf)
-                .collect(Collectors.toList());
-    }
-
-    public boolean idValid(char[][] board, int x, int y) {
+    public boolean isValid(char[][] board, int x, int y) {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
+                if (i == x && j == y) continue;
                 if (board[i][j] == 'Q' && isInline(i, j, x ,y)) {
                     return false;
                 }
             }
         }
         return true;
+    }
+
+    public List<List<String>> solveNQueens2(int n) {
+        List<List<String>> rst = new ArrayList<>();
+        char[][] board = new char[n][n];
+        Arrays.stream(board).forEach(arr -> Arrays.fill(arr, '.'));
+        backtrack2(rst, board, 0);
+        return rst;
+    }
+
+    public void backtrack2(List<List<String>> rst, char[][] board, int row) {
+        if (row == board.length) {
+            rst.add(array2list(board));
+            return;
+        }
+        for (int col = 0; col < board[0].length; col++) {
+            if (!isValid2(board, row, col)) continue;
+            board[row][col] = 'Q';
+            backtrack2(rst, board, row+1);
+            board[row][col] = '.';
+        }
+    }
+
+    public boolean isValid2(char[][] board, int row, int col) {
+        for (int i=0; i<board.length; i++) {
+            for (int j=0; j<board[0].length; j++) {
+                if (board[i][j] == '.') continue;
+                if (isInline(i, j, row ,col)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public List<String> array2list(char[][] board) {
+        return Arrays.stream(board)
+                .map(String::valueOf)
+                .collect(Collectors.toList());
     }
 
     public boolean isInline(int x1, int y1, int x2, int y2) {
