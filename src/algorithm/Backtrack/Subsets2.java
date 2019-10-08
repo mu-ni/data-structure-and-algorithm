@@ -11,7 +11,7 @@ public class Subsets2 {
 
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         List<List<Integer>> rst = new ArrayList<>();
-//        Arrays.sort(nums);
+        Arrays.sort(nums);
         backtrack(rst, nums, new ArrayList<>(), 0);
         return rst;
     }
