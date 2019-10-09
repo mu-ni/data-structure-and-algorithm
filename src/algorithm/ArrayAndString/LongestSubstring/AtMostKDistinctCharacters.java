@@ -3,7 +3,7 @@ package algorithm.ArrayAndString.LongestSubstring;
 import java.util.HashSet;
 import java.util.Set;
 
-public class AtMostKTypesCharacter {
+public class AtMostKDistinctCharacters {
     public static void main(String[] args) {
         System.out.println(lengthOfLongestSubstringKDistinct("eceba", 2));
         System.out.println(lengthOfLongestSubstringKDistinct2("eceba", 2));
