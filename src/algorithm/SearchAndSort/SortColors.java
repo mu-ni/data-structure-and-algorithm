@@ -13,7 +13,7 @@ public class SortColors {
         int start = 0;
         int end = nums.length - 1;
         int i = 0;
-        while (i >= start && i <= end) {
+        while (i <= end) {
             if (nums[i] == 2) {
                 swap(nums, i, end);
                 end--;
