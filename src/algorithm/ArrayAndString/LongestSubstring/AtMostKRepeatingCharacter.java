@@ -3,7 +3,6 @@ package algorithm.ArrayAndString.LongestSubstring;
 public class AtMostKRepeatingCharacter {
     public static void main(String[] args) {
         System.out.println(longestSubstring("abcbbb", 3));
-//        System.out.println(longestSubstring("aaaabbc", 3));
     }
 
     // every character in s appears <= k times
