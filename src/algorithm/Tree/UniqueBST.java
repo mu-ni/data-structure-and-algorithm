@@ -2,8 +2,8 @@ package algorithm.Tree;
 
 public class UniqueBST {
     public static void main(String[] args) {
-        System.out.println(numTrees(3));
-        System.out.println(numTrees2(3));
+        System.out.println(numTrees(18));
+        System.out.println(numTrees2(18));
     }
 
     // f(3) =
