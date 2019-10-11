@@ -10,6 +10,7 @@ public class WordBreak2 {
         List<String> dict = Arrays.asList("cats", "dog", "sand", "and", "cat");
         System.out.println(new WordBreak2().wordBreak("catsanddog", dict));
         System.out.println(new WordBreak2().wordBreak2("catsanddog", dict));
+        System.out.println(new WordBreak2().wordBreak3("catsanddog", dict));
     }
 
     // TLE
@@ -64,4 +65,28 @@ public class WordBreak2 {
         map.put(s, list);
         return list;
     }
+
+    // TLE
+    public List<String> wordBreak3(String s, List<String> wordDict) {
+        List<String> rst = new ArrayList<>();
+        backtrack2(rst, s, wordDict, 0, new ArrayList<>());
+        return rst;
+    }
+
+    public void backtrack2(List<String> rst, String s, List<String> wordDict, int start, List<String> path) {
+        if (start == s.length()) {
+            rst.add(String.join(" ", path));
+            return;
+        }
+
+        for (int i=start; i<s.length(); i++) {
+            String sub = s.substring(start, i+1);
+            if (wordDict.contains(sub)) {
+                path.add(sub);
+                backtrack2(rst, s, wordDict, i+1, path);
+                path.remove(path.size()-1);
+            }
+        }
+    }
+
 }
