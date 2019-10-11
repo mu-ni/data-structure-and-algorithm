@@ -41,16 +41,11 @@ public class MergeSort {
             merge = merge.next;
         }
 
-        while (l1 != null) {
+        if (l1 != null) {
             merge.next = l1;
-            l1 = l1.next;
-            merge = merge.next;
         }
-
-        while (l2 != null) {
+        if (l2 != null) {
             merge.next = l2;
-            l2 = l2.next;
-            merge = merge.next;
         }
 
         return dummy.next;
