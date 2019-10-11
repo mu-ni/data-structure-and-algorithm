@@ -15,6 +15,7 @@ public class RotatedDigits {
         return count;
     }
 
+    // Valid if N contains AT LEAST ONE 2, 5, 6, 9 AND NO 3, 4 or 7
     public boolean isValid(int n) {
         boolean isValid = false;
         while (n > 0) {
