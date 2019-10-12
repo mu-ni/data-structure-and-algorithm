@@ -3,7 +3,6 @@ package algorithm.Greedy;
 public class CopyBooks {
     public static void main(String[] args) {
         System.out.println(new CopyBooks().copyBooks(new int[]{3, 2, 4}, 2));
-        System.out.println(new CopyBooks().copyBooks2(new int[]{3, 2, 4}, 2));
     }
 
     // k people, copy continuous pages. At least how many people?
@@ -46,29 +45,30 @@ public class CopyBooks {
         return count <= k;
     }
 
-    public int copyBooks2(int[] pages, int k) {
-        if (pages.length == 0) return 0;
-        int n = pages.length;
-        int[] sum = new int[n];
-        for (int i = 0; i < n; i++) {
-            if (i == 0) {
-                sum[i] = pages[i];
-                continue;
-            }
-            sum[i] = sum[i - 1] + pages[i];
-        }
-
-        int[][] dp = new int[n][k];
-        for (int i=0; i<n; i++) {
-            dp[i][0] = sum[i];
-            for (int j=1; j<k; j++) {
-                dp[i][j] = Integer.MAX_VALUE;
-                for (int l=i; l>=0; l--) {
-                    dp[i][j] = Math.min(dp[i][j], Math.max(dp[l][j-1], sum[i] - sum[l]));
-                }
-            }
-        }
-
-        return dp[n-1][k-1];
-    }
+//    works but not understand
+//    public int copyBooks2(int[] pages, int k) {
+//        if (pages.length == 0) return 0;
+//        int n = pages.length;
+//        int[] sum = new int[n];
+//        for (int i = 0; i < n; i++) {
+//            if (i == 0) {
+//                sum[i] = pages[i];
+//                continue;
+//            }
+//            sum[i] = sum[i - 1] + pages[i];
+//        }
+//
+//        int[][] dp = new int[n][k];
+//        for (int i=0; i<n; i++) {
+//            dp[i][0] = sum[i];
+//            for (int j=1; j<k; j++) {
+//                dp[i][j] = Integer.MAX_VALUE;
+//                for (int l=i; l>=0; l--) {
+//                    dp[i][j] = Math.min(dp[i][j], Math.max(dp[l][j-1], sum[i] - sum[l]));
+//                }
+//            }
+//        }
+//
+//        return dp[n-1][k-1];
+//    }
 }
