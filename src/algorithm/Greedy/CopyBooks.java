@@ -16,8 +16,8 @@ public class CopyBooks {
             sum += p;
         }
 
-        int start = max;
-        int end = sum;
+        int start = max; // unlimited people
+        int end = sum; // only 1 people
         while (start <= end) {
             int mid = start + (end - start)/2;
             if (isValid(pages, k, mid)) {

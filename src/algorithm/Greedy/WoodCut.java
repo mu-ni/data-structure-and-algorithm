@@ -17,8 +17,8 @@ public class WoodCut {
         }
         if (sum < k) return 0;
 
-        int start = 1;
-        int end = max;
+        int start = 1; // shortest cut length
+        int end = max; // longest cut length
         while (start <= end) {
             int mid = start + (end - start) / 2;
             if (isValid(L, k, mid)) {
