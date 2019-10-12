@@ -9,28 +9,27 @@ public class CopyBooks {
     // At least how many minutes?
     public int copyBooks(int[] pages, int k) {
         if (pages.length == 0) return 0;
-        int max = 0;
+        int max = Integer.MIN_VALUE;
         int sum = 0;
         for (int p : pages) {
             max = Math.max(max, p);
             sum += p;
         }
 
-        int left = max; // unlimited people
-        int right = sum; // 1 people
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            if (isValid(pages, mid, k)) {
-                right = mid;
+        int start = max;
+        int end = sum;
+        while (start <= end) {
+            int mid = start + (end - start)/2;
+            if (isValid(pages, k, mid)) {
+                end = mid-1;
             } else {
-                left = mid + 1;
+                start = mid+1;
             }
         }
-
-        return left;
+        return start;
     }
 
-    public boolean isValid(int[] pages, int limit, int k) {
+    public boolean isValid(int[] pages, int k, int limit) {
         int count = 1;
         int sum = 0;
         for (int p : pages) {
@@ -42,7 +41,6 @@ public class CopyBooks {
                 sum += p;
             }
         }
-
         return count <= k;
     }
 
