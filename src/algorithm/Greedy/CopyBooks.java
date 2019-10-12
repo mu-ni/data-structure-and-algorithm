@@ -5,7 +5,8 @@ public class CopyBooks {
         System.out.println(new CopyBooks().copyBooks(new int[]{3, 2, 4}, 2));
     }
 
-    // k people, copy continuous pages. At least how many people?
+    // k people, copy continuous pages.
+    // At least how many people?
     public int copyBooks(int[] pages, int k) {
         if (pages.length == 0) return 0;
         int max = 0;
