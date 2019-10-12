@@ -5,6 +5,8 @@ public class WoodCut {
         System.out.println(new WoodCut().woodCut(new int[]{232, 124, 456}, 7));
     }
 
+    // At least k pieces of wood, as long as possible
+    // what is the longest length of each piece of wood?
     public int woodCut(int[] L, int k) {
         if (L.length == 0) return 0;
         int max = Integer.MIN_VALUE;
@@ -23,8 +25,8 @@ public class WoodCut {
             }
         }
 
-        if (isValid(L, k, start)) return start;
         if (isValid(L, k, end)) return end;
+        if (isValid(L, k, start)) return start;
         return 0;
     }
 
