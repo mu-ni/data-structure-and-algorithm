@@ -10,30 +10,31 @@ public class WoodCut {
     public int woodCut(int[] L, int k) {
         if (L.length == 0) return 0;
         int max = Integer.MIN_VALUE;
+        long sum = 0;
         for (int l : L) {
             max = Math.max(max, l);
+            sum += l;
         }
+        if (sum < k) return 0;
 
         int start = 1;
         int end = max;
-        while (start + 1 < end) {
-            int mid = start + (end - start)/2;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
             if (isValid(L, k, mid)) {
-                start = mid;
+                start = mid + 1;
             } else {
-                end = mid;
+                end = mid - 1;
             }
         }
 
-        if (isValid(L, k, end)) return end;
-        if (isValid(L, k, start)) return start;
-        return 0;
+        return end;
     }
 
     public boolean isValid(int[] L, int k, int len) {
         int count = 0;
         for (int l : L) {
-            count += l/len;
+            count += l / len;
         }
         return count >= k;
     }

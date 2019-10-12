@@ -18,16 +18,16 @@ public class CopyBooks {
 
         int left = max; // unlimited people
         int right = sum; // 1 people
-        while (left + 1 < right) {
+        while (left < right) {
             int mid = left + (right - left) / 2;
             if (isValid(pages, mid, k)) {
                 right = mid;
             } else {
-                left = mid;
+                left = mid + 1;
             }
         }
 
-        return isValid(pages, left, k) ? left : right;
+        return left;
     }
 
     public boolean isValid(int[] pages, int limit, int k) {
