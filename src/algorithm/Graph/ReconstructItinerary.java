@@ -12,6 +12,7 @@ public class ReconstructItinerary {
         tickets.add(Arrays.asList("ATL","SFO"));
         System.out.println(new ReconstructItinerary().findItinerary(tickets));
         System.out.println(new ReconstructItinerary().findItinerary2(tickets));
+        System.out.println(new ReconstructItinerary().findAllItineraries(tickets));
     }
 
     public List<String> findItinerary(List<List<String>> tickets) {
@@ -33,7 +34,7 @@ public class ReconstructItinerary {
     public void dfs(String depa, List<String> rst, Map<String, List<String>> map) {
         List<String> dest = map.get(depa);
         while (dest != null && !dest.isEmpty()) {
-            Collections.sort(dest); // not necessary
+            Collections.sort(dest); // keep smallest lexical order
             String next_depa = dest.remove(0);
             dfs(next_depa, rst, map);
         }
@@ -71,5 +72,41 @@ public class ReconstructItinerary {
             dests.add(i, to);
         }
         return false;
+    }
+
+    public List<List<String>> findAllItineraries(List<List<String>> tickets) {
+        if (tickets.size() == 0) return new ArrayList<>();
+        Map<String, List<String>> map = new HashMap<>();
+        for (List<String> pair : tickets) {
+            String key = pair.get(0);
+            if (!map.containsKey(key)) {
+                map.put(key, new ArrayList<>());
+            }
+            map.get(key).add(pair.get(1));
+        }
+
+        List<List<String>> rst = new ArrayList<>();
+        int stops = tickets.size()+1;
+        List<String> path = new ArrayList<>();
+        path.add("JFK");
+        backtrack(rst, map, stops, path);
+        return rst;
+    }
+
+    public void backtrack(List<List<String>> rst, Map<String, List<String>> map, int stops, List<String> path) {
+        if (path.size() == stops) {
+            rst.add(new ArrayList<>(path));
+            return;
+        }
+
+        String from = path.get(path.size()-1);
+        List<String> dests = map.get(from);
+        for (int i=0; i<dests.size(); i++) {
+            String dest = dests.remove(i);
+            path.add(dest);
+            backtrack(rst, map, stops, path);
+            path.remove(path.size()-1);
+            dests.add(i, dest);
+        }
     }
 }
