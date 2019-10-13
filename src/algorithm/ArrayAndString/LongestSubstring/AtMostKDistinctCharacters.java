@@ -8,6 +8,7 @@ public class AtMostKDistinctCharacters {
         System.out.println(lengthOfLongestSubstringKDistinct("eceba", 2));
         System.out.println(lengthOfLongestSubstringKDistinct2("eceba", 2));
         System.out.println(lengthOfLongestSubstringKDistinct3("eceba", 2));
+        System.out.println(lengthOfLongestSubstringKDistinct4("eceba", 2));
     }
 
     // character types <= k
@@ -84,4 +85,32 @@ public class AtMostKDistinctCharacters {
         }
         return max;
     }
+
+    public static int lengthOfLongestSubstringKDistinct4(String s, int k) {
+        int[] arr = new int[128];
+        int slow = 0;
+        int fast = 0;
+        int max = 0;
+        int types = 0;
+        while (fast < s.length()) {
+            if (types <= k) {
+                if (arr[s.charAt(fast)] == 0) {
+                    types++;
+                }
+                arr[s.charAt(fast)]++;
+                fast++;
+                if (types <= k) {
+                    max = Math.max(max, fast - slow);
+                }
+            } else {
+                arr[s.charAt(slow)]--;
+                if (arr[s.charAt(slow)] == 0) {
+                    types--;
+                }
+                slow++;
+            }
+        }
+        return max;
+    }
+
 }
