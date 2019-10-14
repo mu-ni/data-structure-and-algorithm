@@ -12,9 +12,9 @@ public class FindAllAnagrams {
 
     public static List<Integer> findAnagrams(String s, String p) {
         List<Integer> list = new ArrayList<>();
-        for (int i=0; i<=s.length() - p.length(); i++) {
+        for (int i = 0; i <= s.length() - p.length(); i++) {
             if (p.indexOf(s.charAt(i)) < 0) continue;
-            if (!isAnagram(p, s.substring(i, i+p.length()))) continue;
+            if (!isAnagram(p, s.substring(i, i + p.length()))) continue;
             list.add(i);
         }
         return list;
@@ -37,7 +37,7 @@ public class FindAllAnagrams {
         List<Integer> list = new ArrayList<>();
         int[] arr = new int[26];
         for (char c : p.toCharArray()) {
-            arr[c - 'a'] ++;
+            arr[c - 'a']++;
         }
 
         int start = 0;
@@ -45,9 +45,9 @@ public class FindAllAnagrams {
         int diff = p.length();
         while (end < s.length()) {
             if (arr[s.charAt(end) - 'a'] > 0) {
-                diff --;
+                diff--;
             }
-            arr[s.charAt(end) - 'a'] --;
+            arr[s.charAt(end) - 'a']--;
             end++;
 
             if (diff == 0) {
@@ -57,9 +57,9 @@ public class FindAllAnagrams {
             if (end - start == p.length()) {
                 // count >= 0 -> it was original in arr
                 if (arr[s.charAt(start) - 'a'] >= 0) {
-                    diff ++;
+                    diff++;
                 }
-                arr[s.charAt(start) - 'a'] ++;
+                arr[s.charAt(start) - 'a']++;
                 start++;
             }
         }
