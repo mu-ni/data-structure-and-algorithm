@@ -42,6 +42,7 @@ public class LongestRepeatingCharacterReplacement {
         return max;
     }
 
+    // count number of char which is different from the "most frequent character"
     public int countDiff(int[] arr) {
         int sum = 0;
         int max = 0;
