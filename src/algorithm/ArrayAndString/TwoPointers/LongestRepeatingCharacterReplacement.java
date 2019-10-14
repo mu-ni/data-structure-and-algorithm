@@ -4,6 +4,7 @@ public class LongestRepeatingCharacterReplacement {
     public static void main(String[] args) {
         System.out.println(new LongestRepeatingCharacterReplacement().characterReplacement("AABABBA", 1));
         System.out.println(new LongestRepeatingCharacterReplacement().characterReplacement2("AABABBA", 1));
+        System.out.println(new LongestRepeatingCharacterReplacement().characterReplacement3("AABABBA", 1));
     }
 
     public int characterReplacement(String s, int k) {
@@ -38,6 +39,26 @@ public class LongestRepeatingCharacterReplacement {
                 slow++;
             } else {
                 max = Math.max(max, fast - slow);
+            }
+        }
+        return max;
+    }
+
+    public int characterReplacement3(String s, int k) {
+        int[] arr = new int[128];
+        int slow = 0;
+        int fast = 0;
+        int max = 0;
+        while (fast < s.length()) {
+            if (countDiff(arr) <= k) {
+                arr[s.charAt(fast)]++;
+                fast++;
+                if (countDiff(arr) <= k) {
+                    max = Math.max(max, fast - slow);
+                }
+            } else {
+                arr[s.charAt(slow)]--;
+                slow++;
             }
         }
         return max;
