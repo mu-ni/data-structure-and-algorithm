@@ -1,4 +1,4 @@
-package algorithm.TwoPointers;
+package algorithm.ArrayAndString.TwoPointers;
 
 import java.util.Arrays;
 import java.util.Deque;

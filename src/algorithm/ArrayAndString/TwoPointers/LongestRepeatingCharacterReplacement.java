@@ -1,4 +1,4 @@
-package algorithm.TwoPointers;
+package algorithm.ArrayAndString.TwoPointers;
 
 public class LongestRepeatingCharacterReplacement {
     public static void main(String[] args) {
