@@ -11,7 +11,7 @@ public class LongestRepeatingCharacterReplacement {
         int slow = 0;
         int fast = 0;
         int max = 0;
-        int count = 0;
+        int count = 0; // max appearance of any char
         while (fast < s.length()) {
             arr[s.charAt(fast)]++;
             count = Math.max(count, arr[s.charAt(fast)]);
@@ -28,17 +28,28 @@ public class LongestRepeatingCharacterReplacement {
     public int characterReplacement2(String s, int k) {
         int[] arr = new int[128];
         int slow = 0;
+        int fast = 0;
         int max = 0;
-        int count = 0;
-        for (int fast = 0; fast < s.length(); fast++) {
+        while (fast < s.length()) {
             arr[s.charAt(fast)]++;
-            count = Math.max(count, arr[s.charAt(fast)]);
-            if (fast - slow + 1 > count + k) {
+            fast++;
+            if (countDiff(arr) > k) {
                 arr[s.charAt(slow)]--;
                 slow++;
+            } else {
+                max = Math.max(max, fast - slow);
             }
-            max = Math.max(max, fast-slow+1);
         }
         return max;
+    }
+
+    public int countDiff(int[] arr) {
+        int sum = 0;
+        int max = 0;
+        for (int i : arr) {
+            sum += i;
+            max = Math.max(max, i);
+        }
+        return sum - max;
     }
 }
