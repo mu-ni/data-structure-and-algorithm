@@ -33,8 +33,8 @@ public class SnakesAndLadders {
                     int next = num + j;
                     if (next > n * n) continue;
                     int value = getBoardValue(board, next);
-                    if (value != -1) next = value;
-                    if (!visited[next]) queue.offer(next);
+                    next = value == -1 ? next : value;
+                    queue.offer(next);
                 }
             }
             move++;
