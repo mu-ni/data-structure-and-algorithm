@@ -27,7 +27,8 @@ public class CheapestFlightsWithinKStops {
             int price = cur[1];
             int stop = cur[2];
             if (city == dst) return price;
-            if (stop >= 0 && map.containsKey(city)) {
+            if (stop < 0 || stop > n) continue;
+            if (map.containsKey(city)) {
                 for (int next : map.get(city).keySet()) {
                     queue.offer(new int[]{next, price + map.get(city).get(next), stop-1});
                 }
