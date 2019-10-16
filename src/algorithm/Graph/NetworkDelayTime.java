@@ -18,7 +18,6 @@ public class NetworkDelayTime {
         Queue<int[]> queue = new PriorityQueue<>((a, b) -> (a[1] - b[1]));
         queue.offer(new int[]{K, 0});
         boolean[] visited = new boolean[N+1];
-        int rst = 0;
         int index = 0;
         while (!queue.isEmpty()) {
             int[] cur = queue.poll();
@@ -26,8 +25,8 @@ public class NetworkDelayTime {
             int dist = cur[1];
             if (visited[node]) continue;
             visited[node] = true;
-            rst = dist;
             index++;
+            if (index == N) return dist;
             if (map.containsKey(node)) {
                 for (int next : map.get(node).keySet()) {
                     queue.add(new int[]{next, dist + map.get(node).get(next)});
@@ -35,6 +34,6 @@ public class NetworkDelayTime {
             }
         }
 
-        return index == N ? rst : -1;
+        return -1;
     }
 }
