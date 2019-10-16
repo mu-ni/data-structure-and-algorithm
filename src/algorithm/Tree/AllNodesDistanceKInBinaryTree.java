@@ -47,6 +47,7 @@ public class AllNodesDistanceKInBinaryTree {
         return rst;
     }
 
+    // key -> node, value -> parent & children
     public void buildMap(TreeNode node, TreeNode parent, Map<TreeNode, List<TreeNode>> map) {
         if (node == null || map.containsKey(node)) return;
         map.putIfAbsent(parent, new ArrayList<>());
