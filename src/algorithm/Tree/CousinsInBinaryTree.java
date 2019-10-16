@@ -2,9 +2,13 @@ package algorithm.Tree;
 
 import algorithm.Tree.Dao.TreeNode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CousinsInBinaryTree {
     public static void main(String[] args) {
         System.out.println(new CousinsInBinaryTree().isCousins(TreeNode.arr2tree(new Integer[]{1, 2, 4, 5, 3}), 4, 5));
+        System.out.println(new CousinsInBinaryTree().isCousins2(TreeNode.arr2tree(new Integer[]{1, 2, 4, 5, 3}), 4, 5));
     }
 
     public boolean isCousins(TreeNode root, int x, int y) {
@@ -29,5 +33,27 @@ public class CousinsInBinaryTree {
         TreeNode left = getParent(node.left, val);
         TreeNode right = getParent(node.right, val);
         return left == null ? right : left;
+    }
+
+    public boolean isCousins2(TreeNode root, int x, int y) {
+        Map<Integer, Integer> depthMap = new HashMap<>();
+        Map<Integer, TreeNode> parentMap = new HashMap<>();
+        dfs(root, 0, depthMap, parentMap);
+
+        int depX = depthMap.getOrDefault(x, -1);
+        int depY = depthMap.getOrDefault(y, -1);
+        TreeNode parX = parentMap.getOrDefault(x, null);
+        TreeNode parY = parentMap.getOrDefault(y, null);
+        return depX == depY && parX != parY;
+    }
+
+    public void dfs(TreeNode node, int depth, Map<Integer, Integer> depthMap, Map<Integer, TreeNode> parentMap) {
+        if (node == null) return;
+        depthMap.putIfAbsent(node.val, depth);
+        if (node.left != null) parentMap.put(node.left.val, node);
+        if (node.right != null) parentMap.put(node.right.val, node);
+
+        dfs(node.left, depth+1, depthMap, parentMap);
+        dfs(node.right, depth+1, depthMap, parentMap);
     }
 }
