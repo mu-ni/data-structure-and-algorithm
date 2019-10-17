@@ -18,18 +18,16 @@ public class SnakesAndLadders {
         System.out.println(new SnakesAndLadders().snakesAndLadders(board));
     }
 
-    int m;
     int n;
     public int snakesAndLadders(int[][] board) {
-        m = board.length;
-        if (m == 0) return -1;
-        n = board[0].length;
+        n = board.length;
+        if (n == 0) return -1;
         Queue<Integer> queue = new LinkedList<>();
         queue.offer(1);
         Set<Integer> visited = new HashSet<>();
         visited.add(1);
         int move = 0;
-        int dest = m * n;
+        int dest = n * n;
         while (!queue.isEmpty()) {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
