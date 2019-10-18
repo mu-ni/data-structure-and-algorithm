@@ -10,9 +10,7 @@ public class IncreasingSubsequence {
     public List<List<Integer>> findSubsequences(int[] nums) {
         if (nums.length == 0) return new ArrayList<>();
         Set<List<Integer>> rst = new HashSet<>();
-        for (int i=0; i<nums.length; i++) {
-            backtrack(rst, nums, i, new ArrayList<>());
-        }
+        backtrack(rst, nums, 0, new ArrayList<>());
         return new ArrayList<>(rst);
     }
 
