@@ -58,7 +58,8 @@ public class LongestIncreasingPathInMatrix {
 
         int max = 0;
         for (int[] dir : dirs) {
-            max = Math.max(max, 1 + dfs(matrix, x + dir[0], y + dir[1], matrix[x][y], dp));
+            int len = 1 + dfs(matrix, x + dir[0], y + dir[1], matrix[x][y], dp);
+            max = Math.max(max, len);
         }
         dp[x][y] = max;
         return max;
