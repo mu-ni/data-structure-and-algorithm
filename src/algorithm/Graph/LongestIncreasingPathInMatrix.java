@@ -19,19 +19,20 @@ public class LongestIncreasingPathInMatrix {
         int max = 0;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                int len = dfs(matrix, i, j, Integer.MIN_VALUE, 0);
+                int len = dfs(matrix, i, j, Integer.MIN_VALUE);
                 max = Math.max(max, len);
             }
         }
         return max;
     }
 
-    public int dfs(int[][] matrix, int x, int y, int val, int len) {
-        if (x < 0 || y < 0 || x >= m || y >= n) return len;
-        if (matrix[x][y] <= val) return len;
-        int max = len;
+    public int dfs(int[][] matrix, int x, int y, int val) {
+        if (x < 0 || y < 0 || x >= m || y >= n) return 0;
+        if (matrix[x][y] <= val) return 0;
+        int max = 0;
         for (int[] dir : dirs) {
-            max = Math.max(max, dfs(matrix, x + dir[0], y + dir[1], matrix[x][y], len + 1));
+            int len = 1 + dfs(matrix, x + dir[0], y + dir[1], matrix[x][y]);
+            max = Math.max(max, len);
         }
         return max;
     }
