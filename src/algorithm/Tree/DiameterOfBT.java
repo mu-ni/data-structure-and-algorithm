@@ -4,9 +4,9 @@ import algorithm.Tree.Dao.TreeNode;
 
 public class DiameterOfBT {
     public static void main(String[] args) {
-        System.out.println(new DiameterOfBT().diameterOfBinaryTree(TreeNode.arr2tree(new Integer[]{3,2,3,4,5})));
-        System.out.println(new DiameterOfBT().diameterOfBinaryTree2(TreeNode.arr2tree(new Integer[]{3,2,3,4,5})));
-        System.out.println(new DiameterOfBT().diameterOfBinaryTree3(TreeNode.arr2tree(new Integer[]{3,2,3,4,5})));
+        System.out.println(new DiameterOfBT().diameterOfBinaryTree(TreeNode.arr2tree(new Integer[]{3, 2, 3, 4, 5})));
+        System.out.println(new DiameterOfBT().diameterOfBinaryTree2(TreeNode.arr2tree(new Integer[]{3, 2, 3, 4, 5})));
+        System.out.println(new DiameterOfBT().diameterOfBinaryTree3(TreeNode.arr2tree(new Integer[]{3, 2, 3, 4, 5})));
     }
 
     public int diameterOfBinaryTree(TreeNode root) {
@@ -26,6 +26,7 @@ public class DiameterOfBT {
     }
 
     int rst;
+
     public int diameterOfBinaryTree2(TreeNode root) {
         if (root == null) return 0;
         depth(root);
@@ -42,9 +43,10 @@ public class DiameterOfBT {
 
     public int diameterOfBinaryTree3(TreeNode root) {
         if (root == null) return 0;
+        int depth = maxDepth(root.left) + maxDepth(root.right);
         int left = diameterOfBinaryTree(root.left);
         int right = diameterOfBinaryTree(root.right);
-        return Math.max(maxDepth(root.left)+maxDepth(root.right), Math.max(left, right));
+        return Math.max(depth, Math.max(left, right));
     }
 
     public int maxDepth(TreeNode node) {
