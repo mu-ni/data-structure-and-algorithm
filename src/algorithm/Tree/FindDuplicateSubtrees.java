@@ -7,8 +7,12 @@ import java.util.*;
 
 public class FindDuplicateSubtrees {
     public static void main(String[] args) {
-        TreeNode tree = TreeNode.arr2tree(new Integer[]{1,2,3,4,null,2,4,null,null,null,null,4});
+        TreeNode tree = TreeNode.arr2tree(new Integer[]{1, 2, 3, 4, null, 2, 4, null, null, null, null, 4});
         List<TreeNode> rst = new FindDuplicateSubtrees().findDuplicateSubtrees(tree);
+        rst.forEach(i -> System.out.println(new PreOrder().preOrder(i)));
+
+        System.out.println();
+        rst = new FindDuplicateSubtrees().findDuplicateSubtrees2(tree);
         rst.forEach(i -> System.out.println(new PreOrder().preOrder(i)));
     }
 
@@ -44,5 +48,24 @@ public class FindDuplicateSubtrees {
         sb.append(node.val).append(",");
         encode(sb, node.left);
         encode(sb, node.right);
+    }
+
+    public List<TreeNode> findDuplicateSubtrees2(TreeNode root) {
+        if (root == null) return new ArrayList<>();
+        Map<String, Integer> map = new HashMap<>();
+        List<TreeNode> rst = new ArrayList<>();
+        helper(root, map, rst);
+        return rst;
+    }
+
+    public String helper(TreeNode node, Map<String, Integer> map, List<TreeNode> rst) {
+        if (node == null) return "#,";
+        String str = String.valueOf(node.val) + "," +
+                helper(node.left, map, rst) +
+                helper(node.right, map, rst);
+        int count = map.getOrDefault(str, 0);
+        if (count == 1) rst.add(node);
+        map.put(str, count + 1);
+        return str;
     }
 }
