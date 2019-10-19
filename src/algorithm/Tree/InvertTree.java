@@ -3,6 +3,8 @@ package algorithm.Tree;
 import algorithm.Tree.Dao.TreeNode;
 import algorithm.Tree.Traversal.PreOrder;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class InvertTree {
@@ -45,20 +47,15 @@ public class InvertTree {
 
     public TreeNode invertTree3(TreeNode root) {
         if (root == null) return null;
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
-        while (!stack.isEmpty()) {
-            TreeNode node = stack.pop();
-            TreeNode left = node.left;
-            TreeNode right = node.right;
-            node.right = left;
-            node.left = right;
-            if (left != null) {
-                stack.push(left);
-            }
-            if (right != null) {
-                stack.push(right);
-            }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            TreeNode tmp = node.left;
+            node.left = node.right;
+            node.right = tmp;
+            if (node.left != null) queue.offer(node.left);
+            if (node.right != null) queue.offer(node.right);
         }
         return root;
     }
