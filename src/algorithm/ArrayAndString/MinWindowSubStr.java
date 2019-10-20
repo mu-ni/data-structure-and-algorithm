@@ -13,7 +13,7 @@ public class MinWindowSubStr {
         for (int i=0; i<s.length(); i++) {
             for (int j=i; j<s.length(); j++) {
                 String sub = s.substring(i, j+1);
-                if (!isSubSequence(sub, t)) continue;
+                if (!contains(sub, t)) continue;
                 if (rst.equals("") || sub.length() < rst.length()) {
                     rst = sub;
                 }
@@ -29,7 +29,7 @@ public class MinWindowSubStr {
         String rst = "";
         while (slow < s.length() && fast < s.length()) {
             String sub = s.substring(slow, fast+1);
-            if (isSubSequence(sub, t)) {
+            if (contains(sub, t)) {
                 if (rst.equals("") || sub.length() < rst.length()) {
                     rst = sub;
                 }
@@ -61,14 +61,14 @@ public class MinWindowSubStr {
                 slow++;
             }
             String sub = s.substring(Math.max(slow-1, 0), fast);
-            if (isSubSequence(sub, t) && (rst.equals("") || sub.length() < rst.length())) {
+            if (contains(sub, t) && (rst.equals("") || sub.length() < rst.length())) {
                 rst = sub;
             }
         }
         return rst;
     }
 
-    public boolean isSubSequence(String s1, String s2) {
+    public boolean contains(String s1, String s2) {
         if (s2.length() > s1.length()) return false;
 
         int[] arr = new int[128];
