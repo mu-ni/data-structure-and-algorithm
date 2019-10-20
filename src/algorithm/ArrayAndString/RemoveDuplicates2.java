@@ -47,7 +47,7 @@ public class RemoveDuplicates2 {
 
         int index = 0;
         for (int n : nums) {
-            if (index < max || nums[index-max] < n) {
+            if (index < max || nums[index-max] != n) {
                 nums[index++] = n;
             }
         }
