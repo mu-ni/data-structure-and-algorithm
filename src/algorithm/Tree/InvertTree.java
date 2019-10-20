@@ -22,18 +22,13 @@ public class InvertTree {
     }
 
     public TreeNode invertTree(TreeNode root) {
-        helper(root);
+        if (root == null) return null;
+        TreeNode tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+        invertTree(root.left);
+        invertTree(root.right);
         return root;
-    }
-
-    public void helper(TreeNode node) {
-        if (node == null) return;
-        TreeNode tmp = node.left;
-        node.left = node.right;
-        node.right = tmp;
-
-        invertTree(node.left);
-        invertTree(node.right);
     }
 
     public TreeNode invertTree2(TreeNode root) {
