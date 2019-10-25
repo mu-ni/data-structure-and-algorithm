@@ -2,24 +2,28 @@ package algorithm.ArrayAndString;
 
 public class StringCompression {
     public static void main(String[] args) {
-        System.out.println(compress("abc"));
-        System.out.println(compress("aabcccccaaa"));
+        System.out.println(compress(new char[]{'a','b','b','b','b','b','b','b','b','b','b','b','b'}));
     }
 
-    public static String compress(String str) {
-        if (str.length() <= 2) return str;
-
-        int count = 0;
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < str.length(); i++) {
-            count++;
-            if (i == str.length() - 1 || str.charAt(i) != str.charAt(i + 1)) {
-                sb.append(str.charAt(i));
-                sb.append(count);
-                count = 0;
+    public static int compress(char[] chars) {
+        int i = 0;
+        int len = 1;
+        int index = 0;
+        while (i < chars.length) {
+            while (i+1 < chars.length && chars[i] == chars[i+1]) {
+                len++;
+                i++;
             }
-        }
 
-        return sb.toString().length() >= str.length() ? str : sb.toString();
+            chars[index++] = chars[i];
+            if (len != 1) {
+                for (char n : String.valueOf(len).toCharArray()) {
+                    chars[index++] = n;
+                }
+            }
+            len = 1;
+            i++;
+        }
+        return index;
     }
 }
