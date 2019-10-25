@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 public class VerifyingAlienDictionary {
     public static void main(String[] args) {
-        System.out.println(new VerifyingAlienDictionary().isAlienSorted(new String[]{"word","worda"}, "worldabcefghijkmnpqstuvxyz"));
+        System.out.println(new VerifyingAlienDictionary().isAlienSorted(new String[]{"word","world","row"}, "worldabcefghijkmnpqstuvxyz"));
     }
 
     public boolean isAlienSorted(String[] words, String order) {
