@@ -8,7 +8,9 @@ public class NumberToWords {
         System.out.println(new NumberToWords().numberToWords(456));
         System.out.println(new NumberToWords().numberToWords(6712));
         System.out.println(new NumberToWords().numberToWords(12345));
-        System.out.println(new NumberToWords().numberToWords(9856754));
+        System.out.println(new NumberToWords().numberToWords(8275372));
+        System.out.println(new NumberToWords().numberToWords(98567541));
+        System.out.println(new NumberToWords().numberToWords(985267541));
     }
 
     String[] nums = new String[]{"Zero","One","Two","Three","Four","Five","Six","Seven","Eight","Nine"};
