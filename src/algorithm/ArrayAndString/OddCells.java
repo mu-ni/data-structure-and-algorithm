@@ -3,11 +3,8 @@ package algorithm.ArrayAndString;
 public class OddCells {
     public static void main(String[] args) {
         System.out.println(new OddCells().oddCells(2,3, new int[][]{{0,1},{1,1}}));
-        System.out.println(new OddCells().oddCells2(48,37, new int[][]{{40, 5}}));
+        System.out.println(new OddCells().oddCells2(2,3, new int[][]{{0,1},{1,1}}));
     }
-    // 48
-    //37
-    //[[40,5]]
 
     public int oddCells(int n, int m, int[][] indices) {
         boolean[][] grid = new boolean[n][m];
@@ -20,7 +17,6 @@ public class OddCells {
             for (int j=0; j<m; j++) {
                 grid[x][j] = !grid[x][j];
             }
-            String s = "";
         }
 
         int count = 0;
