@@ -6,7 +6,7 @@ import java.util.List;
 
 public class BinaryMatrix2Row {
     public static void main(String[] args) {
-        System.out.println(new BinaryMatrix2Row().reconstructMatrix(2, 1, new int[]{1,1,1}));
+        System.out.println(new BinaryMatrix2Row().reconstructMatrix(5, 5, new int[]{2,1,3,0,1,0,1,1,0,1}));
         System.out.println(new BinaryMatrix2Row().reconstructMatrix2(5, 5, new int[]{2,1,3,0,1,0,1,1,0,1}));
     }
 
