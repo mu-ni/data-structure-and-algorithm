@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString;
+package algorithm.Backtrack;
 
 public class MaxScoreWords {
     public static void main(String[] args) {
