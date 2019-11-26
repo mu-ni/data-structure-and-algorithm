@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString.TwoPointers;
+package algorithm.TwoPointers;
 
 public class MinWindowSubString {
     public static void main(String[] args) {
