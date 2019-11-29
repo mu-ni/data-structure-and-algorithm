@@ -35,7 +35,7 @@ public class PathWithMaxGold {
             max = Math.max(max, backtrack(grid, x + dir[0], y + dir[1], visited, count));
         }
         visited[x][y] = false;
-        count -= grid[x][y];
+//        count -= grid[x][y]; // no use
         return max;
     }
 }
