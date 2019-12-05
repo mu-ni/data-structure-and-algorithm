@@ -5,33 +5,32 @@ package algorithm.UnionFind.Dao;
  */
 public class UnionFind {
     int count;
-    int[] id;
+    int[] parent;
 
     public UnionFind(int N) {
         count = N;
-        id = new int[N];
+        parent = new int[N];
         for (int i=0; i<N; i++) {
             // connect to itself
-            id[i] = i;
+            parent[i] = i;
         }
     }
 
     // O(1)
     public void union(int p, int q) {
-        int pId = find(p);
-        int qId = find(q);
-        if (pId != qId) {
-            id[qId] = pId;
-            count--;
-        }
+        int rootP = find(p);
+        int rootQ = find(q);
+        if (rootP == rootQ) return;
+        parent[rootQ] = rootP;
+        count--;
     }
 
     // O(n)
     public int find(int p) {
-        while (p != id[p]) {
+        while (p != parent[p]) {
             // reduce path length
-            id[p] = id[id[p]];
-            p = id[p];
+            parent[p] = parent[parent[p]];
+            p = parent[p];
         }
         return p;
     }

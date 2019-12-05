@@ -1,10 +1,15 @@
 package algorithm.UnionFind;
 
+import algorithm.UnionFind.Dao.UnionFind;
+
 public class FriendCircles {
     public static void main(String[] args) {
         int[][] M = new int[][]{{1,1,0},{1,1,0},{0,0,1}};
         System.out.println(new FriendCircles().findCircleNum(M));
+        M = new int[][]{{1,1,0},{1,1,0},{0,0,1}};
         System.out.println(new FriendCircles().findCircleNum2(M));
+        M = new int[][]{{1,1,0},{1,1,0},{0,0,1}};
+        System.out.println(new FriendCircles().findCircleNum3(M));
     }
 
     int m;
@@ -53,5 +58,18 @@ public class FriendCircles {
                 dfs(M, j);
             }
         }
+    }
+
+    public int findCircleNum3(int[][] M) {
+        int m = M.length;
+        UnionFind uf = new UnionFind(m);
+        for (int i=0; i<m; i++) {
+            for (int j=0; j<m; j++) {
+                if (M[i][j] == 1) {
+                    uf.union(i, j);
+                }
+            }
+        }
+        return uf.getCount();
     }
 }
