@@ -1,4 +1,4 @@
-package algorithm.Graph;
+package algorithm.UnionFind;
 
 import java.util.*;
 import java.util.stream.Collectors;
