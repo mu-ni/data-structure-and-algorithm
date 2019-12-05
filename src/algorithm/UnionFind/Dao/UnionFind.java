@@ -20,14 +20,17 @@ public class UnionFind {
     public void union(int p, int q) {
         int pId = find(p);
         int qId = find(q);
-        if (pId == qId) return;
-        id[qId] = pId;
-        count--;
+        if (pId != qId) {
+            id[qId] = pId;
+            count--;
+        }
     }
 
     // O(n)
     public int find(int p) {
         while (p != id[p]) {
+            // reduce path length
+            id[p] = id[id[p]];
             p = id[p];
         }
         return p;
