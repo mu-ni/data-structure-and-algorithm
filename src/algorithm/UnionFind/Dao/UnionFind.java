@@ -16,6 +16,7 @@ public class UnionFind {
         }
     }
 
+    // O(1)
     public void union(int p, int q) {
         int pId = find(p);
         int qId = find(q);
@@ -24,6 +25,7 @@ public class UnionFind {
         count--;
     }
 
+    // O(n)
     public int find(int p) {
         while (p != id[p]) {
             p = id[p];

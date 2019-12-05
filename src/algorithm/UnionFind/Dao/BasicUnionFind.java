@@ -17,6 +17,7 @@ public class BasicUnionFind {
         }
     }
 
+    // O(n)
     public void union(int p, int q) {
         int pId = find(p);
         int qId = find(q);
@@ -28,6 +29,7 @@ public class BasicUnionFind {
         count--;
     }
 
+    // O(1)
     public int find(int p) {
         return id[p];
     }
