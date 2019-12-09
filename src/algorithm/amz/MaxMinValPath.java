@@ -6,14 +6,14 @@ import java.util.Queue;
 /**
  * Created by muni on 2019/12/9
  */
-public class MaxMinValPath1 {
+public class MaxMinValPath {
     public static void main(String[] args) {
         int[][] matrix = new int[][]{
                 {7,5,3},
                 {2,0,9},
                 {4,5,9}
         };
-        System.out.println(new MaxMinValPath1().maxPathScore(matrix));
+        System.out.println(new MaxMinValPath().maxPathScore(matrix));
     }
 
     int m;
