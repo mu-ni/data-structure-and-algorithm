@@ -12,6 +12,13 @@ public class MinTimeSendToAllServers {
                 {0,1,0,0,0},
         };
         System.out.println(new MinTimeSendToAllServers().minTimeSendToAllServers(4, 5, grid));
+        grid = new int[][]{
+                {0,1,1,0,1},
+                {0,1,0,1,0},
+                {0,0,0,0,1},
+                {0,1,0,0,0},
+        };
+        System.out.println(new MinTimeSendToAllServers().minTimeSendToAllServers2(grid));
     }
 
     int m;
@@ -47,6 +54,40 @@ public class MinTimeSendToAllServers {
             time++;
         }
 
+        return time;
+    }
+
+    public int minTimeSendToAllServers2(int[][] matrix) {
+        int m = matrix.length;
+        if (m == 0) return -1;
+        int n = matrix[0].length;
+        if (n == 0) return -1;
+
+        Queue<int[]> queue = new LinkedList<>();
+        for (int i=0; i<m; i++) {
+            for (int j=0; j<n; j++) {
+                if (matrix[i][j] == 1) {
+                    queue.offer(new int[]{i, j});
+                }
+            }
+        }
+
+        int time = -1;
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i=0; i<size; i++) {
+                int[] pos = queue.poll();
+                for (int[] dir : dirs) {
+                    int x = pos[0] + dir[0];
+                    int y = pos[1] + dir[1];
+                    if (x < 0 || y < 0 || x >= m || y >= n) continue;
+                    if (matrix[x][y] == 1) continue;
+                    matrix[x][y] = 1;
+                    queue.offer(new int[]{x, y});
+                }
+            }
+            time++;
+        }
         return time;
     }
 }
