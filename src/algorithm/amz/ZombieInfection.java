@@ -1,7 +1,5 @@
 package algorithm.amz;
 
-import algorithm.UnionFind.MinTimeSendToAllServers;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
