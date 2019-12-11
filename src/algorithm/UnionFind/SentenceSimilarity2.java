@@ -69,7 +69,6 @@ public class SentenceSimilarity2 {
             String w2 = words2[i];
 
             if (w1.equals(w2)) continue;
-            if (!graph.containsKey(w1)) return false;
             boolean found = dfs(graph, w1, w2, new HashSet<>());
             if (!found) return false;
         }
@@ -91,8 +90,8 @@ public class SentenceSimilarity2 {
     }
 
     public boolean dfs(Map<String, Set<String>> graph, String start, String end, Set<String> visited) {
+        if (!graph.containsKey(start) || visited.contains(start)) return false;
         if (graph.get(start).contains(end)) return true;
-        if (visited.contains(start)) return false;
 
         visited.add(start);
         for (String next : graph.get(start)) {
