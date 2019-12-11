@@ -6,6 +6,7 @@ public class SearchRange {
     public static void main(String[] args) {
         System.out.println(Arrays.toString(new SearchRange().searchRange(new int[]{5,7,7,8,8,10}, 8)));
         System.out.println(Arrays.toString(new SearchRange().searchRange2(new int[]{5,7,7,8,8,10}, 8)));
+        System.out.println(Arrays.toString(new SearchRange().searchRange3(new int[]{5,7,7,8,8,10}, 8)));
     }
 
     public int[] searchRange(int[] nums, int target) {
@@ -76,5 +77,48 @@ public class SearchRange {
             right++;
         }
         return new int[]{left+1, right-1};
+    }
+
+    public int[] searchRange3(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length-1;
+        // find left position
+        int leftPos = -1;
+        while (left <= right) {
+            int mid = left + (right-left)/2;
+            if (nums[mid] > target) {
+                right = mid-1;
+            } else if (nums[mid] < target) {
+                left = mid+1;
+            } else {
+                if (mid == 0 || nums[mid-1] < target) {
+                    leftPos = mid;
+                    break;
+                }
+                right = mid-1;
+            }
+        }
+
+        if (leftPos == -1) return new int[]{-1, -1};
+
+        left = leftPos;
+        right = nums.length-1;
+        // find right position
+        int rightPos = -1;
+        while (left <= right) {
+            int mid = left + (right-left)/2;
+            if (nums[mid] > target) {
+                right = mid-1;
+            } else if (nums[mid] < target) {
+                left = mid+1;
+            } else {
+                if (mid == nums.length-1 || nums[mid+1] > target) {
+                    rightPos = mid;
+                    break;
+                }
+                left = mid+1;
+            }
+        }
+        return new int[]{leftPos, rightPos};
     }
 }
