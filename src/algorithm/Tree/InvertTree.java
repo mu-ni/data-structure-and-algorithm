@@ -12,11 +12,9 @@ public class InvertTree {
         TreeNode tree = new InvertTree().invertTree(TreeNode.genTree());
         System.out.println(new PreOrder().preOrder(tree));
 
-        System.out.println();
         tree = new InvertTree().invertTree2(TreeNode.genTree());
         System.out.println(new PreOrder().preOrder(tree));
 
-        System.out.println();
         tree = new InvertTree().invertTree3(TreeNode.genTree());
         System.out.println(new PreOrder().preOrder(tree));
     }
