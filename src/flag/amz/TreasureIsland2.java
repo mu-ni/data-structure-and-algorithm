@@ -1,4 +1,4 @@
-package algorithm.amz;
+package flag.amz;
 
 /**
  * Created by muni on 2019/12/9

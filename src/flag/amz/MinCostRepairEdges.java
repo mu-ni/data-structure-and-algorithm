@@ -1,4 +1,4 @@
-package algorithm.amz;
+package flag.amz;
 
 import java.util.Arrays;
 import java.util.HashMap;

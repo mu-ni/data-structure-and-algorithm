@@ -1,4 +1,4 @@
-package algorithm.amz;
+package flag.amz;
 
 import java.util.LinkedList;
 import java.util.Queue;

@@ -1,4 +1,4 @@
-package algorithm.amz;
+package flag.amz;
 
 import java.util.PriorityQueue;
 import java.util.Queue;
