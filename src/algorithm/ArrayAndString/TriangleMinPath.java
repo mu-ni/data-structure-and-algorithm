@@ -14,6 +14,7 @@ public class TriangleMinPath {
         System.out.println(new TriangleMinPath().minimumTotal(triangle));
         System.out.println(new TriangleMinPath().minimumTotal2(triangle));
         System.out.println(new TriangleMinPath().minimumTotal3(triangle));
+        System.out.println(new TriangleMinPath().minimumTotal4(triangle));
     }
 
     public int minimumTotal(List<List<Integer>> triangle) {
@@ -87,6 +88,30 @@ public class TriangleMinPath {
 
         int min = Integer.MAX_VALUE;
         for (int n : dp[m-1]) {
+            min = Math.min(min, n);
+        }
+        return min;
+    }
+
+    public int minimumTotal4(List<List<Integer>> triangle) {
+        int m = triangle.size();
+        int[] dp = new int[m];
+
+        dp[0] = triangle.get(0).get(0);
+        for (int i=1; i<m; i++) {
+            for (int j=i; j>=0; j--) {
+                if (j == 0) {
+                    dp[j] = triangle.get(i).get(j) + dp[j];
+                } else if (j == i) {
+                    dp[j] = triangle.get(i).get(j) + dp[j-1];
+                } else {
+                    dp[j] = triangle.get(i).get(j) + Math.min(dp[j-1], dp[j]);
+                }
+            }
+        }
+
+        int min = Integer.MAX_VALUE;
+        for (int n : dp) {
             min = Math.min(min, n);
         }
         return min;
