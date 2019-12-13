@@ -7,6 +7,9 @@ public class CoinChange2 { //combinations make up amount
         System.out.println(coinChange3(new int[]{1,2,3}, 5));
         System.out.println(coinChange4(new int[]{1,2,3}, 5));
         System.out.println(coinChange5(new int[]{1,2,3}, 5));
+        System.out.println(coinChange6(new int[]{1,2,3}, 5));
+        System.out.println(coinChange7(new int[]{1,2,3}, 5));
+        System.out.println(coinChange8(new int[]{1,2,3}, 5));
     }
 
     // O(m*n)
@@ -114,6 +117,75 @@ public class CoinChange2 { //combinations make up amount
             }
         }
 
+        return dp[amount];
+    }
+
+    public static int coinChange6(int[] coins, int amount) {
+        if (coins.length == 0 && amount == 0) return 1;
+        if (coins.length == 0) return 0;
+
+        int[][] dp = new int[coins.length][amount+1];
+        for (int i=0; i<coins.length; i++) {
+            dp[i][0] = 1;
+        }
+        int coin0 = coins[0];
+        for (int j=1; j<=amount; j++) {
+            if (j < coin0 || j%coin0 != 0) {
+                dp[0][j] = 0;
+            } else {
+                dp[0][j] = 1;
+            }
+        }
+
+        for (int i=1; i<coins.length; i++) {
+            int coin = coins[i];
+            for (int j=1; j<=amount; j++) {
+                if (j < coin) {
+                    dp[i][j] = dp[i-1][j];
+                } else {
+                    dp[i][j] = dp[i-1][j] + dp[i][j-coin];
+                }
+            }
+        }
+        return dp[coins.length-1][amount];
+    }
+
+    public static int coinChange7(int[] coins, int amount) {
+        if (coins.length == 0 && amount == 0) return 1;
+        if (coins.length == 0) return 0;
+
+        int[] dp = new int[amount+1];
+        dp[0] = 1;
+        int coin0 = coins[0];
+        for (int j=1; j<=amount; j++) {
+            if (j < coin0 || j%coin0 != 0) {
+                dp[j] = 0;
+            } else {
+                dp[j] = 1;
+            }
+        }
+
+        for (int i=1; i<coins.length; i++) {
+            int coin = coins[i];
+            for (int j=1; j<=amount; j++) {
+                if (j < coin) {
+                    dp[j] = dp[j];
+                } else {
+                    dp[j] = dp[j] + dp[j-coin];
+                }
+            }
+        }
+        return dp[amount];
+    }
+
+    public static int coinChange8(int[] coins, int amount) {
+        int[] dp = new int[amount+1];
+        dp[0] = 1;
+        for (int coin : coins) {
+            for (int j=coin; j<=amount; j++) {
+                dp[j] += dp[j-coin];
+            }
+        }
         return dp[amount];
     }
 }
