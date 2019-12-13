@@ -12,6 +12,8 @@ public class CoinChange { // min coins make up amount
         System.out.println(coinChange6(new int[]{1, 2, 3}, 20));
         System.out.println(coinChange7(new int[]{1, 2, 3}, 20));
         System.out.println(coinChange8(new int[]{1, 2, 3}, 20));
+        System.out.println(coinChange9(new int[]{1, 2, 3}, 20));
+        System.out.println(coinChange10(new int[]{1, 2, 3}, 20));
     }
 
     public static int coinChange(int[] coins, int amount) {
@@ -241,6 +243,60 @@ public class CoinChange { // min coins make up amount
             for (int j=1; j<=amount; j++) {
                 if (j >= coin) {
                     dp[j] = Math.min(dp[j-coin] + 1, dp[j]);
+                }
+            }
+        }
+
+        return dp[amount] == amount+1 ? -1 : dp[amount];
+    }
+
+
+
+    public static int coinChange9(int[] coins, int amount) {
+        int[][] dp = new int[coins.length][amount+1];
+        int coin0 = coins[0];
+        dp[0][0] = 0;
+        for (int j=1; j<=amount; j++) {
+            if (j < coin0 || dp[0][j-coin0] == amount+1) {
+                dp[0][j] = amount+1;
+            } else {
+                dp[0][j] = dp[0][j-coin0] +1;
+            }
+        }
+
+        for (int i=1; i<coins.length; i++) {
+            int coin = coins[i];
+            for (int j=0; j<=amount; j++) {
+                if (j < coin) {
+                    dp[i][j] = dp[i-1][j];
+                } else {
+                    dp[i][j] = Math.min(dp[i-1][j], dp[i][j-coin]+1);
+                }
+            }
+        }
+
+        return dp[coins.length-1][amount] == amount+1 ? -1 : dp[coins.length-1][amount];
+    }
+
+    public static int coinChange10(int[] coins, int amount) {
+        int[] dp = new int[amount+1];
+        int coin0 = coins[0];
+        dp[0] = 0;
+        for (int j=1; j<=amount; j++) {
+            if (j < coin0 || dp[j-coin0] == amount+1) {
+                dp[j] = amount+1;
+            } else {
+                dp[j] = dp[j-coin0] +1;
+            }
+        }
+
+        for (int i=1; i<coins.length; i++) {
+            int coin = coins[i];
+            for (int j=0; j<=amount; j++) {
+                if (j < coin) {
+                    dp[j] = dp[j];
+                } else {
+                    dp[j] = Math.min(dp[j], dp[j-coin]+1);
                 }
             }
         }
