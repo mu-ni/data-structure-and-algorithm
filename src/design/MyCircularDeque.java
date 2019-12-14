@@ -102,7 +102,7 @@ public class MyCircularDeque {
         System.out.println(cd.insertFront(4));
         System.out.println(cd.getFront());
 
-        MyCircularDeque cd = new MyCircularDeque(4);
+        cd = new MyCircularDeque(4);
         System.out.println(cd.insertFront(9));
         System.out.println(cd.deleteLast());
         System.out.println(cd.getRear());
