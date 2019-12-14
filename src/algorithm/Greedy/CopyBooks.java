@@ -3,6 +3,7 @@ package algorithm.Greedy;
 public class CopyBooks {
     public static void main(String[] args) {
         System.out.println(new CopyBooks().copyBooks(new int[]{3, 2, 4}, 2));
+        System.out.println(new CopyBooks().copyBooks2(new int[]{3, 2, 4}, 2));
     }
 
     // k people, copy continuous pages. 1 page/min
@@ -42,6 +43,31 @@ public class CopyBooks {
             }
         }
         return count <= k;
+    }
+
+    public int copyBooks2(int[] pages, int k) {
+        if (pages.length == 0) return 0;
+        int max = pages[0];
+        int sum = 0;
+        for (int p : pages) {
+            max = Math.max(max, p);
+            sum += p;
+        }
+        if (k == 1) return sum;
+        if (k >= pages.length) return max;
+
+        int start = max;
+        int end = sum;
+        while (start <= end) {
+            int mid = start + (end - start)/2;
+            if (isValid(pages, k, mid)) {
+                if (mid == max || !isValid(pages, k, mid-1)) return mid;
+                end = mid-1;
+            } else {
+                start = mid+1;
+            }
+        }
+        return -1;
     }
 
 //    works but not understand
