@@ -4,6 +4,8 @@ public class Sqrt {
     public static void main(String[] args) {
         System.out.println(new Sqrt().mySqrt(2147395599));
         System.out.println(new Sqrt().mySqrt2(2147395599));
+        System.out.println(new Sqrt().mySqrt3(2147395599));
+        System.out.println(new Sqrt().mySqrt4(2147395599));
     }
 
     public int mySqrt(int x) {
@@ -40,5 +42,39 @@ public class Sqrt {
             }
         }
         return ans;
+    }
+
+    public int mySqrt3(int x) {
+        long start = 0;
+        long end = x;
+        while (start <= end) {
+            long mid = start + (end - start) / 2;
+            long sqr = mid * mid;
+            if (sqr == x) return (int) mid;
+            if (sqr < x) {
+                if ((mid + 1) * (mid + 1) > x) return (int) mid;
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    public int mySqrt4(int x) {
+        if (x <= 1) return x;
+        int start = 0;
+        int end = x;
+        while (start <= end) {
+            int mid = start + (end - start)/2;
+            if (x/mid == mid) return mid;
+            if (x/mid > mid) {
+                if (x/(mid+1) < (mid+1)) return mid;
+                start = mid+1;
+            } else {
+                end = mid-1;
+            }
+        }
+        return -1;
     }
 }
