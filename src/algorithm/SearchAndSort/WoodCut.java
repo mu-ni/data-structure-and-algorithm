@@ -1,4 +1,4 @@
-package algorithm.Greedy;
+package algorithm.SearchAndSort;
 
 public class WoodCut {
     public static void main(String[] args) {

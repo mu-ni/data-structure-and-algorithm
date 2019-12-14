@@ -1,4 +1,4 @@
-package algorithm.Greedy;
+package algorithm.SearchAndSort;
 
 public class CopyBooks {
     public static void main(String[] args) {
