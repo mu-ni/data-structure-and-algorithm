@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString.LongestSubstring;
+package algorithm.TwoPointers.LongestSubstring;
 
 import java.util.HashSet;
 import java.util.Set;

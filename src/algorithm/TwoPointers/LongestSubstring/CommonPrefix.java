@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString.LongestSubstring;
+package algorithm.TwoPointers.LongestSubstring;
 
 public class CommonPrefix {
     public static void main(String[] args) {

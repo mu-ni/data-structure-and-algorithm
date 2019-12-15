@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString.LongestSubstring;
+package algorithm.TwoPointers.LongestSubstring;
 
 public class AtLeastKRepeatingCharacter {
     public static void main(String[] args) {

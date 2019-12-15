@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString.LongestSubstring;
+package algorithm.TwoPointers.LongestSubstring;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -61,24 +61,20 @@ public class WithoutRepeating { //Longest Substring without Repeating Character
     }
 
     public static int lengthOfLongestSubstring3(String s) {
+        int[] arr = new int[128];
         int slow = 0;
         int fast = 0;
         int max = 0;
-        int[] arr = new int[128];
-
-        while (slow < s.length() && fast < s.length()) {
-            char c = s.charAt(fast);
-            if (arr[c] == 0) {
-                fast ++;
-                arr[c] ++;
+        while (fast < s.length()) {
+            if (arr[s.charAt(fast)] == 0) {
+                arr[s.charAt(fast)]++;
+                fast++;
                 max = Math.max(max, fast - slow);
-                continue;
+            } else {
+                arr[s.charAt(slow)]--;
+                slow++;
             }
-
-            arr[s.charAt(slow)] --;
-            slow ++;
         }
-
         return max;
     }
 
