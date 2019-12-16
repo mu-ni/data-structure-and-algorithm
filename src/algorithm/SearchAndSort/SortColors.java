@@ -7,6 +7,9 @@ public class SortColors {
         int[] nums = new int[]{2, 0, 2, 1, 1, 0};
         new SortColors().sortColors(nums);
         System.out.println(Arrays.toString(nums));
+        nums = new int[]{0,1,0};
+        new SortColors().sortColors2(nums);
+        System.out.println(Arrays.toString(nums));
     }
 
     public void sortColors(int[] nums) {
@@ -24,6 +27,21 @@ public class SortColors {
                 start++;
             }
             i++;
+        }
+    }
+
+    public void sortColors2(int[] nums) {
+        int left = 0;
+        int right = nums.length-1;
+        for (int i=0; i<nums.length; i++) {
+            while (nums[i] == 2 && i < right) {
+                swap(nums, i, right);
+                right--;
+            }
+            while (nums[i] == 0 && i > left) {
+                swap(nums, i, left);
+                left++;
+            }
         }
     }
 
