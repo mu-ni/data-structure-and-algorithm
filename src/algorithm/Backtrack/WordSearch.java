@@ -5,6 +5,7 @@ public class WordSearch {
         char[][] board = new char[][]{{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}};
         System.out.println(new WordSearch().exist(board, "ABCCED"));
         System.out.println(new WordSearch().exist2(board, "ABCCED"));
+        System.out.println(new WordSearch().exist3(new char[][]{{'a'}}, "a"));
     }
 
     public boolean exist(char[][] board, String word) {
@@ -56,5 +57,33 @@ public class WordSearch {
                 || backtrack(board, x, y + 1, word, i + 1, visited);
         visited[x][y] = false;
         return exist;
+    }
+
+    int m;
+    int n;
+    int[][] dirs = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    public boolean exist3(char[][] board, String word) {
+        m = board.length;
+        n = board[0].length;
+        boolean[][] visited = new boolean[m][n];
+        for (int i=0; i<m; i++) {
+            for (int j=0; j<n; j++) {
+                if (dfs(board, i, j, 0, word, visited)) return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean dfs(char[][] board, int x, int y, int index, String word, boolean[][] visited) {
+        if (index == word.length()) return true;
+        if (x < 0 || y < 0 || x >= m || y >= n) return false;
+        if (board[x][y] != word.charAt(index) || visited[x][y]) return false;
+        visited[x][y] = true;
+        boolean found = false;
+        for (int[] dir : dirs) {
+            found = found || dfs(board, x+dir[0], y+dir[1], index+1, word, visited);
+        }
+        visited[x][y] = false;
+        return found;
     }
 }

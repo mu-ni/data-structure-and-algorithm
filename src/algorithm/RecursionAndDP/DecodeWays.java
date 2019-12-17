@@ -4,6 +4,7 @@ public class DecodeWays {
     public static void main(String[] args) {
         System.out.println(new DecodeWays().numDecodings("226"));
         System.out.println(new DecodeWays().numDecodings2("226"));
+        System.out.println(new DecodeWays().numDecodings3("22623"));
     }
 
     public int numDecodings(String s) {
@@ -44,5 +45,28 @@ public class DecodeWays {
         }
 
         return dp[0];
+    }
+
+    public int numDecodings3(String s) {
+        if (s.length() == 0) return 0;
+
+        int[] dp = new int[s.length()];
+        dp[0] = s.charAt(0) == '0' ? 0 : 1;
+        for (int i=1; i<s.length(); i++) {
+            int cur = Integer.valueOf(s.substring(i, i+1));
+            int prev = Integer.valueOf(s.substring(i-1, i+1));
+
+            if (1 <= cur && cur <= 9) {
+                dp[i] = dp[i-1];
+            }
+            if (10 <= prev && prev <= 26) {
+                if (i < 2) {
+                    dp[i] += 1;
+                } else {
+                    dp[i] += dp[i-2];
+                }
+            }
+        }
+        return dp[s.length()-1];
     }
 }
