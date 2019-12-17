@@ -7,6 +7,7 @@ public class WordLadder {
         List<String> wordList = Arrays.asList("hot", "dot", "dog", "lot", "log", "cog");
         System.out.println(new WordLadder().ladderLength("hit", "cog", wordList));
         System.out.println(new WordLadder().ladderLength2("hit", "cog", wordList));
+        System.out.println(new WordLadder().ladderLength3("hit", "cog", wordList));
     }
 
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
@@ -66,5 +67,36 @@ public class WordLadder {
                 arr[i] = tmp;
             }
         }
+    }
+
+    // TLE
+    public int ladderLength3(String beginWord, String endWord, List<String> wordList) {
+        Queue<String> queue = new LinkedList<>();
+        queue.offer(beginWord);
+        Set<String> visited = new HashSet<>();
+        visited.add(beginWord);
+
+        int step = 1;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i=0; i<size; i++) {
+                String word = queue.poll();
+                if (word.equals(endWord)) return step;
+                for (int j=0; j<word.length(); j++) {
+                    char tmp = word.charAt(j);
+                    char[] arr = word.toCharArray();
+                    for (char c='a'; c <='z'; c++) {
+                        arr[j] = c;
+                        String str = new String(arr);
+                        if (!wordList.contains(str) || visited.contains(str)) continue;
+                        visited.add(str);
+                        queue.offer(str);
+                        arr[j] = tmp;
+                    }
+                }
+            }
+            step++;
+        }
+        return 0;
     }
 }
