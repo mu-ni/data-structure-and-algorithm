@@ -69,30 +69,28 @@ public class WordLadder {
         }
     }
 
-    // TLE
     public int ladderLength3(String beginWord, String endWord, List<String> wordList) {
+        Set<String> dict = new HashSet<>(wordList);
         Queue<String> queue = new LinkedList<>();
         queue.offer(beginWord);
-        Set<String> visited = new HashSet<>();
-        visited.add(beginWord);
+        dict.remove(beginWord);
 
         int step = 1;
         while (!queue.isEmpty()) {
             int size = queue.size();
             for (int i=0; i<size; i++) {
-                String word = queue.poll();
-                if (word.equals(endWord)) return step;
-                for (int j=0; j<word.length(); j++) {
-                    char tmp = word.charAt(j);
-                    char[] arr = word.toCharArray();
+                char[] arr = queue.poll().toCharArray();
+                for (int j=0; j<arr.length; j++) {
+                    char tmp = arr[j];
                     for (char c='a'; c <='z'; c++) {
                         arr[j] = c;
                         String str = new String(arr);
-                        if (!wordList.contains(str) || visited.contains(str)) continue;
-                        visited.add(str);
+                        if (!dict.contains(str)) continue;
+                        if (str.equals(endWord)) return step+1;
                         queue.offer(str);
-                        arr[j] = tmp;
+                        dict.remove(str);
                     }
+                    arr[j] = tmp;
                 }
             }
             step++;
