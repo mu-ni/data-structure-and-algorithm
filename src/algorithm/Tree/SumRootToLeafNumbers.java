@@ -8,7 +8,7 @@ import algorithm.Tree.Dao.TreeNode;
 public class SumRootToLeafNumbers {
     public static void main(String[] args) {
         System.out.println(new SumRootToLeafNumbers().sumNumbers(TreeNode.genTree()));
-        System.out.println(new SumRootToLeafNumbers().sumNumbers2(TreeNode.arr2tree(new Integer[]{1,0})));
+        System.out.println(new SumRootToLeafNumbers().sumNumbers2(TreeNode.genTree()));
     }
 
     int max = 0;
