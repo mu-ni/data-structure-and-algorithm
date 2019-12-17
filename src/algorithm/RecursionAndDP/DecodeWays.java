@@ -2,8 +2,8 @@ package algorithm.RecursionAndDP;
 
 public class DecodeWays {
     public static void main(String[] args) {
-        System.out.println(new DecodeWays().numDecodings("226"));
-        System.out.println(new DecodeWays().numDecodings2("226"));
+        System.out.println(new DecodeWays().numDecodings("22623"));
+        System.out.println(new DecodeWays().numDecodings2("22623"));
         System.out.println(new DecodeWays().numDecodings3("22623"));
     }
 
