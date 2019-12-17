@@ -11,6 +11,9 @@ public class FlattenBT {
         root = TreeNode.arr2tree(new Integer[]{1,2,5,3,4,null,6});
         flatten2(root);
         System.out.println(new PreOrder().preOrder(root));
+        root = TreeNode.arr2tree(new Integer[]{1,2,5,3,4,null,6});
+        flatten3(root);
+        System.out.println(new PreOrder().preOrder(root));
     }
 
     public static void flatten(TreeNode root) {
@@ -45,6 +48,27 @@ public class FlattenBT {
             cur.right = cur.left;
             cur.left = null;
             cur = cur.right;
+        }
+    }
+
+    public static void flatten3(TreeNode root) {
+        while (true) {
+            while (root != null && root.left == null) {
+                root = root.right;
+            }
+            if (root == null) return;
+
+            TreeNode left = root.left;
+            TreeNode leftRightTail = left;
+            while (leftRightTail.right != null) {
+                leftRightTail = leftRightTail.right;
+            }
+            TreeNode tmp = root.right;
+            root.right = left;
+            leftRightTail.right = tmp;
+
+            root.left = null;
+            root = root.right;
         }
     }
 }
