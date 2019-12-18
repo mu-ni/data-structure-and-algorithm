@@ -6,21 +6,24 @@ import java.util.Stack;
 
 public class MinStack {
     Stack<Integer> stack;
-    Queue<Integer> queue;
-
+    Stack<Integer> min;
+    /** initialize your data structure here. */
     public MinStack() {
         stack = new Stack<>();
-        queue = new PriorityQueue<>();
+        min = new Stack<>();
     }
 
     public void push(int x) {
         stack.push(x);
-        queue.offer(x);
+        if (min.isEmpty() || min.peek() >= x) {
+            min.push(x);
+        }
     }
 
     public void pop() {
-        if (!stack.isEmpty()) {
-            queue.remove(Integer.valueOf(stack.pop()));
+        int pop = stack.pop();
+        if (!min.isEmpty() && min.peek() == pop) {
+            min.pop();
         }
     }
 
@@ -29,7 +32,7 @@ public class MinStack {
     }
 
     public int getMin() {
-        return queue.peek();
+        return min.peek();
     }
 
     public static void main(String[] args) {
