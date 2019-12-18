@@ -9,6 +9,7 @@ public class WordBreak {
         List<String> dict = Arrays.asList("cats", "dog", "sand", "and", "cat");
         System.out.println(new WordBreak().wordBreak("catsandog", dict));
         System.out.println(new WordBreak().wordBreak2("catsandog", dict));
+        System.out.println(new WordBreak().wordBreak3("catsandog", dict));
     }
 
 //    public boolean wordBreak(String s, List<String> wordDict) { // not pass all cases
@@ -61,5 +62,25 @@ public class WordBreak {
             }
         }
         return dp[s.length()-1];
+    }
+
+    // TLE
+    boolean found = false;
+    public boolean wordBreak3(String s, List<String> wordDict) {
+        helper(s, wordDict, 0);
+        return found;
+    }
+
+    public void helper(String s, List<String> wordDict, int start) {
+        if (start == s.length()) {
+            found = true;
+            return;
+        }
+
+        for (int i=start; i<s.length(); i++) {
+            String sub = s.substring(start, i+1);
+            if (!wordDict.contains(sub)) continue;
+            helper(s, wordDict, i+1);
+        }
     }
 }
