@@ -8,6 +8,7 @@ public class WordBreak {
     public static void main(String[] args) {
         List<String> dict = Arrays.asList("cats", "dog", "sand", "and", "cat");
         System.out.println(new WordBreak().wordBreak("catsandog", dict));
+        System.out.println(new WordBreak().wordBreak2("catsandog", dict));
     }
 
 //    public boolean wordBreak(String s, List<String> wordDict) { // not pass all cases
@@ -47,5 +48,18 @@ public class WordBreak {
             }
         }
         return dp[n];
+    }
+
+    public boolean wordBreak2(String s, List<String> wordDict) {
+        boolean[] dp = new boolean[s.length()];
+        for (int i=0; i<s.length(); i++) {
+            for (int j=i; j<s.length(); j++) {
+                String sub = s.substring(i, j+1);
+                if (wordDict.contains(sub) && (i == 0 || dp[i-1])) {
+                    dp[j] = true;
+                }
+            }
+        }
+        return dp[s.length()-1];
     }
 }
