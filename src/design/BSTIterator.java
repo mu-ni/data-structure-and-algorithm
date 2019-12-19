@@ -18,13 +18,15 @@ class BSTIterator {
 
     /** @return the next smallest number */
     public int next() {
-        TreeNode node = stack.pop();
-        TreeNode cur = node.right;
+        TreeNode cur = stack.pop();
+        int rst = cur.val;
+
+        cur = cur.right;
         while (cur != null) {
             stack.push(cur);
             cur = cur.left;
         }
-        return node.val;
+        return rst;
     }
 
     /** @return whether we have a next smallest number */
