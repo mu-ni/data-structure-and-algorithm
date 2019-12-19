@@ -4,8 +4,6 @@ public class MajorityElement {
     public static void main(String[] args) {
         System.out.println(new MajorityElement().majorityElement(new int[]{2,2,1,1,1,2,2}));
     }
-
-    // appears > len/2
     public int majorityElement(int[] nums) {
         int candidate = nums[0];
         int count = 1;

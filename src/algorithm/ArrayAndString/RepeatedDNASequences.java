@@ -27,15 +27,16 @@ public class RepeatedDNASequences {
     }
 
     public List<String> findRepeatedDnaSequences2(String s) {
-        Set<String> set1 = new HashSet<>();
-        Set<String> set2 = new HashSet<>();
-        for (int i = 0; i <= s.length() - 10; i++) {
-            String sub = s.substring(i, i + 10);
-            if (set1.contains(sub)) {
-                set2.add(sub);
+        Set<String> rst = new HashSet<>();
+        Set<String> set = new HashSet<>();
+        for (int i=0; i<=s.length()-10; i++) {
+            String dna = s.substring(i, i+10);
+            if (set.contains(dna)) {
+                rst.add(dna);
+            } else {
+                set.add(dna);
             }
-            set1.add(sub);
         }
-        return new ArrayList<>(set2);
+        return new ArrayList<>(rst);
     }
 }
