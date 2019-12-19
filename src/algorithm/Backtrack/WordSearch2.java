@@ -12,6 +12,10 @@ public class WordSearch2 {
         String[] words = new String[]{"oath","pea","eat","rain"};
         System.out.println(new WordSearch2().findWords(board, words));
         System.out.println(new WordSearch2().findWords2(board, words));
+        board = new char[][]{{'a', 'b'},{'a', 'a'}};
+        words = new String[]{"aba","baa","bab","aaab","aaa","aaaa","aaba"};
+        System.out.println(new WordSearch2().findWords(board, words));
+        System.out.println(new WordSearch2().findWords2(board, words));
     }
 
     int m;
@@ -80,7 +84,6 @@ public class WordSearch2 {
     public void backtrack(Set<String> rst, char[][] board, int x, int y, Trie trie, boolean[][] visited, String path) {
         if (trie.search(path)) {
             rst.add(path);
-            return;
         }
         if (x < 0 || y < 0 || x >= m || y >= n) return;
         if (visited[x][y] || !trie.startsWith(path)) return;
