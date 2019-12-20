@@ -7,7 +7,7 @@ public class BasicCalculator {
         System.out.println(new BasicCalculator().calculate0("2-1 + 20"));
         System.out.println(new BasicCalculator().calculate("(1+(4+5+2)-3)+(6+8)"));
         System.out.println(new BasicCalculator().calculate2("2-1 + 20"));
-        System.out.println(new BasicCalculator().calculate3("(1+(4+5+2)-3)+(6+8)"));
+        System.out.println(new BasicCalculator().calculate3("1 + 1"));
     }
 
     // no ()
@@ -139,6 +139,7 @@ public class BasicCalculator {
             }
         }
 
+        if (num != 0) rst += num*sign;
         return rst;
     }
 }
