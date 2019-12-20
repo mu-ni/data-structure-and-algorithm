@@ -23,6 +23,7 @@ public class IsSubSequence {
     }
 
     public boolean isSubsequence2(String s, String t) {
+        if (s.length() == 0) return true;
         int m = s.length();
         int n = t.length();
         boolean[][] dp = new boolean[m+1][n+1];
@@ -42,6 +43,7 @@ public class IsSubSequence {
     }
 
     public boolean isSubsequence3(String s, String t) {
+        if (s.length() == 0) return true;
         int m = s.length();
         int n = t.length();
         boolean[] dp = new boolean[n+1];
