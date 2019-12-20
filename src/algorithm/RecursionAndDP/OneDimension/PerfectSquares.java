@@ -1,4 +1,4 @@
-package algorithm.RecursionAndDP;
+package algorithm.RecursionAndDP.OneDimension;
 
 import java.util.Arrays;
 

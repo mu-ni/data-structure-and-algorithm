@@ -1,4 +1,4 @@
-package algorithm.RecursionAndDP;
+package algorithm.RecursionAndDP.OneDimension;
 
 public class DecodeWays {
     public static void main(String[] args) {

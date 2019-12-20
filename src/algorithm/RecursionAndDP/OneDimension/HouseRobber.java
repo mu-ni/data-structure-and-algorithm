@@ -1,4 +1,4 @@
-package algorithm.RecursionAndDP;
+package algorithm.RecursionAndDP.OneDimension;
 
 /**
  * Created by muni on 2019/12/19
