@@ -14,6 +14,8 @@ public class LowestCommonAncestor {
         System.out.println(ancestor == null ? null : ancestor.val);
         ancestor = lowestCommonAncestor2(root, p, q);
         System.out.println(ancestor == null ? null : ancestor.val);
+        ancestor = lowestCommonAncestor3(root, p, q);
+        System.out.println(ancestor == null ? null : ancestor.val);
     }
 
     public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
@@ -55,5 +57,15 @@ public class LowestCommonAncestor {
             q = parent.get(q);
         }
         return q;
+    }
+
+    public static TreeNode lowestCommonAncestor3(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) return null;
+        if (root == p || root == q) return root;
+
+        TreeNode findLeft = lowestCommonAncestor3(root.left, p, q);
+        TreeNode findRight = lowestCommonAncestor3(root.right, p, q);
+        if (findLeft != null && findRight != null) return root;
+        return findLeft == null ? findRight : findLeft;
     }
 }
