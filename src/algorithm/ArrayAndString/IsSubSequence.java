@@ -6,8 +6,8 @@ public class IsSubSequence {
     public static void main(String[] args) {
         System.out.println(new IsSubSequence().isSubsequence("abc", "ahbgdc"));
         System.out.println(new IsSubSequence().isSubsequence2("abc", "ahbgdc"));
+        System.out.println(new IsSubSequence().isSubsequence3("abc", "ahbgdc"));
     }
-
     public boolean isSubsequence(String s, String t) {
         if (s.length() == 0) return true;
         int indexS = 0;
@@ -39,5 +39,26 @@ public class IsSubSequence {
             }
         }
         return dp[m][n];
+    }
+
+    public boolean isSubsequence3(String s, String t) {
+        int m = s.length();
+        int n = t.length();
+        boolean[] dp = new boolean[n+1];
+        Arrays.fill(dp, true);
+        dp[0] = false;
+        for (int i=1; i<=m; i++) {
+            boolean pre = true;
+            for (int j=1; j<=n; j++) {
+                boolean tmp = dp[j];
+                if (s.charAt(i-1) == t.charAt(j-1)) {
+                    dp[j] = pre && dp[j];
+                } else {
+                    dp[j] = dp[j-1];
+                }
+                pre = tmp;
+            }
+        }
+        return dp[n];
     }
 }
