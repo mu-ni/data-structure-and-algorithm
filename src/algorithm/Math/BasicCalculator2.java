@@ -60,33 +60,35 @@ public class BasicCalculator2 {
     }
 
     public int calculate2(String s) {
+        s = s.trim();
         Stack<Integer> stack = new Stack<>();
-        int n = 0;
+        int num = 0;
         char sign = '+';
         for (int i=0; i<s.length(); i++) {
             char c = s.charAt(i);
+            if (c == ' ') continue;
             if (Character.isDigit(c)) {
-                n = n*10 + (c - '0');
-            }
-            if (i == s.length() - 1 || (c != ' ' && !Character.isDigit(c))) {
-                if (sign == '+') {
-                    stack.push(n);
-                } else if (sign == '-') {
-                    stack.push(-n);
-                } else if (sign == '*') {
-                    stack.push(stack.pop()*n);
-                } else if (sign == '/') {
-                    stack.push(stack.pop()/n);
-                }
-                sign = c;
-                n = 0;
+                num = num*10 + c - '0';
             }
 
+            if (i == s.length()-1 || !Character.isDigit(c)) {
+                if (sign == '+') {
+                    stack.push(num);
+                } else if (sign == '-') {
+                    stack.push(-num);
+                } else if (sign == '*') {
+                    stack.push(stack.pop()*num);
+                } else if (sign == '/') {
+                    stack.push(stack.pop()/num);
+                }
+                sign = c;
+                num = 0;
+            }
         }
 
         int rst = 0;
-        for (int num : stack) {
-            rst += num;
+        while (!stack.isEmpty()) {
+            rst += stack.pop();
         }
         return rst;
     }
