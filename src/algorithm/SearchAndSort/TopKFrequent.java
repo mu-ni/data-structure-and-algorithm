@@ -6,6 +6,7 @@ public class TopKFrequent {
     public static void main(String[] args) {
         System.out.println(new TopKFrequent().topKFrequent(new int[]{1,1,1,2,2,3}, 2));
         System.out.println(new TopKFrequent().topKFrequent2(new int[]{1,1,1,2,2,3}, 2));
+        System.out.println(new TopKFrequent().topKFrequent3(new int[]{1,1,1,2,2,3}, 2));
     }
 
     public List<Integer> topKFrequent(int[] nums, int k) {
@@ -64,5 +65,32 @@ public class TopKFrequent {
             }
         }
         return rst;
+    }
+
+    public List<Integer> topKFrequent3(int[] nums, int k) {
+        Map<Integer, Integer> map = new TreeMap<>();
+        for (int n : nums) {
+            int count = map.getOrDefault(n, 0)+1;
+            map.put(n, count);
+        }
+
+        List<List<Integer>> lists = new ArrayList<>();
+        for (int i=0; i<=nums.length; i++) {
+            lists.add(new ArrayList<>());
+        }
+        for (int key : map.keySet()) {
+            int count = map.get(key);
+            lists.get(count).add(key);
+        }
+
+        List<Integer> rst = new ArrayList<>();
+        for (int i=nums.length; i>0; i--) {
+            if(lists.get(i).size() == 0) continue;
+            for (int n : lists.get(i)) {
+                rst.add(n);
+                if (rst.size() == k) return rst;
+            }
+        }
+        return new ArrayList<>();
     }
 }
