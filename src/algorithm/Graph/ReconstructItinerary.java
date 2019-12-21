@@ -13,6 +13,8 @@ public class ReconstructItinerary {
         System.out.println(new ReconstructItinerary().findItinerary(tickets));
         System.out.println(new ReconstructItinerary().findItinerary2(tickets));
         System.out.println(new ReconstructItinerary().findAllItineraries(tickets));
+        System.out.println(new ReconstructItinerary().findItinerary4(tickets));
+        System.out.println(new ReconstructItinerary().findItinerary5(tickets));
     }
 
     public List<String> findItinerary(List<List<String>> tickets) {
@@ -108,5 +110,65 @@ public class ReconstructItinerary {
             path.remove(path.size()-1);
             dests.add(i, dest);
         }
+    }
+
+    public List<String> findItinerary4(List<List<String>> tickets) {
+        Map<String, List<String>> graph = new HashMap<>();
+        for (List<String> pair : tickets) {
+            String from = pair.get(0);
+            String to = pair.get(1);
+            graph.putIfAbsent(from, new ArrayList<>());
+            graph.get(from).add(to);
+        }
+        List<String> rst = new ArrayList<>();
+        boolean found = backtrack(rst, graph, "JFK", tickets.size()+1);
+        return found ? rst : new ArrayList<>();
+    }
+
+    public boolean backtrack(List<String> rst, Map<String, List<String>> graph, String from, int stops) {
+        rst.add(from);
+        if (rst.size() == stops) return true;
+        if (!graph.containsKey(from) || graph.get(from).size() == 0) return false;
+        List<String> destList = graph.get(from);
+        Collections.sort(destList);
+        for (int i=0; i<destList.size(); i++) {
+            String to = destList.remove(i);
+            boolean found = backtrack(rst, graph, to, stops);
+            if (found) return true;
+            destList.add(i, to);
+            rst.remove(rst.size()-1);
+        }
+        return false;
+    }
+
+    public List<String> findItinerary5(List<List<String>> tickets) {
+        Map<String, List<String>> graph = new HashMap<>();
+        for (List<String> pair : tickets) {
+            String from = pair.get(0);
+            String to = pair.get(1);
+            graph.putIfAbsent(from, new ArrayList<>());
+            graph.get(from).add(to);
+        }
+        List<String> rst = new ArrayList<>();
+        rst.add("JFK");
+        boolean found = backtrack(rst, graph, tickets.size()+1);
+        return found ? rst : new ArrayList<>();
+    }
+
+    public boolean backtrack(List<String> rst, Map<String, List<String>> graph, int stops) {
+        String from = rst.get(rst.size()-1);
+        if (rst.size() == stops) return true;
+        if (!graph.containsKey(from) || graph.get(from).size() == 0) return false;
+        List<String> destList = graph.get(from);
+        Collections.sort(destList);
+        for (int i=0; i<destList.size(); i++) {
+            String to = destList.remove(i);
+            rst.add(to);
+            boolean found = backtrack(rst, graph, stops);
+            if (found) return true;
+            destList.add(i, to);
+            rst.remove(rst.size()-1);
+        }
+        return false;
     }
 }
