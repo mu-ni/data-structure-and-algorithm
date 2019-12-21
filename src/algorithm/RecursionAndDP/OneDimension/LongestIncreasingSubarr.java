@@ -1,4 +1,4 @@
-package flag.dp;
+package algorithm.RecursionAndDP.OneDimension;
 
 import java.util.Arrays;
 
