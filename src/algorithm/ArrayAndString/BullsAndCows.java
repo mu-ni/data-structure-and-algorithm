@@ -1,10 +1,5 @@
 package algorithm.ArrayAndString;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class BullsAndCows {
     public static void main(String[] args) {
         System.out.println(new BullsAndCows().getHint("1123", "0111"));
