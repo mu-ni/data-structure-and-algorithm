@@ -9,27 +9,27 @@ public class AtLeastKRepeatingCharacter {
 
     // every character in s appears >= k times
     public static int longestSubstring(String s, int k) {
-        return helper(s.toCharArray(), 0, s.length(), k);
+        if (s.length() < k) return 0;
+        return helper(s, 0, s.length(), k);
     }
 
-    public static int helper(char[] str, int start, int end, int k) {
+    public static int helper(String s, int start, int end, int k) {
         if (end - start < k) return 0;
         int[] arr = new int[26];
-        for (int i = start; i<end; i++) {
-            arr[str[i] - 'a']++;
+        for (int i=start; i<end; i++) {
+            arr[s.charAt(i) - 'a']++;
         }
-
         boolean isValid = true;
-        for (int i : arr) {
-            if (i > 0 && i < k) isValid = false;
+        for (int n : arr) {
+            if (n == 0) continue;
+            if (n < k) isValid = false;
         }
         if (isValid) return end - start;
-
-        for (int i = start; i<end; i++) {
-            if (arr[str[i] - 'a'] >=k) continue;
-            return Math.max(helper(str, start, i, k), helper(str,i+1,end,k));
+        for (int i=start; i<end; i++) {
+            if (arr[s.charAt(i) - 'a'] >= k) continue;
+            return Math.max(helper(s, start, i, k), helper(s,i+1,end,k));
         }
-        return end - start;
+        return 0;
     }
 
     public static int longestSubstring2(String s, int k) {
