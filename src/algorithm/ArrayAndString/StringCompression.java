@@ -4,6 +4,7 @@ public class StringCompression {
     public static void main(String[] args) {
         System.out.println(compress(new char[]{'a','b','b','b','b','b','b','b','b','b','b','b','b'}));
         System.out.println(compress2(new char[]{'a','b','b','b','b','b','b','b','b','b','b','b','b'}));
+        System.out.println(compress3(new char[]{'a','a','b','b','c','c','c'}));
     }
 
     public static int compress(char[] chars) {
@@ -43,6 +44,26 @@ public class StringCompression {
                 }
             }
             len = 1;
+        }
+        return index;
+    }
+
+    public static int compress3(char[] chars) {
+        if (chars.length <= 1) return chars.length;
+        int count = 1;
+        int index = 0;
+        for (int i=0; i<chars.length; i++) {
+            if (i != chars.length-1 && chars[i] == chars[i+1]) {
+                count++;
+            } else {
+                chars[index++] = chars[i];
+                if (count > 1) {
+                    for (char cnt : String.valueOf(count).toCharArray()) {
+                        chars[index++] = cnt;
+                    }
+                }
+                count = 1;
+            }
         }
         return index;
     }
