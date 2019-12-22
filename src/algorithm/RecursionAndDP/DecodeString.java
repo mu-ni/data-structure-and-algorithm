@@ -32,21 +32,22 @@ public class DecodeString {
     }
 
     public String decodeString(String s) {
-        Stack<Integer> intStack = new Stack<>();
+        Stack<Integer> istack = new Stack<>();
         Stack<String> stack = new Stack<>();
+        int n = 0;
         StringBuilder sb = new StringBuilder();
-        int k = 0;
-        for (char c : s.toCharArray()) {
+        for (int i=0; i<s.length(); i++) {
+            char c = s.charAt(i);
             if (Character.isDigit(c)) {
-                k = k * 10 + (c - '0');
+                n = n*10 + c - '0';
             } else if (c == '[') {
+                istack.push(n);
+                n = 0;
                 stack.push(sb.toString());
-                intStack.push(k);
                 sb = new StringBuilder();
-                k = 0;
             } else if (c == ']') {
                 String str = stack.pop();
-                str += repeat(sb.toString(), intStack.pop());
+                str += repeat(sb.toString(), istack.pop());
                 sb = new StringBuilder(str);
             } else {
                 sb.append(c);
