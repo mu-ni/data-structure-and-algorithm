@@ -27,6 +27,7 @@ public class AtLeastKRepeatingCharacter {
         if (isValid) return end - start;
         for (int i=start; i<end; i++) {
             if (arr[s.charAt(i) - 'a'] >= k) continue;
+            // exclude s.charAt(i);
             return Math.max(helper(s, start, i, k), helper(s,i+1,end,k));
         }
         return 0;
