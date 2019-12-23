@@ -60,6 +60,7 @@ public class ShortestUnsortedContinuousSubarray {
         return rst;
     }
 
+    // do't understand
     public int findUnsortedSubarray4(int[] nums) {
         int n = nums.length;
         if (n == 0) return 0;
