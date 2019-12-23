@@ -6,7 +6,7 @@ public class ShortestUnsortedContinuousSubarray {
     public static void main(String[] args) {
         System.out.println(new ShortestUnsortedContinuousSubarray().findUnsortedSubarray(new int[]{2, 6, 4, 8, 10, 9, 15}));
         System.out.println(new ShortestUnsortedContinuousSubarray().findUnsortedSubarray2(new int[]{2, 6, 4, 8, 10, 9, 15}));
-        System.out.println(new ShortestUnsortedContinuousSubarray().findUnsortedSubarray3(new int[]{2, 6, 4, 8, 10, 9, 15}));
+        System.out.println(new ShortestUnsortedContinuousSubarray().findUnsortedSubarray3(new int[]{2}));
     }
 
     public int findUnsortedSubarray(int[] nums) {
@@ -52,10 +52,10 @@ public class ShortestUnsortedContinuousSubarray {
             slow++;
         }
         int fast = nums.length-1;
-        while (fast >= 0 && nums[fast] == sorted[fast]) {
+        while (fast >slow && nums[fast] == sorted[fast]) {
             rst--;
             fast--;
         }
-        return rst < 0 ? 0 : rst;
+        return rst;
     }
 }
