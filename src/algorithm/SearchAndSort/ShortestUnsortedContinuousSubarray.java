@@ -7,6 +7,7 @@ public class ShortestUnsortedContinuousSubarray {
         System.out.println(new ShortestUnsortedContinuousSubarray().findUnsortedSubarray(new int[]{2, 6, 4, 8, 10, 9, 15}));
         System.out.println(new ShortestUnsortedContinuousSubarray().findUnsortedSubarray2(new int[]{2, 6, 4, 8, 10, 9, 15}));
         System.out.println(new ShortestUnsortedContinuousSubarray().findUnsortedSubarray3(new int[]{2, 6, 4, 8, 10, 9, 15}));
+        System.out.println(new ShortestUnsortedContinuousSubarray().findUnsortedSubarray4(new int[]{2, 6, 4, 8, 10, 9, 15}));
     }
 
     public int findUnsortedSubarray(int[] nums) {
@@ -57,5 +58,21 @@ public class ShortestUnsortedContinuousSubarray {
             fast--;
         }
         return rst;
+    }
+
+    public int findUnsortedSubarray4(int[] nums) {
+        int n = nums.length;
+        if (n == 0) return 0;
+        int slow = 0;
+        int fast = -1;
+        int min = nums[n-1];
+        int max = nums[0];
+        for (int i=0; i<n; i++) {
+            max = Math.max(max, nums[i]);
+            min = Math.min(min, nums[n-1-i]);
+            if (nums[i] < max) fast = i;
+            if (nums[n-1-i] > min) slow = n-1-i;
+        }
+        return fast - slow + 1;
     }
 }
