@@ -54,10 +54,8 @@ public class SubArraySumK {
         map.put(0, 1); // sum, count
         for (int i = 0; i < nums.length; i++) {
             sum += nums[i];
-            if (map.containsKey(sum - k)) {
-                count += map.get(sum - k);
-            }
-            map.put(sum, map.getOrDefault(sum, 0) + 1);
+            count += map.getOrDefault(sum - k, 0);
+            map.put(sum, map.getOrDefault(sum, 0)+1);
         }
         return count;
     }
