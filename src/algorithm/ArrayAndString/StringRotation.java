@@ -2,15 +2,16 @@ package algorithm.ArrayAndString;
 
 public class StringRotation {
     public static void main(String[] args) {
-        System.out.println(rotateString("abcde", "cdeab"));
+        System.out.println(new StringRotation().rotateString("abcde", "cdeab"));
+        System.out.println(new StringRotation().rotateString2("abcde", "cdeab"));
     }
 
-    public static boolean rotateString(String A, String B) {
+    public boolean rotateString(String A, String B) {
         if(A.length() != B.length()) return false;
         return (A + A).contains(B);
     }
 
-    public static boolean rotateString2(String A, String B) {
+    public boolean rotateString2(String A, String B) {
         if(A.length() != B.length()) return false;
         if(A.length()==0 && B.length()==0) return true;
 
