@@ -18,8 +18,10 @@ public class ValidTicTacToeState {
         if (oNum > xNum) return false;
         if (xNum - oNum > 1) return false;
         if (isWin(board, 'X') && isWin(board, 'O')) return false;
-        if (isWin(board, 'X') && oNum >= xNum) return false;
-        if (isWin(board, 'O') && oNum < xNum) return false;
+//        if (isWin(board, 'X') && oNum >= xNum) return false;
+//        if (isWin(board, 'O') && oNum < xNum) return false;
+        if (isWin(board, 'X') && oNum+1 != xNum) return false;
+        if (isWin(board, 'O') && oNum != xNum) return false;
 
         return true;
     }
