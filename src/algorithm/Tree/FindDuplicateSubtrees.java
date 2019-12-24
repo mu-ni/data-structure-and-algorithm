@@ -14,8 +14,13 @@ public class FindDuplicateSubtrees {
         System.out.println();
         rst = new FindDuplicateSubtrees().findDuplicateSubtrees2(tree);
         rst.forEach(i -> System.out.println(new PreOrder().preOrder(i)));
+
+        System.out.println();
+        rst = new FindDuplicateSubtrees().findDuplicateSubtrees3(tree);
+        rst.forEach(i -> System.out.println(new PreOrder().preOrder(i)));
     }
 
+    // TLE
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
         if (root == null) return new ArrayList<>();
         Map<String, TreeNode> map = new HashMap<>();
@@ -33,39 +38,58 @@ public class FindDuplicateSubtrees {
         dfs(node.right, map, set);
     }
 
-    public String encode(TreeNode node) {
-        if (node == null) return "";
-        StringBuilder sb = new StringBuilder();
-        encode(sb, node);
-        return sb.toString();
-    }
-
-    public void encode(StringBuilder sb, TreeNode node) {
-        if (node == null) {
-            sb.append("#").append(",");
-            return;
-        }
-        sb.append(node.val).append(",");
-        encode(sb, node.left);
-        encode(sb, node.right);
-    }
-
+    // TLE
     public List<TreeNode> findDuplicateSubtrees2(TreeNode root) {
-        if (root == null) return new ArrayList<>();
         Map<String, Integer> map = new HashMap<>();
         List<TreeNode> rst = new ArrayList<>();
-        helper(root, map, rst);
+        dfs(map, rst, root);
         return rst;
     }
 
-    public String helper(TreeNode node, Map<String, Integer> map, List<TreeNode> rst) {
-        if (node == null) return "#,";
-        String str = String.valueOf(node.val) + "," +
-                helper(node.left, map, rst) +
-                helper(node.right, map, rst);
-        int count = map.getOrDefault(str, 0);
-        if (count == 1) rst.add(node);
-        map.put(str, count + 1);
-        return str;
+    public void dfs(Map<String, Integer> map, List<TreeNode> rst, TreeNode root) {
+        if (root == null) return;
+        String encode = encode(root);
+        int count = map.getOrDefault(encode, 0);
+        if (count == 1) {
+            rst.add(root);
+        }
+        map.put(encode, count+1);
+        dfs(map, rst, root.left);
+        dfs(map, rst, root.right);
+    }
+
+    public String encode(TreeNode root) {
+        StringBuilder sb = new StringBuilder();
+        if (root == null) {
+            sb.append("#,");
+            return sb.toString();
+        }
+        sb.append(root.val).append(",");
+        sb.append(encode(root.left));
+        sb.append(encode(root.right));
+        return sb.toString();
+    }
+
+    public List<TreeNode> findDuplicateSubtrees3(TreeNode root) {
+        Set<String> set = new HashSet<>();
+        Map<String, TreeNode> map = new HashMap<>();
+        encode(set, map, root);
+        return new ArrayList<>(map.values());
+    }
+
+    public String encode(Set<String> set, Map<String, TreeNode> map, TreeNode node) {
+        StringBuilder sb = new StringBuilder();
+        if (node == null) {
+            sb.append("#,");
+            return sb.toString();
+        }
+
+        sb.append(node.val).append(",");
+        sb.append(encode(set, map, node.left));
+        sb.append(encode(set, map, node.right));
+        String str = sb.toString();
+        if (set.contains(str)) map.put(str, node);
+        set.add(str);
+        return sb.toString();
     }
 }
