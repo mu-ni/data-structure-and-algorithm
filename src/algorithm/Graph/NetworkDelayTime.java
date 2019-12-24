@@ -8,6 +8,7 @@ public class NetworkDelayTime {
         System.out.println(new NetworkDelayTime().networkDelayTime(times, 4, 2));
     }
 
+    // djikstra
     public int networkDelayTime(int[][] times, int N, int K) {
         Map<Integer, Map<Integer,Integer>> map = new HashMap<>();
         for(int[] time : times){
