@@ -58,6 +58,7 @@ public class KClosestToOrigin {
             rst[index][1] = info[1];
             index++;
         }
+        // output reverse order
         return rst;
     }
 }
