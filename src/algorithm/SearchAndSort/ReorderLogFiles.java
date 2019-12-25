@@ -7,6 +7,10 @@ public class ReorderLogFiles {
         String[] logs = new String[]{"a1 9 2 3 1","g1 act car","zo4 4 7","ab1 off key dog","a8 act zoo","a2 act car"};
         String[] reordered = new ReorderLogFiles().reorderLogFiles(logs);
         System.out.println(Arrays.toString(reordered));
+
+        logs = new String[]{"a1 9 2 3 1","g1 act car","zo4 4 7","ab1 off key dog","a8 act zoo","a2 act car"};
+        reordered = new ReorderLogFiles().reorderLogFiles2(logs);
+        System.out.println(Arrays.toString(reordered));
     }
 
     public String[] reorderLogFiles(String[] logs) {
@@ -26,5 +30,32 @@ public class ReorderLogFiles {
         };
         Arrays.sort(logs, comparator);
         return logs;
+    }
+
+    public String[] reorderLogFiles2(String[] logs) {
+        Comparator<String> comp = (a, b) -> {
+            String[] arrA = a.split(" ");
+            String[] arrB = b.split(" ");
+            String idA = arrA[1];
+            String idB = arrB[1];
+
+            if (isInteger(idA) && isInteger(idB)) return 0;
+            if (!isInteger(idA) && !isInteger(idB)) {
+                String nextA = String.join(" ", Arrays.copyOfRange(arrA, 1, arrA.length));
+                String nextB = String.join(" ", Arrays.copyOfRange(arrB, 1, arrB.length));
+                int compStr = nextA.compareTo(nextB);
+                if (compStr == 0) {
+                    return arrA[0].compareTo(arrB[0]);
+                }
+                return compStr;
+            }
+            return isInteger(idA) ? 1 : -1; // 1 -> idB, idA
+        };
+        Arrays.sort(logs, comp);
+        return logs;
+    }
+
+    public boolean isInteger(String s) {
+        return Character.isDigit(s.charAt(0));
     }
 }
