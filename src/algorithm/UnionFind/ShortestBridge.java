@@ -11,6 +11,12 @@ public class ShortestBridge {
                 {0, 0, 1}
         };
         System.out.println(new ShortestBridge().shortestBridge(A));
+        A = new int[][]{
+                {0, 1, 0},
+                {0, 0, 0},
+                {0, 0, 1}
+        };
+        System.out.println(new ShortestBridge().shortestBridge2(A));
     }
 
     int m;
@@ -64,5 +70,55 @@ public class ShortestBridge {
             dist++;
         }
         return -1;
+    }
+
+    public int shortestBridge2(int[][] A) {
+        m = A.length;
+        if (m == 0) return -1;
+        n = A[0].length;
+        if (n == 0) return -1;
+        Queue<int[]> queue = new LinkedList<>();
+        boolean[][] visited = new boolean[m][n];
+        for (int i=0; i<m; i++) {
+            for (int j=0; j<n; j++) {
+                if (A[i][j] == 1) {
+                    dfs(A, i, j, queue, visited);
+                    return minDistance(A, queue, visited);
+                }
+            }
+        }
+        return -1;
+    }
+
+    public void dfs(int[][] A, int x, int y, Queue<int[]> queue, boolean[][] visited) {
+        if (x < 0 || y < 0 || x >= m || y >= n) return;
+        if (A[x][y] == 0 || visited[x][y]) return;
+        A[x][y] = 0;
+        visited[x][y] = true;
+        queue.offer(new int[]{x, y});
+        for (int[] dir : dirs) {
+            dfs(A, x + dir[0], y + dir[1], queue, visited);
+        }
+    }
+
+    public int minDistance(int[][] A, Queue<int[]> queue, boolean[][] visited) {
+        int dist = -1;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i=0; i<size; i++) {
+                int[] pos = queue.poll();
+                if (A[pos[0]][pos[1]] == 1) return dist;
+                for (int[] dir : dirs) {
+                    int x = pos[0] + dir[0];
+                    int y = pos[1] + dir[1];
+                    if (x < 0 || y < 0 || x >= m || y >= n) continue;
+                    if (visited[x][y]) continue;
+                    visited[x][y] = true;
+                    queue.offer(new int[]{x, y});
+                }
+            }
+            dist++;
+        }
+        return dist;
     }
 }
