@@ -37,6 +37,7 @@ public class ShortestPathInBinaryMatrix {
                     int y = pos[1] + dir[1];
                     if (x < 0 || y < 0 || x >= m || y >= n) continue;
                     if (visited[x][y] || grid[x][y] == 1) continue;
+                    // add currently unvisited pos
                     visited[x][y] = true;
                     queue.offer(new int[]{x, y});
                 }
