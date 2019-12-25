@@ -16,6 +16,7 @@ public class SnakesAndLadders {
                 {-1, 15, -1, -1, -1, -1}
         };
         System.out.println(new SnakesAndLadders().snakesAndLadders(board));
+        System.out.println(new SnakesAndLadders().snakesAndLadders2(board));
     }
 
     int n;
@@ -43,6 +44,34 @@ public class SnakesAndLadders {
                         queue.offer(next);
                         visited.add(next);
                     }
+                }
+            }
+            move++;
+        }
+        return -1;
+    }
+
+    public int snakesAndLadders2(int[][] board) {
+        n = board.length;
+        if (n == 0) return -1;
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(1);
+        Set<Integer> visited = new HashSet<>();
+        int move = 0;
+        int dest = n*n;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i=0; i<size; i++) {
+                int num = queue.poll();
+                if (num == dest) return move;
+                if (visited.contains(num)) continue;
+                visited.add(num);
+                for (int j=1; j<=6; j++) {
+                    int next = num + j;
+                    if (next > dest) continue;
+                    int value = getBoardValue(board, next);
+                    next = value == -1 ? next : value;
+                    queue.offer(next);
                 }
             }
             move++;
