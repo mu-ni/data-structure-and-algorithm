@@ -9,6 +9,7 @@ public class CousinsInBinaryTree {
     public static void main(String[] args) {
         System.out.println(new CousinsInBinaryTree().isCousins(TreeNode.arr2tree(new Integer[]{1, 2, 4, 5, 3}), 4, 5));
         System.out.println(new CousinsInBinaryTree().isCousins2(TreeNode.arr2tree(new Integer[]{1, 2, 4, 5, 3}), 4, 5));
+        System.out.println(new CousinsInBinaryTree().isCousins3(TreeNode.arr2tree(new Integer[]{1, 2, 4, 5, 3}), 4, 5));
     }
 
     public boolean isCousins(TreeNode root, int x, int y) {
@@ -55,5 +56,27 @@ public class CousinsInBinaryTree {
 
         dfs(node.left, depth+1, depthMap, parentMap);
         dfs(node.right, depth+1, depthMap, parentMap);
+    }
+
+    public boolean isCousins3(TreeNode root, int x, int y) {
+        Map<Integer, TreeNode> parentMap = new HashMap<>();
+        buildParentMap(parentMap, null, root);
+        Map<Integer, Integer> depthMap = new HashMap<>();
+        buildDepthMap(depthMap, root, 0);
+        return parentMap.get(x) != parentMap.get(y) && depthMap.get(x).equals(depthMap.get(y));
+    }
+
+    public void buildParentMap(Map<Integer, TreeNode> map, TreeNode parent, TreeNode node) {
+        if (node == null || map.containsKey(node.val)) return;
+        map.put(node.val, parent);
+        buildParentMap(map, node, node.left);
+        buildParentMap(map, node, node.right);
+    }
+
+    public void buildDepthMap(Map<Integer, Integer> map, TreeNode node, int depth) {
+        if (node == null || map.containsKey(node.val)) return;
+        map.put(node.val, depth);
+        buildDepthMap(map, node.left, depth+1);
+        buildDepthMap(map, node.right, depth+1);
     }
 }
