@@ -12,8 +12,7 @@ public class AllNodesDistanceKInBinaryTree {
 
     public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
         Map<TreeNode, List<TreeNode>> map = new HashMap<>();
-        buildMap(root, null, map);
-        if (!map.containsKey(target)) return new ArrayList<>();
+        buildMap(map, null, root);
 
         Queue<TreeNode> queue = new LinkedList<>();
         Set<TreeNode> visited = new HashSet<>();
@@ -23,11 +22,11 @@ public class AllNodesDistanceKInBinaryTree {
             if (K == 0) return buildList(queue);
             int size = queue.size();
             for (int i=0; i<size; i++) {
-                TreeNode cur = queue.poll();
-                for (TreeNode node : map.getOrDefault(cur, new ArrayList<>())) {
-                    if (visited.contains(node)) continue;
-                    queue.offer(node);
-                    visited.add(node);
+                TreeNode node = queue.poll();
+                for (TreeNode next : map.getOrDefault(node, new ArrayList<>())) {
+                    if (visited.contains(next)) continue;
+                    queue.offer(next);
+                    visited.add(next);
                 }
             }
             K--;
@@ -37,8 +36,7 @@ public class AllNodesDistanceKInBinaryTree {
 
     public List<Integer> buildList(Queue<TreeNode> queue) {
         List<Integer> rst = new ArrayList<>();
-        int size = queue.size();
-        for (int i=0; i<size; i++) {
+        while (!queue.isEmpty()) {
             TreeNode node = queue.poll();
             if (node != null) {
                 rst.add(node.val);
@@ -48,13 +46,13 @@ public class AllNodesDistanceKInBinaryTree {
     }
 
     // key -> node, value -> parent & children
-    public void buildMap(TreeNode node, TreeNode parent, Map<TreeNode, List<TreeNode>> map) {
-        if (node == null || map.containsKey(node)) return;
+    public void buildMap(Map<TreeNode, List<TreeNode>> map, TreeNode parent, TreeNode node) {
+        if (node == null) return;
         map.putIfAbsent(parent, new ArrayList<>());
         map.putIfAbsent(node, new ArrayList<>());
-        map.get(node).add(parent);
         map.get(parent).add(node);
-        buildMap(node.left, node, map);
-        buildMap(node.right, node, map);
+        map.get(node).add(parent);
+        buildMap(map, node, node.left);
+        buildMap(map, node, node.right);
     }
 }
