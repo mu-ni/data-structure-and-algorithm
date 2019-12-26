@@ -11,6 +11,7 @@ public class MaxLength {
     public int maxLength(List<String> arr) {
         int max = 0;
         for (int i = 0; i < arr.size(); i++) {
+            // keep sub-sequence
             String str = "";
             for (int j = i; j < arr.size(); j++) {
                 str += arr.get(j);
