@@ -2,28 +2,22 @@ package algorithm.StackAndQueue;
 
 import java.util.Stack;
 
-public class RemoveAllAdjDupInString2 {
+/**
+ * Created by muni on 2019/12/26
+ */
+public class RemoveAllAdjDupInString {
     public static void main(String[] args) {
-        System.out.println(new RemoveAllAdjDupInString2().removeDuplicates("deeedbbcccbdaa", 3));
-        System.out.println(new RemoveAllAdjDupInString2().removeDuplicates2("deeedbbcccbdaa", 3));
+        System.out.println(new RemoveAllAdjDupInString().removeDuplicates("abbaca"));
+        System.out.println(new RemoveAllAdjDupInString().removeDuplicates2("aaaaaaaa"));
     }
 
-    public String removeDuplicates(String s, int k) {
-        if (k == 1) return "";
+    public String removeDuplicates(String s) {
         Stack<Character> stack = new Stack<>();
-        Stack<Integer> iStack = new Stack<>();
         for (char c : s.toCharArray()) {
-            if (!stack.isEmpty() && stack.peek() == c) {
-                iStack.push(iStack.peek()+1);
+            if (stack.isEmpty() || c != stack.peek()) {
+                stack.push(c);
             } else {
-                iStack.push(1);
-            }
-            stack.push(c);
-            if (iStack.peek() == k) {
-                for (int i = 0; i < k; i++) {
-                    stack.pop();
-                    iStack.pop();
-                }
+                stack.pop();
             }
         }
 
@@ -34,12 +28,12 @@ public class RemoveAllAdjDupInString2 {
         return sb.reverse().toString();
     }
 
-    public String removeDuplicates2(String s, int k) {
-        if (s.length() == 0 || k == 1) return "";
-        String next = helper(s, k);
+    public String removeDuplicates2(String s) {
+        if (s.length() == 0) return "";
+        String next = helper(s, 2);
         while (!s.equals(next)) {
             s = next;
-            next = helper(next, k);
+            next = helper(next, 2);
         }
         return next;
     }
