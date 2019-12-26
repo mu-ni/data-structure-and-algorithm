@@ -17,6 +17,7 @@ public class MaxLength {
                 if (isValid(str)) {
                     max = Math.max(max, str.length());
                 } else {
+                    // remove arr[i] from str
                     str = str.substring(0, str.length() - arr.get(j).length());
                 }
             }
