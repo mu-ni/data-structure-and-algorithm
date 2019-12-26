@@ -6,6 +6,7 @@ public class UglyNumber3 {
     public static void main(String[] args) {
         System.out.println(new UglyNumber3().nthUglyNumber(4, 2, 3, 4));
         System.out.println(new UglyNumber3().nthUglyNumber2(4, 2, 3, 4));
+        System.out.println(new UglyNumber3().nthUglyNumber3(4, 2, 3, 4));
     }
 
     // TLE
@@ -36,6 +37,22 @@ public class UglyNumber3 {
             }
         }
         return rst;
+    }
+
+    public int nthUglyNumber3(int n, int a, int b, int c) {
+        int left = 1;
+        int right = Integer.MAX_VALUE;
+        while (left <= right) {
+            int mid = left + (right - left)/2;
+            int count = count(a, b, c, mid);
+            if (count < n) {
+                left = mid+1;
+            } else {
+                if (mid == left || count(a, b, c, mid-1) < n) return mid;
+                right = mid-1;
+            }
+        }
+        return -1;
     }
 
     // how many numbers from 1 to num are divisible by either a, b or c
