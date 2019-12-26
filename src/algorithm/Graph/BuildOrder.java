@@ -47,7 +47,7 @@ public class BuildOrder {
         return index == projects.length ? order : new char[0];
     }
 
-    public char[] buildOrder2(char[] projects, char[][] dependencies) {// dfs
+    public char[] buildOrder2(char[] projects, char[][] dependencies) {// backtrack
         List<Character>[] lists = new List[projects.length];
         for (char pre : projects) {
             lists[pre - 'a'] = new ArrayList<>();

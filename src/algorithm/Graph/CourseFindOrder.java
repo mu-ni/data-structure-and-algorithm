@@ -45,7 +45,7 @@ public class CourseFindOrder {
         return index == numCourses ? order : new int[0];
     }
 
-    public int[] findOrder2(int numCourses, int[][] prerequisites) { //adjMatrix, dfs
+    public int[] findOrder2(int numCourses, int[][] prerequisites) { //adjMatrix, backtrack
         int[][] matrix = new int[numCourses][numCourses];
         int[] indegree = new int[numCourses];
         for (int i = 0; i < prerequisites.length; i++) {
@@ -85,7 +85,7 @@ public class CourseFindOrder {
         return true;
     }
 
-    public int[] findOrder3(int numCourses, int[][] prerequisites) { //adjList, dfs
+    public int[] findOrder3(int numCourses, int[][] prerequisites) { //adjList, backtrack
         List<Integer>[] lists = new List[numCourses];
         for (int i = 0; i < lists.length; i++) {
             lists[i] = new ArrayList<>();

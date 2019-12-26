@@ -73,7 +73,7 @@ public class RemoveInvalidParentheses {
         return rst;
     }
 
-    // dfs - all solutions
+    // backtrack - all solutions
     public List<String> removeInvalidParentheses2(String s) {
         List<String> rst = new ArrayList<>();
         dfs(rst, s, new HashSet<>());

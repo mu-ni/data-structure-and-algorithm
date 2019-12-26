@@ -75,7 +75,7 @@ public class CourseCanFinish {
         return count == numCourses;
     }
 
-    public boolean canFinish3(int numCourses, int[][] prerequisites) { // adjMatrix, dfs
+    public boolean canFinish3(int numCourses, int[][] prerequisites) { // adjMatrix, backtrack
         int[][] matrix = new int[numCourses][numCourses];
         for (int i=0; i<prerequisites.length; i++) {
             int cur = prerequisites[i][0];
@@ -104,7 +104,7 @@ public class CourseCanFinish {
         return true;
     }
 
-    public boolean canFinish4(int numCourses, int[][] prerequisites) { // adjList, dfs
+    public boolean canFinish4(int numCourses, int[][] prerequisites) { // adjList, backtrack
         List<Integer>[] lists = new List[numCourses];
         for (int i = 0; i < lists.length; i++) {
             lists[i] = new ArrayList<>();
