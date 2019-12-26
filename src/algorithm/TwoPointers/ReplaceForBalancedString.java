@@ -18,6 +18,7 @@ public class ReplaceForBalancedString {
             arr[s.charAt(fast)]--;
             fast++;
             // move slow -> s(0, slow) + s(fast, n) is balanced
+            // arr -> chars in s(0, slow) + s(fast, n)
             while (arr['Q'] <= k && arr['W'] <= k && arr['E'] <= k && arr['R'] <= k) {
                 rst = Math.min(rst, fast - slow);
                 arr[s.charAt(slow)]++;
