@@ -4,8 +4,8 @@ import java.util.*;
 
 public class RemoveSubFolders {
     public static void main(String[] args) {
-        System.out.println(new RemoveSubFolders().removeSubfolders(new String[]{"/a","/a/b","/c/d","/c/d/e","/c/f"}));
-        System.out.println(new RemoveSubFolders().removeSubfolders2(new String[]{"/a","/a/b","/c/d","/c/d/e","/c/f"}));
+        System.out.println(new RemoveSubFolders().removeSubfolders(new String[]{"/a/b/c","/a/b/ca","/a/b/d"}));
+        System.out.println(new RemoveSubFolders().removeSubfolders2(new String[]{"/a/b/c","/a/b/ca","/a/b/d"}));
     }
 
     public List<String> removeSubfolders(String[] folder) {
