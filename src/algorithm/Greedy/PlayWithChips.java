@@ -5,7 +5,7 @@ package algorithm.Greedy;
  */
 public class PlayWithChips {
     public static void main(String[] args) {
-        System.out.println(new PlayWithChips().minCostToMoveChips(new int[]{1,2,3}));
+        System.out.println(new PlayWithChips().minCostToMoveChips(new int[]{2,2,2,3,3}));
     }
 
     // i-th chip is at position chips[i] -> array item is position
