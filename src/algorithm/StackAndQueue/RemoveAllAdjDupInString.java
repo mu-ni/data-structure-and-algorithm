@@ -8,7 +8,7 @@ import java.util.Stack;
 public class RemoveAllAdjDupInString {
     public static void main(String[] args) {
         System.out.println(new RemoveAllAdjDupInString().removeDuplicates("abbaca"));
-        System.out.println(new RemoveAllAdjDupInString().removeDuplicates2("aaaaaaaa"));
+        System.out.println(new RemoveAllAdjDupInString().removeDuplicates2("abbaca"));
     }
 
     public String removeDuplicates(String s) {
