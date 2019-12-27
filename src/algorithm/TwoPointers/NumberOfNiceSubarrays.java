@@ -20,6 +20,7 @@ public class NumberOfNiceSubarrays {
                 if (nums[slow]%2 ==1) k++;
                 slow++;
             }
+            // fast - slow -> subarray count
             count += fast-slow;
         }
         return count;
