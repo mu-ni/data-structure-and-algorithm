@@ -89,7 +89,7 @@ public class BinaryMatrix2Row {
         int sum = 0;
         for (int j=0; j<n; j++) {
             if (colsum[j] == 0) continue;
-            if (sum + colsum[j] <= val) {
+            if (sum + colsum[j] < val) {
                 arr[j] = colsum[j];
                 sum += colsum[j];
                 colsum[j] = 0;
@@ -99,6 +99,6 @@ public class BinaryMatrix2Row {
                 return arr;
             }
         }
-        return arr;
+        return new int[0];
     }
 }
