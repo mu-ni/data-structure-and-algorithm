@@ -1,39 +1,38 @@
 package algorithm.ArrayAndString;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MaxLength {
     public static void main(String[] args) {
-        System.out.println(new MaxLength().maxLength(Arrays.asList("cusy", "s", "imelfbpuoawkrq", "roxckjm", "vkaxcbespwotzq", "jrnhyslwbifteqox", "fnisjhckr", "ubvpwtzxh", "sgxkqdlw", "hzsngeotfxbcm", "zhrextvndpcmbql", "bdfxez", "rzgnbf", "hbw", "cohurlnjqpefzayig", "xoqgyjsm")));
+        System.out.println(new MaxLength().maxLength(Arrays.asList("cha","r","act","ers")));
     }
 
+    int max = 0;
     public int maxLength(List<String> arr) {
-        int max = 0;
-        for (int i = 0; i < arr.size(); i++) {
-            // keep sub-sequence
-            String str = "";
-            for (int j = i; j < arr.size(); j++) {
-                str += arr.get(j);
-                if (isValid(str)) {
-                    max = Math.max(max, str.length());
-                } else {
-                    // remove arr[i] from str
-                    str = str.substring(0, str.length() - arr.get(j).length());
-                }
-            }
-        }
+        backtrack(arr, 0, new ArrayList<>());
         return max;
     }
 
+    public void backtrack(List<String> arr, int start, List<String> path) {
+        String str = String.join("", path);
+        if (!isValid(str)) return;
+        max = Math.max(max, str.length());
+        for (int i=start; i<arr.size(); i++) {
+            path.add(arr.get(i));
+            backtrack(arr, i+1, path);
+            path.remove(path.size()-1);
+        }
+    }
+
     public boolean isValid(String s) {
-        int[] arr = new int[128];
+        if (s.length() > 26) return false;
+        boolean[] arr = new boolean[26];
         for (char c : s.toCharArray()) {
-            if (arr[c] != 0) return false;
-            arr[c]++;
+            if (arr[c - 'a']) return false;
+            arr[c - 'a'] = true;
         }
         return true;
     }
-
-    // TODO backtrack
 }
