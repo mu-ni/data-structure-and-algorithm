@@ -1,9 +1,7 @@
 package algorithm.SetAndMap;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class MaxOccurrencesSubstring {
     public static void main(String[] args) {
@@ -18,10 +16,7 @@ public class MaxOccurrencesSubstring {
         int max = 0;
         for (int i=0; i<=s.length() - minSize; i++) {
             String sub = s.substring(i, i+minSize);
-            Set<Character> set = new HashSet<>();
-            for (char c : sub.toCharArray()) {
-                set.add(c);
-            }
+            Set<Character> set = sub.chars().mapToObj(c -> (char) c).collect(Collectors.toSet());
             if (set.size() > maxLetters) continue;
             int count = map.getOrDefault(sub, 0)+1;
             map.put(sub, count);
