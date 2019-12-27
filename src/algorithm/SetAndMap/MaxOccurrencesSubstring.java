@@ -1,4 +1,4 @@
-package algorithm.TwoPointers;
+package algorithm.SetAndMap;
 
 import java.util.HashMap;
 import java.util.HashSet;
