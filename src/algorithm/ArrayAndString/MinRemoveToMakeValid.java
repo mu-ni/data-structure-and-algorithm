@@ -1,14 +1,13 @@
 package algorithm.ArrayAndString;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 public class MinRemoveToMakeValid {
     public static void main(String[] args) {
-        System.out.println(new MinRemoveToMakeValid().minRemoveToMakeValid("))(("));
-        System.out.println(new MinRemoveToMakeValid().minRemoveToMakeValid2("))(("));
+        System.out.println(new MinRemoveToMakeValid().minRemoveToMakeValid("(a(b(c)d)"));
+        System.out.println(new MinRemoveToMakeValid().minRemoveToMakeValid2("(a(b(c)d)"));
+        System.out.println(new MinRemoveToMakeValid().minRemoveToMakeValid3("(a(b(c)d)"));
+        System.out.println(new MinRemoveToMakeValid().minRemoveToMakeValid4("(a(b(c)d)"));
     }
 
     // TLE
@@ -61,5 +60,65 @@ public class MinRemoveToMakeValid {
             sb.append(str.charAt(i));
         }
         return sb.reverse().toString();
+    }
+
+    public String minRemoveToMakeValid3(String s) {
+        boolean[] invValid = new boolean[s.length()];
+
+        int left = 0;
+        for (int i=0; i<s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == '(') left++;
+            if (c == ')') {
+                if (left > 0) {
+                    left--;
+                } else {
+                    invValid[i] = true;
+                }
+            }
+        }
+
+        int right = 0;
+        for (int i=s.length()-1; i>=0; i--) {
+            char c = s.charAt(i);
+            if (c == ')') right++;
+            if (c == '(') {
+                if (right > 0) {
+                    right--;
+                } else {
+                    invValid[i] = true;
+                }
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i=0; i<s.length(); i++) {
+            if (invValid[i]) continue;
+            sb.append(s.charAt(i));
+        }
+        return sb.toString();
+    }
+
+    public String minRemoveToMakeValid4(String s) {
+        char[] arr = s.toCharArray();
+        int left = 0;
+        for (int i=0; i<arr.length; i++) {
+            char c = arr[i];
+            if (c == '(') left++;
+            if (c == ')' && left-- < 0) {
+                arr[i] = '*';
+            }
+        }
+
+        int right = 0;
+        for (int i=s.length()-1; i>=0; i--) {
+            char c = s.charAt(i);
+            if (c == ')') right++;
+            if (c == '(' && right-- < 0) {
+                arr[i] = '*';
+            }
+        }
+
+        return new String(arr).replace("*", "");
     }
 }
