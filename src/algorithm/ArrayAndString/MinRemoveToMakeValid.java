@@ -4,10 +4,10 @@ import java.util.*;
 
 public class MinRemoveToMakeValid {
     public static void main(String[] args) {
-        System.out.println(new MinRemoveToMakeValid().minRemoveToMakeValid("(a(b(c)d)"));
-        System.out.println(new MinRemoveToMakeValid().minRemoveToMakeValid2("(a(b(c)d)"));
-        System.out.println(new MinRemoveToMakeValid().minRemoveToMakeValid3("(a(b(c)d)"));
-        System.out.println(new MinRemoveToMakeValid().minRemoveToMakeValid4("(a(b(c)d)"));
+        System.out.println(new MinRemoveToMakeValid().minRemoveToMakeValid("a)b(c)d"));
+        System.out.println(new MinRemoveToMakeValid().minRemoveToMakeValid2("a)b(c)d"));
+        System.out.println(new MinRemoveToMakeValid().minRemoveToMakeValid3("a)b(c)d"));
+        System.out.println(new MinRemoveToMakeValid().minRemoveToMakeValid4("a)b(c)d"));
     }
 
     // TLE
@@ -105,17 +105,25 @@ public class MinRemoveToMakeValid {
         for (int i=0; i<arr.length; i++) {
             char c = arr[i];
             if (c == '(') left++;
-            if (c == ')' && left-- < 0) {
-                arr[i] = '*';
+            if (c == ')') {
+                if (left > 0) {
+                    left--;
+                } else {
+                    arr[i] = '*';
+                }
             }
         }
 
         int right = 0;
-        for (int i=s.length()-1; i>=0; i--) {
-            char c = s.charAt(i);
+        for (int i=arr.length-1; i>=0; i--) {
+            char c = arr[i];
             if (c == ')') right++;
-            if (c == '(' && right-- < 0) {
-                arr[i] = '*';
+            if (c == '(') {
+                if (right > 0) {
+                    right--;
+                } else {
+                    arr[i] = '*';
+                }
             }
         }
 
