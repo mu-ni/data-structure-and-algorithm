@@ -22,6 +22,7 @@ public class UnionFind {
         int rootQ = find(q);
         if (rootP == rootQ) return;
         parent[rootQ] = rootP;
+        // parent[Math.min(rootP, rootQ)] = Math.max(rootP, rootQ);
         count--;
     }
 
