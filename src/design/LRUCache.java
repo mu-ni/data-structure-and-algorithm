@@ -12,9 +12,9 @@ public class LRUCache {
     int cap;
 
     public LRUCache(int capacity) {
-        list = new ArrayList<>();
-        map = new HashMap<>();
-        cap = capacity;
+        this.list = new ArrayList<>();
+        this.map = new HashMap<>();
+        this.cap = capacity;
     }
 
     public int get(int key) {
@@ -27,14 +27,13 @@ public class LRUCache {
 
     public void put(int key, int value) {
         if (map.containsKey(key)) {
-            map.put(key, value);
             list.remove(Integer.valueOf(key));
-            list.add(key);
-            return;
+            map.remove(key);
         }
-
-        if (list.size() >= cap) {
-            map.remove(list.remove(0));
+        if (list.size() == cap) {
+            int rem = list.get(0);
+            list.remove(Integer.valueOf(rem));
+            map.remove(rem);
         }
         list.add(key);
         map.put(key, value);
