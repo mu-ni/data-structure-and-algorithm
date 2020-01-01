@@ -7,6 +7,7 @@ public class CourseFindOrder {
         System.out.println(Arrays.toString(new CourseFindOrder().findOrder(4, new int[][]{{1, 0}, {2, 0}, {3, 1}, {3, 2}})));
         System.out.println(Arrays.toString(new CourseFindOrder().findOrder2(4, new int[][]{{1, 0}, {2, 0}, {3, 1}, {3, 2}})));
         System.out.println(Arrays.toString(new CourseFindOrder().findOrder3(4, new int[][]{{1, 0}, {2, 0}, {3, 1}, {3, 2}})));
+        System.out.println(Arrays.toString(new CourseFindOrder().findOrder4(4, new int[][]{{1, 0}, {2, 0}, {3, 1}, {3, 2}})));
     }
 
     public int[] findOrder(int numCourses, int[][] prerequisites) { // bfs
@@ -125,5 +126,37 @@ public class CourseFindOrder {
         visited[pre] = 2;
         stack.push(pre);
         return true;
+    }
+
+    public int[] findOrder4(int numCourses, int[][] prerequisites) { //adjList, bfs
+        List<Integer>[] lists = new List[numCourses];
+        for (int i = 0; i < lists.length; i++) {
+            lists[i] = new ArrayList<>();
+        }
+        int[] indegree = new int[numCourses];
+        for (int i = 0; i < prerequisites.length; i++) {
+            int cur = prerequisites[i][0];
+            int pre = prerequisites[i][1];
+            lists[pre].add(cur);
+            indegree[cur]++;
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i=0; i<numCourses; i++) {
+            if (indegree[i] == 0) queue.offer(i);
+        }
+
+        int[] order = new int[numCourses];
+        int index = 0;
+        while (!queue.isEmpty()) {
+            int cur = queue.poll();
+            order[index++] = cur;
+            for (int next : lists[cur]) {
+                indegree[next]--;
+                if (indegree[next] == 0) queue.offer(next);
+            }
+        }
+
+        return index == numCourses ? order : new int[0];
     }
 }
