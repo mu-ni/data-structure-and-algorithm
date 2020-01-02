@@ -19,6 +19,8 @@ public class GetEqualSubstringWithinBudget {
                 cost -= Math.abs(s.charAt(slow) - t.charAt(slow));
                 slow++;
             }
+            // maybe now [fast, slow] is not valid, but not affect the maxLen
+            // keep current maxLen as the next sliding window's size
             maxLen = Math.max(maxLen, fast - slow);
         }
         return maxLen;
