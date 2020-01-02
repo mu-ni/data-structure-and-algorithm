@@ -2,6 +2,7 @@ package algorithm.TwoPointers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class IntervalListIntersections {
@@ -10,6 +11,7 @@ public class IntervalListIntersections {
         int[][] B = new int[][]{{1, 5}, {8, 12}, {15, 24}, {25, 26}};
         System.out.println(Arrays.deepToString(new IntervalListIntersections().intervalIntersection(A, B)));
         System.out.println(Arrays.deepToString(new IntervalListIntersections().intervalIntersection2(A, B)));
+        System.out.println(Arrays.deepToString(new IntervalListIntersections().intervalIntersection3(A, B)));
     }
 
     public int[][] intervalIntersection(int[][] A, int[][] B) {
@@ -52,5 +54,37 @@ public class IntervalListIntersections {
             if (a[1] >= b[1]) j++;
         }
         return rst.toArray(new int[rst.size()][2]);
+    }
+
+    public int[][] intervalIntersection3(int[][] A, int[][] B) {
+        Arrays.sort(A, Comparator.comparingInt(o -> o[0]));
+        Arrays.sort(B, Comparator.comparingInt(o -> o[0]));
+
+        int i = 0;
+        int j = 0;
+        List<int[]> list = new ArrayList<>();
+        while (i < A.length && j < B.length) {
+            if (A[i][1] < B[j][0]) {
+                i++;
+                continue;
+            }
+            if (A[i][0] > B[j][1]) {
+                j++;
+                continue;
+            }
+
+            int[] intersection = new int[]{Math.max(A[i][0], B[j][0]), Math.min(A[i][1], B[j][1])};
+            list.add(intersection);
+
+            if (A[i][1] < B[j][1]) {
+                i++;
+            } else if (A[i][1] > B[j][1]) {
+                j++;
+            } else {
+                i++;
+                j++;
+            }
+        }
+        return list.toArray(new int[list.size()][2]);
     }
 }
