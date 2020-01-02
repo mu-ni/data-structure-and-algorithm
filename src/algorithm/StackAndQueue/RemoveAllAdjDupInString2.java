@@ -10,19 +10,26 @@ public class RemoveAllAdjDupInString2 {
 
     public String removeDuplicates(String s, int k) {
         if (k == 1) return "";
+        Stack<Integer> istack = new Stack<>();
         Stack<Character> stack = new Stack<>();
-        Stack<Integer> iStack = new Stack<>();
         for (char c : s.toCharArray()) {
-            if (!stack.isEmpty() && stack.peek() == c) {
-                iStack.push(iStack.peek()+1);
+            if (stack.isEmpty()) {
+                stack.push(c);
+                istack.push(1);
+                continue;
+            }
+
+            if (stack.peek() == c) {
+                istack.push(istack.peek()+1);
             } else {
-                iStack.push(1);
+                istack.push(1);
             }
             stack.push(c);
-            if (iStack.peek() == k) {
-                for (int i = 0; i < k; i++) {
+
+            if (istack.peek() == k) {
+                for (int i=0; i<k; i++) {
                     stack.pop();
-                    iStack.pop();
+                    istack.pop();
                 }
             }
         }
