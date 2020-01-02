@@ -1,15 +1,18 @@
 package algorithm.UnionFind;
 
+import algorithm.LinkedList.Dao.ListNode;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class SmallestStringWithSwaps {
     public static void main(String[] args) {
-        Integer[][] arr = new Integer[][]{{0,3},{1,2}};
+        Integer[][] arr = new Integer[][]{{0,3},{1,2}, {0,2}};
         List<List<Integer>> pairs = Arrays.stream(arr).map(Arrays::asList).collect(Collectors.toList());
         System.out.println(new SmallestStringWithSwaps().smallestStringWithSwaps("dcab", pairs));
         System.out.println(new SmallestStringWithSwaps().smallestStringWithSwaps2("dcab", pairs));
         System.out.println(new SmallestStringWithSwaps().smallestStringWithSwaps3("dcab", pairs));
+        System.out.println(new SmallestStringWithSwaps().smallestStringWithSwaps4("dcab", pairs));
     }
 
     public String smallestStringWithSwaps(String s, List<List<Integer>> pairs) {
@@ -131,5 +134,30 @@ public class SmallestStringWithSwaps {
     public int find(int[] p, int node) {
         if (p[node] == node) return node;
         return p[node] = find(p, p[node]);
+    }
+
+    // TLE
+    public String smallestStringWithSwaps4(String s, List<List<Integer>> pairs) {
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        buildGraph(map, pairs);
+
+        char[] arr = s.toCharArray();
+        boolean[] visited = new boolean[s.length()];
+        for (int i=0; i<s.length(); i++) {
+            if (visited[i]) continue;
+            List<Integer> li = new ArrayList<>();
+            dfs(map, i, li, visited);
+            buildArr(arr, s, li);
+        }
+        return new String(arr);
+    }
+
+    public void dfs(Map<Integer, List<Integer>> map, int cur, List<Integer> li, boolean[] visited) {
+        if (!map.containsKey(cur) || li.contains(cur) || visited[cur]) return;
+        visited[cur] = true;
+        li.add(cur);
+        for (int next : map.get(cur)) {
+            dfs(map, next, li, visited);
+        }
     }
 }
