@@ -2,12 +2,12 @@ package algorithm.ArrayAndString;
 
 public class StringCompression {
     public static void main(String[] args) {
-        System.out.println(compress(new char[]{'a','b','b','b','b','b','b','b','b','b','b','b','b'}));
-        System.out.println(compress2(new char[]{'a','b','b','b','b','b','b','b','b','b','b','b','b'}));
-        System.out.println(compress3(new char[]{'a','a','b','b','c','c','c'}));
+        System.out.println(new StringCompression().compress(new char[]{'a','b','b','b','b','b','b','b','b','b','b','b','b'}));
+        System.out.println(new StringCompression().compress2(new char[]{'a','b','b','b','b','b','b','b','b','b','b','b','b'}));
+        System.out.println(new StringCompression().compress3(new char[]{'a','b','c'}));
     }
 
-    public static int compress(char[] chars) {
+    public int compress(char[] chars) {
         int i = 0;
         int len = 1;
         int index = 0;
@@ -29,7 +29,7 @@ public class StringCompression {
         return index;
     }
 
-    public static int compress2(char[] chars) {
+    public int compress2(char[] chars) {
         int len = 1;
         int index = 0;
         for (int i=0; i<chars.length; i++) {
@@ -48,21 +48,29 @@ public class StringCompression {
         return index;
     }
 
-    public static int compress3(char[] chars) {
+    public int compress3(char[] chars) {
         if (chars.length <= 1) return chars.length;
+        char c = chars[0];
         int count = 1;
         int index = 0;
-        for (int i=0; i<chars.length; i++) {
-            if (i != chars.length-1 && chars[i] == chars[i+1]) {
+        for (int i=1; i<chars.length; i++) {
+            if (chars[i] == c) {
                 count++;
             } else {
-                chars[index++] = chars[i];
-                if (count > 1) {
-                    for (char cnt : String.valueOf(count).toCharArray()) {
-                        chars[index++] = cnt;
+                chars[index++] = c;
+                if (count != 1) {
+                    for (char d : String.valueOf(count).toCharArray()) {
+                        chars[index++] = d;
                     }
                 }
+                c = chars[i];
                 count = 1;
+            }
+        }
+        chars[index++] = c;
+        if (count != 1) {
+            for (char d : String.valueOf(count).toCharArray()) {
+                chars[index++] = d;
             }
         }
         return index;
