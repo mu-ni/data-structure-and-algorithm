@@ -30,14 +30,7 @@ public class Minesweeper {
             return board;
         }
 
-        int count = 0;
-        for (int[] dir : dirs) {
-            int x = click[0] + dir[0];
-            int y = click[1] + dir[1];
-            if (x < 0 || y < 0 || x >= m || y >= n) continue;
-            if (board[x][y] == 'M') count++;
-        }
-
+        int count = getAdjMines(board, click[0], click[1]);
         if (count > 0) {
             board[click[0]][click[1]] = (char)(count + '0');
             return board;
@@ -47,7 +40,8 @@ public class Minesweeper {
             int x = click[0] + dir[0];
             int y = click[1] + dir[1];
             if (x < 0 || y < 0 || x >= m || y >= n) continue;
-            if (board[x][y] == 'E') updateBoard(board, new int[]{x, y});
+            if (board[x][y] != 'E') continue;
+            updateBoard(board, new int[]{x, y});
         }
         return board;
     }
@@ -65,13 +59,7 @@ public class Minesweeper {
         queue.offer(click);
         while (!queue.isEmpty()) {
             int[] pos = queue.poll();
-            int count = 0;
-            for (int[] dir : dirs) {
-                int x = pos[0] + dir[0];
-                int y = pos[1] + dir[1];
-                if (x < 0 || y < 0 || x >= m || y >= n) continue;
-                if (board[x][y] == 'M') count++;
-            }
+            int count = getAdjMines(board, pos[0], pos[1]);
             if (count > 0) {
                 board[pos[0]][pos[1]] = (char)(count + '0');
                 continue;
@@ -81,12 +69,22 @@ public class Minesweeper {
                 int x = pos[0] + dir[0];
                 int y = pos[1] + dir[1];
                 if (x < 0 || y < 0 || x >= m || y >= n) continue;
-                if (board[x][y] == 'E') {
-                    queue.offer(new int[]{x, y});
-                    board[x][y] = 'B';
-                }
+                if (board[x][y] != 'E') continue;
+                queue.offer(new int[]{x, y});
+                board[x][y] = 'B';
             }
         }
         return board;
+    }
+
+    public int getAdjMines(char[][] board, int x, int y) {
+        int count = 0;
+        for (int[] dir : dirs) {
+            int dx = x + dir[0];
+            int dy = y + dir[1];
+            if (dx < 0 || dy < 0 || dx >= m || dy >= n) continue;
+            if (board[dx][dy] == 'M') count++;
+        }
+        return count;
     }
 }
