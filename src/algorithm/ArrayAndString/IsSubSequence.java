@@ -10,14 +10,12 @@ public class IsSubSequence {
     }
     public boolean isSubsequence(String s, String t) {
         if (s.length() == 0) return true;
-        int indexS = 0;
-        int indexT = 0;
-        while (indexT < t.length()) {
-            if (s.charAt(indexS) == t.charAt(indexT)) {
-                indexS++;
-                if (indexS == s.length()) return true;
+        int index=0;
+        for (char c : t.toCharArray()) {
+            if (c == s.charAt(index)) {
+                index++;
+                if (index == s.length()) return true;
             }
-            indexT++;
         }
         return false;
     }
