@@ -5,6 +5,7 @@ public class StringCompression {
         System.out.println(new StringCompression().compress(new char[]{'a','b','b','b','b','b','b','b','b','b','b','b','b'}));
         System.out.println(new StringCompression().compress2(new char[]{'a','b','b','b','b','b','b','b','b','b','b','b','b'}));
         System.out.println(new StringCompression().compress3(new char[]{'a','b','b','b','b','b','b','b','b','b','b','b','b'}));
+        System.out.println(new StringCompression().compress4(new char[]{'a','b','b','b','b','b','b','b','b','b','b','b','b'}));
     }
 
     public int compress(char[] chars) {
@@ -71,6 +72,30 @@ public class StringCompression {
         if (count != 1) {
             for (char d : String.valueOf(count).toCharArray()) {
                 chars[index++] = d;
+            }
+        }
+        return index;
+    }
+
+    public int compress4(char[] chars) {
+        if (chars.length <= 1) return chars.length;
+        char c = chars[0];
+        int count = 1;
+        int index = 0;
+        for (int i=1; i<=chars.length; i++) {
+            if (i == chars.length || chars[i] != c) {
+                chars[index++] = c;
+                if (count != 1) {
+                    for (char d : String.valueOf(count).toCharArray()) {
+                        chars[index++] = d;
+                    }
+                }
+                if (i != chars.length) {
+                    c = chars[i];
+                    count = 1;
+                }
+            } else {
+                count++;
             }
         }
         return index;
