@@ -4,7 +4,7 @@ public class StringCompression {
     public static void main(String[] args) {
         System.out.println(new StringCompression().compress(new char[]{'a','b','b','b','b','b','b','b','b','b','b','b','b'}));
         System.out.println(new StringCompression().compress2(new char[]{'a','b','b','b','b','b','b','b','b','b','b','b','b'}));
-        System.out.println(new StringCompression().compress3(new char[]{'a','b','c'}));
+        System.out.println(new StringCompression().compress3(new char[]{'a','b','b','b','b','b','b','b','b','b','b','b','b'}));
     }
 
     public int compress(char[] chars) {
