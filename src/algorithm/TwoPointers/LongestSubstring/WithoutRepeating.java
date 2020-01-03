@@ -12,24 +12,21 @@ public class WithoutRepeating { //Longest Substring without Repeating Character
     }
 
     public static int lengthOfLongestSubstring(String s) {
+        Set<Character> set = new HashSet<>();
         int slow = 0;
         int fast = 0;
-        int len = 0;
-        Set<Character> set = new HashSet<>();
-
-        while(slow < s.length() && fast < s.length()) {
-            char c = s.charAt(fast);
-            if(set.contains(c)) {
+        int max = 0;
+        while (fast < s.length()) {
+            if (!set.contains(s.charAt(fast))) {
+                set.add(s.charAt(fast));
+                fast++;
+                max = Math.max(max, fast-slow);
+            } else {
                 set.remove(s.charAt(slow));
                 slow++;
-                continue;
             }
-            set.add(c);
-            fast++;
-            len = Math.max(len, fast-slow);
         }
-
-        return len;
+        return max;
     }
 
     public static int lengthOfLongestSubstring2(String s) {
