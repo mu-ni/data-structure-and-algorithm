@@ -9,6 +9,7 @@ public class AllNodesDistanceKInBinaryTree {
         TreeNode root = TreeNode.arr2tree(new Integer[]{0,2,1,null,null,3});
         System.out.println(new AllNodesDistanceKInBinaryTree().distanceK(root, root.right.left, 3));
         System.out.println(new AllNodesDistanceKInBinaryTree().distanceK2(root, root.right.left, 3));
+        System.out.println(new AllNodesDistanceKInBinaryTree().distanceK3(root, root.right.left, 3));
     }
 
     // BFS from target
@@ -88,6 +89,33 @@ public class AllNodesDistanceKInBinaryTree {
         if (dist == K) rst.add(node.val);
         dfs(rst, map, node.left, K, dist+1);
         dfs(rst, map, node.right, K, dist+1);
+    }
+
+    public List<Integer> distanceK3(TreeNode root, TreeNode target, int K) {
+        if (root == null) return new ArrayList<>();
+        Map<TreeNode, List<TreeNode>> map = new HashMap<>();
+        buildMap(map, null, root);
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(target);
+        Set<TreeNode> set = new HashSet<>();
+        set.add(target);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> list = new ArrayList<>();
+            for (int i=0; i<size; i++) {
+                TreeNode cur = queue.poll();
+                list.add(cur.val);
+                for (TreeNode next : map.getOrDefault(cur, new ArrayList<>())) {
+                    if (next == null || set.contains(next)) continue;
+                    set.add(next);
+                    queue.offer(next);
+                }
+            }
+            if (K == 0) return list;
+            K--;
+        }
+        return new ArrayList<>();
     }
 
     // NOT WORK
