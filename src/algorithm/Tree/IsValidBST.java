@@ -8,6 +8,7 @@ public class IsValidBST {
     public static void main(String[] args) {
         System.out.println(new IsValidBST().isValidBST(TreeNode.genTree()));
         System.out.println(new IsValidBST().isValidBST2(TreeNode.genTree()));
+        System.out.println(new IsValidBST().isValidBST3(TreeNode.genTree()));
     }
 
     public boolean isValidBST(TreeNode root) {
@@ -37,5 +38,19 @@ public class IsValidBST {
             cur = cur.right;
         }
         return true;
+    }
+
+    public boolean isValidBST3(TreeNode root) {
+        if (root == null) return true;
+        return isValidBST3(root.left, Integer.MIN_VALUE, root.val)
+                && isValidBST3(root.right, root.val, Integer.MAX_VALUE);
+    }
+
+    // [-2147483648,null,2147483647] not work
+    public boolean isValidBST3(TreeNode node, int min, int max) {
+        if (node == null) return true;
+        if (node.val >= max || node.val <= min) return false;
+        return isValidBST3(node.left, min, node.val)
+                && isValidBST3(node.right, node.val, max);
     }
 }
