@@ -2,7 +2,8 @@ package algorithm.ArrayAndString;
 
 public class MyAtoi {
     public static void main(String[] args) {
-        System.out.println(new MyAtoi().myAtoi("9223372036854775808"));
+        System.out.println(new MyAtoi().myAtoi("+1"));
+        System.out.println(new MyAtoi().myAtoi2("+1"));
     }
 
     public int myAtoi(String str) {
@@ -26,5 +27,34 @@ public class MyAtoi {
             if (isNeg && -rst < Integer.MIN_VALUE) return Integer.MIN_VALUE;
         }
         return isNeg ? (int) -rst : (int) rst;
+    }
+
+    public int myAtoi2(String str) {
+        str = str.trim();
+        if (str.length() == 0) return 0;
+
+        long rst = 0;
+        int sign = 1;
+        int index = 0;
+        if (!Character.isDigit(str.charAt(0))) {
+            if (str.charAt(0) == '-') {
+                sign = -1;
+                index = 1;
+            } else if (str.charAt(0) == '+') {
+                sign = 1;
+                index = 1;
+            } else {
+                return 0;
+            }
+        }
+        while (index < str.length()) {
+            char c = str.charAt(index);
+            if (!Character.isDigit(c)) break;
+            rst = rst*10 + c - '0';
+            if (sign*rst > Integer.MAX_VALUE) return Integer.MAX_VALUE;
+            if (sign*rst < Integer.MIN_VALUE) return Integer.MIN_VALUE;
+            index++;
+        }
+        return (int) (sign*rst);
     }
 }
