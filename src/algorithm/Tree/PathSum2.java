@@ -7,18 +7,18 @@ import java.util.List;
 
 public class PathSum2 {
     public static void main(String[] args) {
-        System.out.println(pathSum(TreeNode.genTree(), 9));
-        System.out.println(pathSum2(TreeNode.genTree(), 9));
+        System.out.println(new PathSum2().pathSum(TreeNode.genTree(), 9));
+        System.out.println(new PathSum2().pathSum2(TreeNode.genTree(), 9));
     }
 
     // root-to-leaf paths
-    public static List<List<Integer>> pathSum(TreeNode root, int sum) {
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
         List<List<Integer>> rst = new ArrayList<>();
         dfs(rst, root, sum, new ArrayList<>());
         return rst;
     }
 
-    public static void dfs(List<List<Integer>> rst, TreeNode node, int sum, List<Integer> path) {
+    public void dfs(List<List<Integer>> rst, TreeNode node, int sum, List<Integer> path) {
         if (node == null) return;
         path.add(node.val);
         sum -= node.val;
@@ -32,25 +32,23 @@ public class PathSum2 {
         path.remove(path.size() - 1);
     }
 
-    public static List<List<Integer>> pathSum2(TreeNode root, int sum) {
+    public List<List<Integer>> pathSum2(TreeNode root, int sum) {
+        if (root == null) return new ArrayList<>();
         List<List<Integer>> rst = new ArrayList<>();
         backtrack(rst, root, sum, new ArrayList<>());
         return rst;
     }
 
-    public static void backtrack(List<List<Integer>> rst, TreeNode node, int rem, List<Integer> path) {
+    public void backtrack(List<List<Integer>> rst, TreeNode node, int rem, List<Integer> path) {
         if (node == null) return;
 
-        if (rem == node.val && node.left == null && node.right == null) {
-            path.add(node.val);
-            rst.add(new ArrayList<>(path));
-            path.remove(path.size()-1);
-            return;
-        }
-
         path.add(node.val);
-        backtrack(rst, node.left, rem-node.val, path);
-        backtrack(rst, node.right, rem-node.val, path);
+        if (node.val == rem && node.left == null && node.right == null) {
+            rst.add(new ArrayList<>(path));
+        } else {
+            backtrack(rst, node.left, rem - node.val, path);
+            backtrack(rst, node.right, rem - node.val, path);
+        }
         path.remove(path.size()-1);
     }
 }
