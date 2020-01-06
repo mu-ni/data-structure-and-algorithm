@@ -7,6 +7,7 @@ public class SwapPair {
         System.out.println(swapPairs(ListNode.getList(new int[]{1,2,3,4,5})).toString());
         System.out.println(swapPairs2(ListNode.getList(new int[]{1,2,3,4,5})).toString());
         System.out.println(swapPairs3(ListNode.getList(new int[]{1,2,3,4,5})).toString());
+        System.out.println(swapPairs4(ListNode.getList(new int[]{1,2,3,4,5})).toString());
     }
 
     public static ListNode swapPairs(ListNode head) {
@@ -49,5 +50,57 @@ public class SwapPair {
             pre = pre.next.next;
         }
         return dummy.next;
+    }
+
+    public static ListNode swapPairs4(ListNode head) {
+        ListNode evenHead = new ListNode(0);
+        ListNode even = evenHead;
+        ListNode oddHead = new ListNode(0);
+        ListNode odd = oddHead;
+
+        boolean isEven = false;
+        while (head != null) {
+            if (isEven) {
+                even.next = head;
+                even = even.next;
+                isEven = false;
+            } else {
+                odd.next = head;
+                odd = odd.next;
+                isEven = true;
+            }
+            head = head.next;
+        }
+        even.next = null;
+        odd.next = null;
+
+        ListNode rst = new ListNode(0);
+        ListNode cur = rst;
+        even = evenHead.next;
+        odd = oddHead.next;
+        isEven = true;
+        while (even != null && odd != null) {
+            if (isEven) {
+                cur.next = even;
+                even = even.next;
+                isEven = false;
+            } else {
+                cur.next = odd;
+                odd = odd.next;
+                isEven = true;
+            }
+            cur = cur.next;
+        }
+        while (even != null) {
+            cur.next = even;
+            cur = cur.next;
+            even = even.next;
+        }
+        while (odd != null) {
+            cur.next = odd;
+            cur = cur.next;
+            odd = odd.next;
+        }
+        return rst.next;
     }
 }
