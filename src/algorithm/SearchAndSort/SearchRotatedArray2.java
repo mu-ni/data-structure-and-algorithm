@@ -13,7 +13,7 @@ public class SearchRotatedArray2 { //duplicated element
             int mid = (lo + hi) / 2;
             if (nums[mid] == target) return true;
 
-            // skip duplicated
+            // skip duplicated start -> && <- end
             while (nums[lo] == nums[mid] && lo != mid) {
                 lo++;
             }
