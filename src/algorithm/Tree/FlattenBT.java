@@ -83,10 +83,9 @@ public class FlattenBT {
             while (leftRight.right != null) {
                 leftRight = leftRight.right;
             }
-            TreeNode right = root.right;
-            root.left = null;
+            leftRight.right = root.right;
             root.right = left;
-            leftRight.right = right;
+            root.left = null;
         }
 
         flatten(root.right);
