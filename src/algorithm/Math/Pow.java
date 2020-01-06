@@ -8,6 +8,8 @@ public class Pow {
         System.out.println(new Pow().myPow2(2.0, -2));
         System.out.println(new Pow().myPow3(2.0, 10));
         System.out.println(new Pow().myPow3(2.0, -2));
+        System.out.println(new Pow().myPow4(2.0, 10));
+        System.out.println(new Pow().myPow4(2.0, -2));
     }
 
     public double myPow(double x, int n) {
@@ -62,5 +64,19 @@ public class Pow {
             prod = prod*prod;
         }
         return rst;
+    }
+
+    // TLE
+    public double myPow4(double x, int n) {
+        if (n == 0) return 1;
+        if (n == 1) return x;
+        if (n == 2) return x*x;
+
+        if (n < 0) return myPow4(1/x, -n); // Integer.MIN_VALUE overflow
+
+        if (n%2 == 0) {
+            return myPow4(x, n/2)*myPow4(x, n/2);
+        }
+        return x*myPow4(x, n/2)*myPow4(x, n/2);
     }
 }
