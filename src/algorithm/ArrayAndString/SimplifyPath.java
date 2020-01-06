@@ -5,6 +5,7 @@ import java.util.Stack;
 public class SimplifyPath {
     public static void main(String[] args) {
         System.out.println(new SimplifyPath().simplifyPath("/a/../../b/../c//.//"));
+        System.out.println(new SimplifyPath().simplifyPath2("/a/../../b/../c//.//"));
     }
 
     public String simplifyPath(String path) {
@@ -24,5 +25,26 @@ public class SimplifyPath {
         }
         String rst = sb.toString();
         return rst.isEmpty() ? "/" : rst;
+    }
+
+    public String simplifyPath2(String path) {
+        String[] arr = path.split("/");
+        Stack<String> stack = new Stack<>();
+        for (String p : arr) {
+            if (p.isEmpty()) continue;
+            if (!stack.isEmpty() && p.equals("..")) {
+                stack.pop();
+            }
+            if (!p.equals("..") && !p.equals(".")) {
+                stack.push(p);
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        while (!stack.isEmpty()) {
+            sb.insert(0, stack.pop()).insert(0, "/");
+
+        }
+        return sb.length() == 0 ? "/" : sb.toString();
     }
 }
