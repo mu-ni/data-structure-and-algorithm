@@ -78,8 +78,8 @@ public class FlattenBT {
     public static void flatten4(TreeNode root) {
         if (root == null) return;
         TreeNode left = root.left;
-        TreeNode leftRight = left;
-        if (leftRight != null) {
+        if (left != null) {
+            TreeNode leftRight = left;
             while (leftRight.right != null) {
                 leftRight = leftRight.right;
             }
