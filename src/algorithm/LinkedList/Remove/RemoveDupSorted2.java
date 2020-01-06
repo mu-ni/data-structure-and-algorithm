@@ -2,19 +2,25 @@ package algorithm.LinkedList.Remove;
 
 import algorithm.LinkedList.Dao.ListNode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RemoveDupSorted2 {
     public static void main(String[] args) {
         ListNode head = ListNode.getList(new int[]{1,2,3,3,3,4,4,5});
-        System.out.println(removeDuplicates(head).toString());
+        System.out.println(new RemoveDupSorted2().removeDuplicates(head).toString());
 
         head = ListNode.getList(new int[]{1,2,3,3,3,4,4,5});
-        System.out.println(removeDuplicates2(head).toString());
+        System.out.println(new RemoveDupSorted2().removeDuplicates2(head).toString());
 
         head = ListNode.getList(new int[]{1,2,3,3,3,4,4,5});
-        System.out.println(removeDuplicates3(head).toString());
+        System.out.println(new RemoveDupSorted2().removeDuplicates3(head).toString());
+
+        head = ListNode.getList(new int[]{1,2,3,3,3,4,4,5});
+        System.out.println(new RemoveDupSorted2().removeDuplicates4(head).toString());
     }
 
-    public static ListNode removeDuplicates(ListNode head) {
+    public ListNode removeDuplicates(ListNode head) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode slow = dummy;
@@ -35,7 +41,7 @@ public class RemoveDupSorted2 {
         return dummy.next;
     }
 
-    public static ListNode removeDuplicates2(ListNode head) {
+    public ListNode removeDuplicates2(ListNode head) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode slow = dummy;
@@ -55,7 +61,7 @@ public class RemoveDupSorted2 {
         return dummy.next;
     }
 
-    public static ListNode removeDuplicates3(ListNode head) {
+    public ListNode removeDuplicates3(ListNode head) {
         if (head == null || head.next == null) return head;
 
         ListNode dummy = new ListNode(0);
@@ -79,6 +85,29 @@ public class RemoveDupSorted2 {
             fast = fast.next.next;
         }
 
+        return dummy.next;
+    }
+
+    public ListNode removeDuplicates4(ListNode head) {
+        if (head == null || head.next == null) return head;
+        Map<Integer, Integer> map = new HashMap<>();
+        ListNode cur = head;
+        while (cur != null) {
+            int count = map.getOrDefault(cur.val, 0)+1;
+            map.put(cur.val, count);
+            cur = cur.next;
+        }
+
+        ListNode dummy = new ListNode(0);
+        cur = dummy;
+        while (head != null) {
+            if (map.get(head.val) == 1) {
+                cur.next = head;
+                cur = cur.next;
+            }
+            head = head.next;
+        }
+        cur.next = null;
         return dummy.next;
     }
 }
