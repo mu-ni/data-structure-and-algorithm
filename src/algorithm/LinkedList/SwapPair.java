@@ -30,9 +30,9 @@ public class SwapPair {
         if (head == null || head.next == null) return head;
 
         ListNode second = head.next;
-        ListNode tmp = second.next;
+        ListNode rest = second.next;
         second.next = head;
-        head.next = swapPairs2(tmp);
+        head.next = swapPairs2(rest);
         return second;
     }
 
