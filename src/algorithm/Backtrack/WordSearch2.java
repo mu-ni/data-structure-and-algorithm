@@ -12,10 +12,12 @@ public class WordSearch2 {
         String[] words = new String[]{"oath","pea","eat","rain"};
         System.out.println(new WordSearch2().findWords(board, words));
         System.out.println(new WordSearch2().findWords2(board, words));
+        System.out.println(new WordSearch2().findWords3(board, words));
         board = new char[][]{{'a', 'b'},{'a', 'a'}};
         words = new String[]{"aba","baa","bab","aaab","aaa","aaaa","aaba"};
         System.out.println(new WordSearch2().findWords(board, words));
         System.out.println(new WordSearch2().findWords2(board, words));
+        System.out.println(new WordSearch2().findWords3(board, words));
     }
 
     int m;
@@ -88,11 +90,39 @@ public class WordSearch2 {
         if (x < 0 || y < 0 || x >= m || y >= n) return;
         if (visited[x][y] || !trie.startsWith(path)) return;
         visited[x][y] = true;
-        path += board[x][y];
         for (int[] dir : dirs) {
-            backtrack(rst, board, x + dir[0], y + dir[1], trie, visited, path);
+            backtrack(rst, board, x + dir[0], y + dir[1], trie, visited, path + board[x][y]);
         }
         visited[x][y] = false;
-        path = path.substring(0, path.length()-1);
+    }
+
+    public List<String> findWords3(char[][] board, String[] words) {
+        m = board.length;
+        n = board[0].length;
+        Trie trie = new Trie();
+        for (String word : words) {
+            trie.insert(word);
+        }
+        Set<String> set = new HashSet<>();
+        for (int i=0; i<m; i++) {
+            for (int j=0; j<n; j++) {
+                backtrack(set, trie, board, i, j, "");
+            }
+        }
+        return new ArrayList<>(set);
+    }
+
+    public void backtrack(Set<String> set, Trie trie, char[][] board, int x, int y, String path) {
+        if (trie.search(path)) {
+            set.add(path);
+        }
+        if (x < 0 || y < 0 || x >= m || y >= n) return;
+        if (!trie.startsWith(path) || board[x][y] == '#') return;
+        char tmp = board[x][y];
+        board[x][y] = '#';
+        for (int[] dir : dirs) {
+            backtrack(set, trie, board, x+dir[0], y + dir[1], path + tmp);
+        }
+        board[x][y] = tmp;
     }
 }
