@@ -8,6 +8,7 @@ public class BasicCalculator {
         System.out.println(new BasicCalculator().calculate("(1+(4+5+2)-3)+(6+8)"));
         System.out.println(new BasicCalculator().calculate2("2-1 + 20"));
         System.out.println(new BasicCalculator().calculate3("1 + 1"));
+        System.out.println(new BasicCalculator().calculate4(" 2-1 + 2 "));
     }
 
     // no ()
@@ -140,6 +141,46 @@ public class BasicCalculator {
         }
 
         if (num != 0) rst += num*sign;
+        return rst;
+    }
+
+    public int calculate4(String s) {
+        s = s.trim();
+        Stack<Integer> stack = new Stack<>();
+        Stack<Integer> signStack = new Stack<>();
+        int num = 0;
+        int rst = 0;
+        int sign = 1;
+        for (int i=0; i<s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == ' ') continue;
+            if (Character.isDigit(c)) {
+                num = num*10 + c - '0';
+            }
+            if (i == s.length()-1 || !Character.isDigit(c)) {
+                if (c == '(') {
+                    stack.push(rst);
+                    signStack.push(sign);
+                    rst = 0;
+                    sign = 1;
+                } else if (c == ')') {
+                    rst +=sign*num;
+                    num = 0;
+                    rst *= signStack.pop();
+                    rst += stack.pop();
+                } else if (c == '+') {
+                    rst +=sign*num;
+                    num = 0;
+                    sign = 1;
+                } else if (c == '-') {
+                    rst +=sign*num;
+                    num = 0;
+                    sign = -1;
+                } else {
+                    rst += num*sign;
+                }
+            }
+        }
         return rst;
     }
 }
