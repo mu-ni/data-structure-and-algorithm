@@ -7,6 +7,7 @@ public class CountPrimes {
         System.out.println(new CountPrimes().countPrimes(10));
         System.out.println(new CountPrimes().countPrimes2(10));
         System.out.println(new CountPrimes().countPrimes3(10));
+        System.out.println(new CountPrimes().countPrimes4(10));
     }
 
     public int countPrimes(int n) {
@@ -46,6 +47,21 @@ public class CountPrimes {
             if (isPrime[i]) count++;
             for (int j=i; j<n; j += i) {
                 isPrime[j] = false;
+            }
+        }
+        return count;
+    }
+
+    public int countPrimes4(int n) {
+        boolean[] dp = new boolean[n+1];
+        int count = 0;
+        for (int i=2; i<n; i++) {
+            if (dp[i]) continue;
+            count++;
+            int num = i;
+            while (num < n) {
+                dp[num] = true;
+                num += i;
             }
         }
         return count;
