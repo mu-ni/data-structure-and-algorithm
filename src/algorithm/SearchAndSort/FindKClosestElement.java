@@ -1,6 +1,7 @@
 package algorithm.SearchAndSort;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by muni on 2020/1/13
@@ -8,6 +9,8 @@ import java.util.*;
 public class FindKClosestElement {
     public static void main(String[] args) {
         System.out.println(new FindKClosestElement().findClosestElements(new int[]{1,2,2,2,5,5,5,8,9,9}, 4, 0));
+        System.out.println(new FindKClosestElement().findClosestElements2(new int[]{1,2,2,2,5,5,5,8,9,9}, 4, 0));
+        System.out.println(new FindKClosestElement().findClosestElements3(new int[]{1}, 1, 1));
     }
 
     public List<Integer> findClosestElements(int[] arr, int k, int x) {
@@ -34,5 +37,33 @@ public class FindKClosestElement {
         }
         Collections.sort(rst);
         return rst;
+    }
+
+    // binary search -> min diff
+    public List<Integer> findClosestElements2(int[] arr, int k, int x) {
+        int start = 0;
+        int end = arr.length-k;
+        while (start < end) {
+            int mid = start + (end - start)/2;
+            if (x - arr[mid] > arr[mid+k]-x) {
+                start = mid+1;
+            } else {
+                end = mid;
+            }
+        }
+        return Arrays.stream(arr, start, start+k).boxed().collect(Collectors.toList());
+    }
+
+    public List<Integer> findClosestElements3(int[] arr, int k, int x) {
+        int slow = 0;
+        int fast = arr.length-1;
+        while (fast - slow >= k) {
+            if (Math.abs(arr[slow] - x) > Math.abs(arr[fast] - x)) {
+                slow++;
+            } else {
+                fast--;
+            }
+        }
+        return Arrays.stream(arr, slow, fast+1).boxed().collect(Collectors.toList());
     }
 }
