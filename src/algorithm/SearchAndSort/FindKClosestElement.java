@@ -39,7 +39,7 @@ public class FindKClosestElement {
         return rst;
     }
 
-    // binary search -> min diff
+    // binary search
     public List<Integer> findClosestElements2(int[] arr, int k, int x) {
         int start = 0;
         int end = arr.length-k;
