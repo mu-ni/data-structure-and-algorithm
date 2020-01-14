@@ -29,6 +29,7 @@ public class KthSmallestInSortedMatrix {
         return arr[k-1];
     }
 
+    // klogn
     public int kthSmallest2(int[][] matrix, int k) {
         int m = matrix.length;
         int n = matrix[0].length;
