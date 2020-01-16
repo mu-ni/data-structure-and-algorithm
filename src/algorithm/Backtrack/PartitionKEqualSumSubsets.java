@@ -23,10 +23,11 @@ public class PartitionKEqualSumSubsets {
 
     private boolean backtrack(int[] nums, int start, boolean[] visited, int k, int sum, int target) {
         if (k == 0) return true;
+        if (sum > target) return false;
         if (sum == target) return backtrack(nums, 0, visited, k-1, 0, target);
 
         for (int i=start; i<nums.length; i++) {
-            if (visited[i] || sum + nums[i] > target) continue;
+            if (visited[i]) continue;
             visited[i] = true;
             boolean isValid = backtrack(nums, i+1, visited, k, sum + nums[i], target);
             visited[i] = false;
