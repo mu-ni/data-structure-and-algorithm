@@ -1,6 +1,8 @@
 package algorithm.Backtrack;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,27 +15,36 @@ public class PalindromicSubStrs {
 
     int count = 0;
     public int countSubstrings(String s) {
-        backtrack(s.toCharArray(), 0, new StringBuilder(), new HashMap<>());
+        backtrack(s.toCharArray(), 0, new ArrayList<>(), new HashMap<>());
         return count;
     }
 
-    private void backtrack(char[] arr, int start, StringBuilder path, Map<String, Boolean> map) {
-        String str = path.toString();
-        System.out.println(str);
+    private void backtrack(char[] arr, int start, List<Character> path, Map<String, Boolean> map) {
+        String str = buildStr(path);
         if (map.containsKey(str)) {
-            if (map.get(str)) count++;
+            if (map.get(str)) {
+                count++;
+            }
             return;
         }
         map.put(str, isPalindrome(str));
         for (int i=start; i<arr.length; i++) {
-            path.append(arr[i]);
+            path.add(arr[i]);
             backtrack(arr, i+1, path, map);
-            path = new StringBuilder(path.substring(0, path.length()-1));
+            path.remove(path.size()-1);
         }
     }
 
-    public boolean isPalindrome(String s) {
-        StringBuilder sb = new StringBuilder(s);
-        return sb.reverse().toString().equals(s);
+    private String buildStr(List<Character> list) {
+        StringBuilder sb = new StringBuilder();
+        for (char c : list) {
+            sb.append(c);
+        }
+        return sb.toString();
+    }
+
+    private boolean isPalindrome(String s) {
+        if (s.length() == 0) return false;
+        return new StringBuilder(s).reverse().toString().equals(s);
     }
 }
