@@ -32,10 +32,10 @@ public class LRUCache2 {
     }
 
     private void insertHead(Node node) {
-        node.prev = head;
-        node.next = head.next;
         head.next.prev = node;
+        node.next = head.next;
         head.next = node;
+        node.prev = head;
     }
 
     private void deleteNode(Node node) {
