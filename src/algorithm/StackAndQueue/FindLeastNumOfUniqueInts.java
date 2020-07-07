@@ -43,13 +43,21 @@ public class FindLeastNumOfUniqueInts {
         int rst = 0;
         for (int i=0; i<=arr.length; i++) {
             if (bucket[i] == null) continue;
-            for (int j=0; j<bucket[i].size(); j++) {
+            int size = bucket[i].size();
+            while (size-- > 0) {
                 if (k > 0) {
                     k -= i;
                 } else {
                     rst++;
                 }
             }
+//            for (int j=0; j<bucket[i].size(); j++) {
+//                if (k > 0) {
+//                    k -= i;
+//                } else {
+//                    rst++;
+//                }
+//            }
         }
         return k == 0 ? rst : rst + 1;
     }
