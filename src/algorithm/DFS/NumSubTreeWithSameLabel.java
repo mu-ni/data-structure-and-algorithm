@@ -32,13 +32,13 @@ public class NumSubTreeWithSameLabel {
         int[] arr = new int[26];
         if (visited.contains(n)) return arr;
         visited.add(n);
-        char c = labels.charAt(n);
         for (int child : map.getOrDefault(n, Collections.emptyList())) {
             int[] sub = dfs(child, map, labels, rst, visited);
             for (int i=0; i<26; i++) {
                 arr[i] += sub[i];
             }
         }
+        char c = labels.charAt(n);
         arr[c - 'a']++;
         rst[n] += arr[c - 'a'];
         return arr;
