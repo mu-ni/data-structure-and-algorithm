@@ -8,6 +8,7 @@ import java.util.*;
 public class AllPathsFromSourceToTarget {
     public static void main(String[] args) {
         System.out.println(new AllPathsFromSourceToTarget().allPathsSourceTarget(new int[][]{{1,2},{3},{3},{}}));
+        System.out.println(new AllPathsFromSourceToTarget().allPathsSourceTarget2(new int[][]{{1,2},{3},{3},{}}));
     }
 
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
@@ -30,6 +31,26 @@ public class AllPathsFromSourceToTarget {
         for (int next : map.getOrDefault(cur, new int[0])) {
             path.add(next);
             backtrack(rst, map, path);
+            path.remove(path.size()-1);
+        }
+    }
+
+    public List<List<Integer>> allPathsSourceTarget2(int[][] graph) {
+        List<List<Integer>> rst = new ArrayList<>();
+        List<Integer> path = new ArrayList<>(Collections.singletonList(0));
+        backtrack2(rst, graph, path);
+        return rst;
+    }
+
+    private void backtrack2(List<List<Integer>> rst, int[][] graph, List<Integer> path) {
+        int cur = path.get(path.size()-1);
+        if (cur == graph.length-1) {
+            rst.add(new ArrayList<>(path));
+            return;
+        }
+        for (int next : graph[cur]) {
+            path.add(next);
+            backtrack2(rst, graph, path);
             path.remove(path.size()-1);
         }
     }
