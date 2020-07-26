@@ -56,6 +56,8 @@ public class NumGoodLeafNodesPairs {
 
     private int[] helper(TreeNode node, int distance) {
         if (node == null) return new int[11];
+        // arr[i]: the number of leaf nodes
+        // i: distance to current node is i
         int[] arr = new int[11];
         if (node.left == null && node.right == null) {
             arr[1] = 1;
