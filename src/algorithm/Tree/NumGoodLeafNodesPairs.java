@@ -11,6 +11,7 @@ public class NumGoodLeafNodesPairs {
     public static void main(String[] args) {
         TreeNode root = TreeNode.arr2tree(new Integer[]{1,2,3,null,4});
         System.out.println(new NumGoodLeafNodesPairs().countPairs(root, 3));
+        System.out.println(new NumGoodLeafNodesPairs().countPairs2(root, 3));
     }
 
     public int countPairs(TreeNode root, int distance) {
@@ -44,5 +45,37 @@ public class NumGoodLeafNodesPairs {
         }
         helper(node.left, map, newPath, leaves);
         helper(node.right, map, newPath, leaves);
+    }
+
+    // not understand
+    int count = 0;
+    public int countPairs2(TreeNode root, int distance) {
+        helper(root, distance);
+        return count;
+    }
+
+    private int[] helper(TreeNode node, int distance) {
+        if (node == null) return new int[11];
+        int[] arr = new int[11];
+        if (node.left == null && node.right == null) {
+            arr[1] = 1;
+            return arr;
+        }
+
+        // find all nodes satisfying distance
+        int[] left = helper(node.left, distance);
+        int[] right = helper(node.right, distance);
+        for (int i=0; i<=10; i++) {
+            for (int j=0; j<=10; j++) {
+                if (i + j <= distance) {
+                    count += left[i]*right[j];
+                }
+            }
+        }
+        // increment all by 1, ignore the node distance larger than 10
+        for (int i=0; i<=9; i++) {
+            arr[i+1] += left[i] + right[i];
+        }
+        return arr;
     }
 }
