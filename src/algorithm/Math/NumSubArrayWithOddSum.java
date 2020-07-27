@@ -27,6 +27,7 @@ public class NumSubArrayWithOddSum {
         return count;
     }
 
+    // ???
     public int numOfSubarrays2(int[] arr) {
         int rst = 0;
         int cur = 0;
