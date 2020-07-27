@@ -13,6 +13,7 @@ public class NumSubArrayWithOddSum {
         int count = 0;
         int even = 0;
         int odd = 0;
+        int mod = (int) (1e9+7);
         for (int n : arr) {
             if (n % 2 == 0) {
                 even++;
@@ -21,7 +22,7 @@ public class NumSubArrayWithOddSum {
                 odd = even + 1;
                 even = tmp;
             }
-            count = (count + odd) % ((int) 1e9 + 7);
+            count = (count + odd) % mod;
         }
         return count;
     }
