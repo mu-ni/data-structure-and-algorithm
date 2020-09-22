@@ -1,4 +1,4 @@
-package algorithm.ArrayAndString;
+package algorithm.ArrayAndString.PrefixSum;
 
 import java.util.HashMap;
 import java.util.Map;
