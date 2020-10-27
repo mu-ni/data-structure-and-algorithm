@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class BagOfTokens {
     public static void main(String[] args) {
         System.out.println(new BagOfTokens().bagOfTokensScore(new int[]{100,200,300,400}, 200));
+        System.out.println(new BagOfTokens().bagOfTokensScore(new int[]{100}, 50));
     }
 
     public int bagOfTokensScore(int[] tokens, int P) {
