@@ -7,6 +7,7 @@ public class CountSortedVowelStrings {
     public static void main(String[] args) {
         System.out.println(new CountSortedVowelStrings().countVowelStrings(5));
         System.out.println(new CountSortedVowelStrings().countVowelStrings2(5));
+        System.out.println(new CountSortedVowelStrings().countVowelStrings3(5));
     }
 
     public int countVowelStrings(int n) {
@@ -37,5 +38,19 @@ public class CountSortedVowelStrings {
             }
         }
         return dp[n][5];
+    }
+
+    public int countVowelStrings3(int n) {
+        int[] dp = new int[6];
+        for (int i=1; i<=n; i++) {
+            for (int j=1; j<=5; j++) {
+                if (i == 1) {
+                    dp[j] = dp[j-1] + 1;
+                } else {
+                    dp[j] += dp[j-1];
+                }
+            }
+        }
+        return dp[5];
     }
 }
