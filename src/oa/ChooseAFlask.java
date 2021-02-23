@@ -14,6 +14,7 @@ public class ChooseAFlask {
         System.out.println(new ChooseAFlask().chooseAFlask(4, orders, 3, 9, markings));
     }
 
+    // satisfy requirements but min waste
     public int chooseAFlask(int numOfOrders, int[] requirements, int flaskTypes, int totalMarks, int[][] markings) {
         List<TreeSet<Integer>> list = new ArrayList<>();
         for (int i=0; i<flaskTypes; i++) {
